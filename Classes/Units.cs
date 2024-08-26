@@ -18,9 +18,75 @@ namespace P5RBattleEditor
         {
             UnitTableData unitTblData = new UnitTableData();
 
-            // TODO: Read data from file
+            using (FileStream fs = new FileStream(path, FileMode.Create))
+            {
+                using (BinaryReader br = new BinaryReader(fs, Encoding.Unicode))
+                {
+                    // Segment 0: Enemy Unit Stats
+                    uint segment0Size = br.ReadUInt32();
+                    for (int i = 0; i < (segment0Size / 68); i++)
+                    {
+                        // Bit flags
+                        unitTblData.EnemyUnits[0].EnemyStats.Flags = new List<bool[]>
+                        {
+                            ConvertByteToBools(br.ReadByte()), ConvertByteToBools(br.ReadByte()),
+                            ConvertByteToBools(br.ReadByte()), ConvertByteToBools(br.ReadByte())
+                        };
+                        // Misc
+                        unitTblData.EnemyUnits[0].EnemyStats.Arcana = br.ReadByte();
+                        unitTblData.EnemyUnits[0].EnemyStats.RESERVE = br.ReadByte();
+                        unitTblData.EnemyUnits[0].EnemyStats.Level = br.ReadUInt16();
+                        unitTblData.EnemyUnits[0].EnemyStats.HP = br.ReadUInt32();
+                        unitTblData.EnemyUnits[0].EnemyStats.SP = br.ReadUInt32();
+                        // Enemy Stats
+                        unitTblData.EnemyUnits[0].EnemyStats.Stats.Strength = br.ReadByte();
+                        unitTblData.EnemyUnits[0].EnemyStats.Stats.Magic = br.ReadByte();
+                        unitTblData.EnemyUnits[0].EnemyStats.Stats.Endurance = br.ReadByte();
+                        unitTblData.EnemyUnits[0].EnemyStats.Stats.Agility = br.ReadByte();
+                        unitTblData.EnemyUnits[0].EnemyStats.Stats.Luck = br.ReadByte();
+                        unitTblData.EnemyUnits[0].EnemyStats.RESERVE2 = br.ReadByte();
+                        // Enemy Skills
+                        for (int x = 0; x < 8; x++)
+                            unitTblData.EnemyUnits[0].EnemyStats.Skills[x] = br.ReadUInt16();
+                        // Rewards
+                        unitTblData.EnemyUnits[0].EnemyStats.EXPReward = br.ReadUInt16();
+                        unitTblData.EnemyUnits[0].EnemyStats.MoneyReward = br.ReadUInt16();
+                        for (int x = 0; x < 4; x++)
+                            unitTblData.EnemyUnits[0].EnemyStats.ItemDrops[x] = new ItemDrop() { ItemID = br.ReadUInt16(), Probability = br.ReadUInt16() };
+                        unitTblData.EnemyUnits[0].EnemyStats.EventItemDrop = new ItemDrop() { EventID = br.ReadUInt16(), ItemID = br.ReadUInt16(), Probability = br.ReadUInt16() };
+                        // Attack Attributes
+                        unitTblData.EnemyUnits[0].EnemyStats.AttackAttributes.AttackType = br.ReadByte();
+                        unitTblData.EnemyUnits[0].EnemyStats.AttackAttributes.AttackAccuracy = br.ReadByte();
+                        unitTblData.EnemyUnits[0].EnemyStats.AttackAttributes.AttackDamage = br.ReadUInt16();
+                    }
+
+                    // Segment 2
+
+                    // Segment 3
+
+                    // Segment 4
+
+                    // Segment 5
+
+                }
+            }
 
             return unitTblData;
+        }
+
+        public static bool[] ConvertByteToBools(byte b)
+        {
+            return new bool[]
+            {
+                (b & 0b00000001) != 0,
+                (b & 0b00000010) != 0,
+                (b & 0b00000100) != 0,
+                (b & 0b00001000) != 0,
+                (b & 0b00010000) != 0,
+                (b & 0b00100000) != 0,
+                (b & 0b01000000) != 0,
+                (b & 0b10000000) != 0
+            };
         }
 
         private void WriteP5RUnitTbl(UnitTableData unitTblData, string path)
@@ -51,14 +117,8 @@ namespace P5RBattleEditor
                         bw.Write(unit.EnemyStats.Stats.Luck);
                         bw.Write(unit.EnemyStats.RESERVE2);
                         // Enemy Skills
-                        bw.Write(unit.EnemyStats.Skills.Skill1);
-                        bw.Write(unit.EnemyStats.Skills.Skill2);
-                        bw.Write(unit.EnemyStats.Skills.Skill3);
-                        bw.Write(unit.EnemyStats.Skills.Skill4);
-                        bw.Write(unit.EnemyStats.Skills.Skill5);
-                        bw.Write(unit.EnemyStats.Skills.Skill6);
-                        bw.Write(unit.EnemyStats.Skills.Skill7);
-                        bw.Write(unit.EnemyStats.Skills.Skill8);
+                        foreach (var skill in unit.EnemyStats.Skills)
+                            bw.Write(skill);
                         // Rewards
                         bw.Write(unit.EnemyStats.EXPReward);
                         bw.Write(unit.EnemyStats.MoneyReward);
@@ -75,7 +135,6 @@ namespace P5RBattleEditor
                         bw.Write(unit.EnemyStats.AttackAttributes.AttackAccuracy);
                         bw.Write(unit.EnemyStats.AttackAttributes.AttackDamage);
                     }
-
 
                     // Segment 1: Elemental Affinities (Enemies)
                     uint segment1Size = Convert.ToUInt32(40 * unitTblData.EnemyUnits.Count);
@@ -256,7 +315,7 @@ namespace P5RBattleEditor
             public uint SP { get; set; } = 0;
             public BattleStats Stats { get; set; } = new BattleStats();
             public byte RESERVE2 = 0x00;
-            public BattleSkills Skills { get; set; } = new BattleSkills();
+            public ushort[] Skills { get; set; } = new ushort[8];
             public ushort EXPReward { get; set; } = 0;
             public ushort MoneyReward { get; set; } = 0;
             public ItemDrop[] ItemDrops { get; set; } = new ItemDrop[4];
