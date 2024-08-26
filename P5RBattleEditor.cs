@@ -28,16 +28,16 @@ namespace P5RBattleEditor
 
         private void LoadTables()
         {
-            Encounters = ReadP5REncountTbl("./TBL/ENCOUNT.TBL");
+            //Encounters = ReadP5REncountTbl("./TBL/ENCOUNT.TBL");
             UnitTblData = ReadP5RUnitTbl("./TBL/UNIT.TBL");
-            Skills = ReadP5RSkillTbl("./TBL/SKILL.TBL");
+            //Skills = ReadP5RSkillTbl("./TBL/SKILL.TBL");
         }
 
         private void WriteTables()
         {
-            WriteP5REncountTbl(Encounters, "./TBL_NEW/ENCOUNT.TBL");
+            //WriteP5REncountTbl(Encounters, "./TBL_NEW/ENCOUNT.TBL");
             WriteP5RUnitTbl(UnitTblData, "./TBL_NEW/UNIT.TBL");
-            WriteP5RSkillTbl(Skills, "./TBL_NEW/SKILL.TBL");
+            //WriteP5RSkillTbl(Skills, "./TBL_NEW/SKILL.TBL");
         }
     }
 }

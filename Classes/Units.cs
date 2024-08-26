@@ -60,14 +60,52 @@ namespace P5RBattleEditor
                         unitTblData.EnemyUnits[0].EnemyStats.AttackAttributes.AttackDamage = br.ReadUInt16();
                     }
 
-                    // Segment 2
+                    // Segment 1: Elemental Affinities (Enemies)
+                    uint segment1Size = br.ReadUInt32();
+                    for (int i = 0; i < (segment1Size / 40); i++)
+                    {
+                        UnitTblData.EnemyUnits[i].Affinities.Add(
+                            new Affinity()
+                            {
+                                Attributes = ConvertByteToBools(br.ReadByte()),
+                                Multiplier = br.ReadByte()
+                            });
+                    }
 
-                    // Segment 3
+                    // Segment 2: Elemental Affinities (Personas)
+                    uint segment2Size = br.ReadUInt32();
+                    for (int i = 0; i < (segment2Size / 40); i++)
+                    {
+                        UnitTblData.PersonaUnits[i].Affinities.Add( 
+                            new Affinity() { Attributes = ConvertByteToBools(br.ReadByte()), 
+                                Multiplier = br.ReadByte() });
+                    }
 
-                    // Segment 4
+                    // Segment 3: Voice Data (Enemies)
+                    uint segment3Size = br.ReadUInt32();
+                    for (int i = 0; i < (segment3Size / 24); i++)
+                    {
+                        UnitTblData.EnemyUnits[i].VoiceData.VoiceID = br.ReadByte();
+                        UnitTblData.EnemyUnits[i].VoiceData.TALK_PERSON = br.ReadByte();
+                        UnitTblData.EnemyUnits[i].VoiceData.VoiceAcbValue = br.ReadByte();
+                        UnitTblData.EnemyUnits[i].VoiceData.Padding = br.ReadByte();
+                        UnitTblData.EnemyUnits[i].VoiceData.TALK_MONEY_MIN = br.ReadUInt16();
+                        UnitTblData.EnemyUnits[i].VoiceData.TALK_MONEY_MAX = br.ReadUInt16();
+                        for (int x = 0; x < 4; x++)
+                            unitTblData.EnemyUnits[0].VoiceData.TALK_ITEM[x] = new ItemDrop() { ItemID = br.ReadUInt16() };
+                        for (int x = 0; x < 4; x++)
+                            unitTblData.EnemyUnits[0].VoiceData.TALK_ITEM_RARE[x] = new ItemDrop() { ItemID = br.ReadUInt16() };
+                    }
 
-                    // Segment 5
+                    // Segment 4: Visual Data (Enemies)
+                    uint segment4Size = br.ReadUInt32();
+                    for (int i = 0; i < (segment4Size / 6); i++)
+                    {
+                        unitTblData.EnemyUnits[i].VisualData.Add(new VisualData() { PersonaID = br.ReadUInt16(), ModelID = br.ReadUInt16(), UnknownR = br.ReadUInt16() });
+                    }
 
+                    // Segment 5: Unknown
+                    unitTblData.Segment5 = br.ReadBytes(1800);
                 }
             }
 
