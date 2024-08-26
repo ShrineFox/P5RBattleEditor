@@ -2,124 +2,276 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using static P5RBattleEditor.P5RBattleEditor;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace P5RBattleEditor
 {
     public partial class P5RBattleEditor : MetroSetForm
     {
-        private List<Unit> ReadP5RUnitTbl(string path)
+        private UnitTableData ReadP5RUnitTbl(string path)
         {
-            List<Unit> units = new List<Unit>();
+            UnitTableData unitTblData = new UnitTableData();
 
-            return units;
+            // TODO: Read data from file
+
+            return unitTblData;
         }
 
-        internal class Unit
+        private void WriteP5RUnitTbl(UnitTableData unitTblData, string path)
         {
-            EnemyStats Segment0 { get; set; } = new EnemyStats(); // 783
-            ElementalAffinities Segment1 { get; set; } = new ElementalAffinities(); // 783
-            ElementalAffinities Segment2 { get; set; } = new ElementalAffinities(); // 464
-            VoiceData Segment3 { get; set; } = new VoiceData(); // 783
-            List<VisualData> Segment4 { get; set; } = new List<VisualData>(); // 783
-            // Segment5: unknown byte array
+            using (FileStream fs = new FileStream(path, FileMode.Create))
+            {
+                using (BinaryWriter bw = new BinaryWriter(fs, Encoding.Unicode))
+                {
+                    // Segment 0: Enemy Unit Stats
+                    uint segment0Size = Convert.ToUInt32(68 * unitTblData.EnemyUnits.Count);
+                    bw.Write(segment0Size);
+                    foreach (var unit in unitTblData.EnemyUnits)
+                    {
+                        // Bit flags
+                        foreach(var flagCollection in unit.EnemyStats.Flags)
+                            bw.Write(ConvertBoolsToByte(flagCollection));
+                        // Misc
+                        bw.Write(unit.EnemyStats.Arcana);
+                        bw.Write(unit.EnemyStats.RESERVE);
+                        bw.Write(unit.EnemyStats.Level);
+                        bw.Write(unit.EnemyStats.HP);
+                        bw.Write(unit.EnemyStats.SP);
+                        // Enemy Stats
+                        bw.Write(unit.EnemyStats.Stats.Strength);
+                        bw.Write(unit.EnemyStats.Stats.Magic);
+                        bw.Write(unit.EnemyStats.Stats.Endurance);
+                        bw.Write(unit.EnemyStats.Stats.Agility);
+                        bw.Write(unit.EnemyStats.Stats.Luck);
+                        bw.Write(unit.EnemyStats.RESERVE2);
+                        // Enemy Skills
+                        bw.Write(unit.EnemyStats.Skills.Skill1);
+                        bw.Write(unit.EnemyStats.Skills.Skill2);
+                        bw.Write(unit.EnemyStats.Skills.Skill3);
+                        bw.Write(unit.EnemyStats.Skills.Skill4);
+                        bw.Write(unit.EnemyStats.Skills.Skill5);
+                        bw.Write(unit.EnemyStats.Skills.Skill6);
+                        bw.Write(unit.EnemyStats.Skills.Skill7);
+                        bw.Write(unit.EnemyStats.Skills.Skill8);
+                        // Rewards
+                        bw.Write(unit.EnemyStats.EXPReward);
+                        bw.Write(unit.EnemyStats.MoneyReward);
+                        foreach(var itemDrop in unit.EnemyStats.ItemDrops)
+                        {
+                            bw.Write(itemDrop.ItemID);
+                            bw.Write(itemDrop.Probability);
+                        }
+                        bw.Write(unit.EnemyStats.EventItemDrop.EventID);
+                        bw.Write(unit.EnemyStats.EventItemDrop.ItemID);
+                        bw.Write(unit.EnemyStats.EventItemDrop.Probability);
+                        // Attack Attributes
+                        bw.Write(unit.EnemyStats.AttackAttributes.AttackType);
+                        bw.Write(unit.EnemyStats.AttackAttributes.AttackAccuracy);
+                        bw.Write(unit.EnemyStats.AttackAttributes.AttackDamage);
+                    }
+
+
+                    // Segment 1: Elemental Affinities (Enemies)
+                    uint segment1Size = Convert.ToUInt32(40 * unitTblData.EnemyUnits.Count);
+                    bw.Write(segment1Size);
+                    foreach (var unit in unitTblData.EnemyUnits)
+                    {
+                        foreach (var affinity in unit.Affinities)
+                        {
+                            bw.Write(ConvertBoolsToByte(affinity.Attributes));
+                            bw.Write(affinity.Multiplier);
+                        }
+                    }
+
+                    // Segment 2: Elemental Affinities (Personas)
+                    uint segment2Size = Convert.ToUInt32(40 * unitTblData.PersonaUnits.Count);
+                    bw.Write(segment2Size);
+                    foreach (var unit in unitTblData.PersonaUnits)
+                    {
+                        foreach (var affinity in unit.Affinities)
+                        {
+                            bw.Write(ConvertBoolsToByte(affinity.Attributes));
+                            bw.Write(affinity.Multiplier);
+                        }
+                    }
+
+                    // Segment 3: Voice Data (Enemies)
+                    uint segment3Size = Convert.ToUInt32(24 * unitTblData.EnemyUnits.Count);
+                    bw.Write(segment3Size);
+                    foreach (var unit in unitTblData.EnemyUnits)
+                    {
+                        bw.Write(unit.VoiceData.VoiceID);
+                        bw.Write(unit.VoiceData.TALK_PERSON);
+                        bw.Write(unit.VoiceData.VoiceAcbValue);
+                        bw.Write(unit.VoiceData.Padding);
+                        bw.Write(unit.VoiceData.TALK_MONEY_MIN);
+                        bw.Write(unit.VoiceData.TALK_MONEY_MAX);
+                        foreach (var itemDrop in unit.VoiceData.TALK_ITEM)
+                            bw.Write(itemDrop.ItemID);
+                        foreach (var itemDrop in unit.VoiceData.TALK_ITEM_RARE)
+                            bw.Write(itemDrop.ItemID);
+                    }
+
+                    // Segment 4: Visual Data (Enemies)
+                    uint segment4Size = Convert.ToUInt32(6 * unitTblData.EnemyUnits.Count);
+                    bw.Write(segment4Size);
+                    foreach (var unit in unitTblData.EnemyUnits)
+                    {
+                        bw.Write(unit.VoiceData.VoiceID);
+                        bw.Write(unit.VoiceData.TALK_PERSON);
+                        bw.Write(unit.VoiceData.VoiceAcbValue);
+                        bw.Write(unit.VoiceData.Padding);
+                        bw.Write(unit.VoiceData.TALK_MONEY_MIN);
+                        bw.Write(unit.VoiceData.TALK_MONEY_MAX);
+                        foreach (var itemDrop in unit.VoiceData.TALK_ITEM)
+                            bw.Write(itemDrop.ItemID);
+                        foreach (var itemDrop in unit.VoiceData.TALK_ITEM_RARE)
+                            bw.Write(itemDrop.ItemID);
+                    }
+
+                    // Segment 5: Unknown
+                    bw.Write(Convert.ToUInt32(unitTblData.Segment5.Length));
+                    bw.Write(unitTblData.Segment5);
+                }
+            }
         }
 
-        internal class VisualData
+        byte ConvertBoolsToByte(bool[] bools)
         {
-            ushort PersonaID { get; set; } = 0;
-            ushort ModelID { get; set; } = 0;
-            ushort UnknownR { get; set; } = 0;
+            byte result = 0x00;
+            result |= (byte)((bools[0] ? 1 : 0) << 0);
+            result |= (byte)((bools[1] ? 1 : 0) << 1);
+            result |= (byte)((bools[2] ? 1 : 0) << 2);
+            result |= (byte)((bools[3] ? 1 : 0) << 3);
+            result |= (byte)((bools[4] ? 1 : 0) << 4);
+            result |= (byte)((bools[5] ? 1 : 0) << 5);
+            result |= (byte)((bools[6] ? 1 : 0) << 6);
+            result |= (byte)((bools[7] ? 1 : 0) << 7);
+            return result;
         }
 
-        internal class VoiceData
+        public class UnitTableData
         {
-            byte VoiceID { get; set; } = 0x00; // Subtract 1 from the id i.e. 9 to load voicepack 10
-            byte TALK_PERSON { get; set; } = 0x00;
-            byte VoiceAcbValue { get; set; } = 0x00;
-            byte Padding = 0x00;
-            ushort TALK_MONEY_MIN { get; set; } = 0;
-            ushort TALK_MONEY_MAX { get; set; } = 0;
-            ItemDropList TALK_ITEM { get; set; } = new ItemDropList();
-            ItemDropList TALK_ITEM_RARE { get; set; } = new ItemDropList();
+            public List<EnemyUnit> EnemyUnits { get; set; } = new List<EnemyUnit>(); // segment 0, 1, 3, 4
+            public List<PersonaUnit> PersonaUnits { get; set; } = new List<PersonaUnit>(); // segment 2
+            public byte[] Segment5 { get; set; } = new byte[1800]; // unknown byte
+        }
+
+        public class EnemyUnit
+        {
+            public EnemyStats EnemyStats { get; set; } = new EnemyStats(); // segment 0
+            public List<Affinity> Affinities { get; set; } = new List<Affinity>(); // segment 1
+            public VoiceData VoiceData { get; set; } = new VoiceData(); // segment 3
+            public List<VisualData> VisualData { get; set; } = new List<VisualData>(); // segment 4
+        }
+
+        public class PersonaUnit
+        {
+            public List<Affinity> Affinities { get; set; } = new List<Affinity>(); // 464
+        }
+
+        public class VisualData
+        {
+            public ushort PersonaID { get; set; } = 0;
+            public ushort ModelID { get; set; } = 0;
+            public ushort UnknownR { get; set; } = 0;
+        }
+
+        public class VoiceData
+        {
+            public byte VoiceID { get; set; } = 0x00; // Subtract 1 from the id i.e. 9 to load voicepack 10
+            public byte TALK_PERSON { get; set; } = 0x00;
+            public byte VoiceAcbValue { get; set; } = 0x00;
+            public byte Padding = 0x00;
+            public ushort TALK_MONEY_MIN { get; set; } = 0;
+            public ushort TALK_MONEY_MAX { get; set; } = 0;
+            public ItemDrop[] TALK_ITEM { get; set; } = new ItemDrop[4];
+            public ItemDrop[] TALK_ITEM_RARE { get; set; } = new ItemDrop[4];
 
         }
 
-        internal class ElementalAffinities
+        public enum ElementalAffinityNames
         {
-            Affinity Physical { get; set; } = new Affinity();
-            Affinity Gun { get; set; } = new Affinity();
-            Affinity Fire { get; set; } = new Affinity();
-            Affinity Ice { get; set; } = new Affinity();
-            Affinity Electric { get; set; } = new Affinity();
-            Affinity Wind { get; set; } = new Affinity();
-            Affinity Psy { get; set; } = new Affinity();
-            Affinity Nuke { get; set; } = new Affinity();
-            Affinity Bless { get; set; } = new Affinity();
-            Affinity Curse { get; set; } = new Affinity();
-            Affinity Almighty { get; set; } = new Affinity();
-            Affinity Dizzy { get; set; } = new Affinity();
-            Affinity Confuse { get; set; } = new Affinity();
-            Affinity Fear { get; set; } = new Affinity();
-            Affinity Forget { get; set; } = new Affinity();
-            Affinity Hunger { get; set; } = new Affinity();
-            Affinity Sleep { get; set; } = new Affinity();
-            Affinity Rage { get; set; } = new Affinity();
-            Affinity Despair { get; set; } = new Affinity();
-            Affinity Brainwash { get; set; } = new Affinity();
+            Physical,
+            Gun,
+            Fire,
+            Ice,
+            Electric,
+            Wind,
+            Psy,
+            Nuke,
+            Bless,
+            Curse,
+            Almighty,
+            Dizzy,
+            Confuse,
+            Fear,
+            Forget,
+            Hunger,
+            Sleep,
+            Rage,
+            Despair,
+            Brainwash
         }
 
-        internal class Affinity
+        public enum AffinityAttributeNames
         {
-            bool DoubleAilmentChance = false; // Used on Fire/Ice/Elec affinity to double the chance that an incoming attack
-                                              // inflicts the corresponding ailment (Burn/Freeze/Shock).
-            bool GuaranteeAilment = false; // Incoming attacks with an ailment chance always inflict the ailment.
-            bool AilmentImmune = false; // Incoming attacks never inflict ailments (including insta-kill).
-                                        // Overrides Guarantee Ailment. Does NOT prevent Critical hits.
-            bool Resist = false; // Displays Resist text and halves damage (by default) when hit.
-                                 // (However, If Mutliplier field is specified (non-zero),
-                                 // it replaces the default 0.5x multiplier.)
-            bool Weak = false; // Damage x 1.25 (by default) and knockdown. (However, if Multiplier field is specified (non-zero),
-                               // it replaces the default 1.25x mutliplier.)
-            bool Repel = false;
-            bool Drain = false;
-            bool Block = false;
+            DoubleAilmentChance, // Used on Fire/Ice/Elec affinity to double the chance that an incoming attack
+                                 // inflicts the corresponding ailment (Burn/Freeze/Shock).
+            GuaranteeAilment, // Incoming attacks with an ailment chance always inflict the ailment.
+            AilmentImmune, // Incoming attacks never inflict ailments (including insta-kill).
+                           // Overrides Guarantee Ailment. Does NOT prevent Critical hits.
+            Resist, // Displays Resist text and halves damage (by default) when hit.
+                    // (However, If Mutliplier field is specified (non-zero),
+                    // it replaces the default 0.5x multiplier.)
+            Weak, // Damage x 1.25 (by default) and knockdown. (However, if Multiplier field is specified (non-zero),
+                  // it replaces the default 1.25x mutliplier.)
+            Repel,
+            Drain,
+            Block
+        }
+
+        public class Affinity
+        {
+            public bool[] Attributes { get; set; } = new bool[8];
 
             // Multiplies damage & ailment chance. 20 is Neutral since 20 x 5% = 100% of normal dmg &
             // ail. chance. 80 x 5% = 400% = 4x multiplier. 0 is ignored (does not nullify attack).
-            byte Multiplier = 0x00;
+            public byte Multiplier = 0x00;
         }
 
-        internal class EnemyStats
+        public class EnemyStats
         {
-            UnitFlags Flags { get; set; } = new UnitFlags();
-            byte Arcana { get; set; } = Convert.ToByte(ArcanaName.Fool);
-            byte RESERVE = 0x00;
-            ushort Level { get; set; } = 0;
-            uint HP { get; set; } = 0;
-            uint SP { get; set; } = 0;
-            BattleStats Stats { get; set; } = new BattleStats();
-            byte RESERVE2 = 0x00;
-            BattleSkills Skills { get; set; } = new BattleSkills();
-            ushort EXPReward { get; set; } = 0;
-            ushort MoneyReward { get; set; } = 0;
-            ItemDropList ItemDrops { get; set; } = new ItemDropList();
-            ItemDrop EventItemDrop { get; set; } = new ItemDrop();
-            AttackData AttackAttributes { get; set; } = new AttackData();
+            public List<bool[]> Flags { get; set; } = new List<bool[]>() { new bool[8], new bool[8], new bool[8], new bool[8] };
+            public byte Arcana { get; set; } = Convert.ToByte(ArcanaName.Fool);
+            public byte RESERVE = 0x00;
+            public ushort Level { get; set; } = 0;
+            public uint HP { get; set; } = 0;
+            public uint SP { get; set; } = 0;
+            public BattleStats Stats { get; set; } = new BattleStats();
+            public byte RESERVE2 = 0x00;
+            public BattleSkills Skills { get; set; } = new BattleSkills();
+            public ushort EXPReward { get; set; } = 0;
+            public ushort MoneyReward { get; set; } = 0;
+            public ItemDrop[] ItemDrops { get; set; } = new ItemDrop[4];
+            public ItemDrop EventItemDrop { get; set; } = new ItemDrop();
+            public AttackData AttackAttributes { get; set; } = new AttackData();
         }
 
-        internal class AttackData
+        public class AttackData
         {
-            byte AttackType { get; set; } = Convert.ToByte(ElementalType.Physical);
-            byte AttackAccuracy { get; set; } = 0x00;
-            ushort AttackDamage { get; set; } = 0;
+            public byte AttackType { get; set; } = Convert.ToByte(ElementalType.Physical);
+            public byte AttackAccuracy { get; set; } = 0x00;
+            public ushort AttackDamage { get; set; } = 0;
         }
 
-        enum ElementalType
+        public enum ElementalType
         {
             Physical = 0,
             Gun = 1,
@@ -146,41 +298,33 @@ namespace P5RBattleEditor
             Passive = 255
         }
 
-        internal class ItemDropList
+        public class ItemDrop
         {
-            ItemDrop Drop_1 { get; set; } = new ItemDrop();
-            ItemDrop Drop_2 { get; set; } = new ItemDrop();
-            ItemDrop Drop_3 { get; set; } = new ItemDrop();
-            ItemDrop Drop_4 { get; set; } = new ItemDrop();
+            public ushort EventID = 0;
+            public ushort ItemID = 0;
+            public ushort Probability = 0;
         }
 
-        internal class ItemDrop
+        public class BattleSkills
         {
-            ushort EventID = 0;
-            ushort ItemID = 0;
-            ushort Probability = 0;
-        }
-
-        internal class BattleSkills
-        {
-            ushort Skill1 { get; set; } = 0;
-            ushort Skill2 { get; set; } = 0;
-            ushort Skill3 { get; set; } = 0;
-            ushort Skill4 { get; set; } = 0;
-            ushort Skill5 { get; set; } = 0;
-            ushort Skill6 { get; set; } = 0;
-            ushort Skill7 { get; set; } = 0;
-            ushort Skill8 { get; set; } = 0;
+            public ushort Skill1 { get; set; } = 0;
+            public ushort Skill2 { get; set; } = 0;
+            public ushort Skill3 { get; set; } = 0;
+            public ushort Skill4 { get; set; } = 0;
+            public ushort Skill5 { get; set; } = 0;
+            public ushort Skill6 { get; set; } = 0;
+            public ushort Skill7 { get; set; } = 0;
+            public ushort Skill8 { get; set; } = 0;
 
         }
 
-        internal class BattleStats
+        public class BattleStats
         {
-            byte Strength { get; set; } = 0x00;
-            byte Magic { get; set; } = 0x00;
-            byte Endurance { get; set; } = 0x00;
-            byte Agility { get; set; } = 0x00;
-            byte Luck { get; set; } = 0x00;
+            public byte Strength { get; set; } = 0x00;
+            public byte Magic { get; set; } = 0x00;
+            public byte Endurance { get; set; } = 0x00;
+            public byte Agility { get; set; } = 0x00;
+            public byte Luck { get; set; } = 0x00;
         }
 
         enum ArcanaName
@@ -213,42 +357,52 @@ namespace P5RBattleEditor
             Councillor = 30,
         }
 
-        internal class UnitFlags
+        public enum UnitFlagNames
         {
-            bool bit0 = false;
-            bool bit1 = false;
-            bool bit2 = false;
-            bool bit3 = false;
-            bool bit4 = false;
-            bool bit5 = false;
-            bool bit6 = false;
-            bool bit7 = false;
-            bool bit8 = false;
-            bool bit9 = false;
-            bool bit10 = false;
-            bool bit11 = false;
-            bool bit12 = false;
-            bool bit13 = false;
-            bool bit14 = false;
-            bool bit15 = false;
-            bool NoBeggingShadows = false; // shadows will never beg for their life
-            bool HiddenStatus = false; // status can be hidden (similar to boss)
-            bool bit18 = false;
-            bool bit19 = false; 
-            bool GuaranteePersonaMask = false; // makes enemy appear to have item drop, ends battle when obtained
-            bool NoNegotiation = false; // enemy will be unable to negotiate
-            bool bit22 = false;
-            bool bit23 = false; 
-            bool bit24 = false;
-            bool bit25 = false;
-            bool bit26 = false;
-            bool bit27 = false;
-            bool bit28 = false;
-            bool HiddenStatus_Boss = false; // status can be hidden (used for bosses)
-            bool InfiniteSP = false; // shadow will be able to use any skill regardless of SP cost
-            bool bit31 = false; 
+            Bit0,
+            Bit1,
+            Bit2,
+            Bit3,
+            Bit4,
+            Bit5,
+            Bit6,
+            Bit7
+        }
+
+        public enum UnitFlag2Names
+        {
+            Bit8,
+            Bit9,
+            Bit10,
+            Bit11,
+            Bit12,
+            Bit13,
+            Bit14,
+            Bit15
+        }
+
+        public enum UnitFlag3Names
+        {
+            NoBeggingShadows, // shadows will never beg for their life
+            HiddenStatus, // status can be hidden (similar to boss)
+            Bit18,
+            Bit19, 
+            GuaranteePersonaMask, // makes enemy appear to have item drop, ends battle when obtained
+            NoNegotiation, // enemy will be unable to negotiate
+            Bit22,
+            Bit23
+        }
+
+        public enum UnitFlag4Names
+        {
+            Bit24,
+            Bit25,
+            Bit26,
+            Bit27,
+            Bit28,
+            HiddenStatus_Boss, // status can be hidden (used for bosses)
+            InfiniteSP, // shadow will be able to use any skill regardless of SP cost
+            Bit31
         }
     }
-
-
 }
