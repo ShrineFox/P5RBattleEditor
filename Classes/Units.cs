@@ -1,4 +1,5 @@
 ﻿using MetroSet_UI.Forms;
+using ShrineFox.IO;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
@@ -16,100 +17,129 @@ namespace P5RBattleEditor
     {
         private UnitTableData ReadP5RUnitTbl(string path)
         {
-            UnitTableData unitTblData = new UnitTableData();
+            UnitTableData tblData = new UnitTableData();
 
-            using (FileStream fs = new FileStream(path, FileMode.Create))
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
             {
-                using (BinaryReader br = new BinaryReader(fs, Encoding.Unicode))
+                using (EndianBinaryReader br = new EndianBinaryReader(fs, Endianness.BigEndian))
                 {
                     // Segment 0: Enemy Unit Stats
                     uint segment0Size = br.ReadUInt32();
                     for (int i = 0; i < (segment0Size / 68); i++)
                     {
+                        EnemyUnit enemy = new EnemyUnit();
+
                         // Bit flags
-                        unitTblData.EnemyUnits[0].EnemyStats.Flags = new List<bool[]>
+                        enemy.EnemyStats.Flags = new List<bool[]>
                         {
                             ConvertByteToBools(br.ReadByte()), ConvertByteToBools(br.ReadByte()),
                             ConvertByteToBools(br.ReadByte()), ConvertByteToBools(br.ReadByte())
                         };
                         // Misc
-                        unitTblData.EnemyUnits[0].EnemyStats.Arcana = br.ReadByte();
-                        unitTblData.EnemyUnits[0].EnemyStats.RESERVE = br.ReadByte();
-                        unitTblData.EnemyUnits[0].EnemyStats.Level = br.ReadUInt16();
-                        unitTblData.EnemyUnits[0].EnemyStats.HP = br.ReadUInt32();
-                        unitTblData.EnemyUnits[0].EnemyStats.SP = br.ReadUInt32();
+                        enemy.EnemyStats.Arcana = br.ReadByte();
+                        enemy.EnemyStats.RESERVE = br.ReadByte();
+                        enemy.EnemyStats.Level = br.ReadUInt16();
+                        enemy.EnemyStats.HP = br.ReadUInt32();
+                        enemy.EnemyStats.SP = br.ReadUInt32();
                         // Enemy Stats
-                        unitTblData.EnemyUnits[0].EnemyStats.Stats.Strength = br.ReadByte();
-                        unitTblData.EnemyUnits[0].EnemyStats.Stats.Magic = br.ReadByte();
-                        unitTblData.EnemyUnits[0].EnemyStats.Stats.Endurance = br.ReadByte();
-                        unitTblData.EnemyUnits[0].EnemyStats.Stats.Agility = br.ReadByte();
-                        unitTblData.EnemyUnits[0].EnemyStats.Stats.Luck = br.ReadByte();
-                        unitTblData.EnemyUnits[0].EnemyStats.RESERVE2 = br.ReadByte();
+                        enemy.EnemyStats.Stats.Strength = br.ReadByte();
+                        enemy.EnemyStats.Stats.Magic = br.ReadByte();
+                        enemy.EnemyStats.Stats.Endurance = br.ReadByte();
+                        enemy.EnemyStats.Stats.Agility = br.ReadByte();
+                        enemy.EnemyStats.Stats.Luck = br.ReadByte();
+                        enemy.EnemyStats.RESERVE2 = br.ReadByte();
                         // Enemy Skills
                         for (int x = 0; x < 8; x++)
-                            unitTblData.EnemyUnits[0].EnemyStats.Skills[x] = br.ReadUInt16();
+                            enemy.EnemyStats.Skills[x] = br.ReadUInt16();
                         // Rewards
-                        unitTblData.EnemyUnits[0].EnemyStats.EXPReward = br.ReadUInt16();
-                        unitTblData.EnemyUnits[0].EnemyStats.MoneyReward = br.ReadUInt16();
+                        enemy.EnemyStats.EXPReward = br.ReadUInt16();
+                        enemy.EnemyStats.MoneyReward = br.ReadUInt16();
                         for (int x = 0; x < 4; x++)
-                            unitTblData.EnemyUnits[0].EnemyStats.ItemDrops[x] = new ItemDrop() { ItemID = br.ReadUInt16(), Probability = br.ReadUInt16() };
-                        unitTblData.EnemyUnits[0].EnemyStats.EventItemDrop = new ItemDrop() { EventID = br.ReadUInt16(), ItemID = br.ReadUInt16(), Probability = br.ReadUInt16() };
+                            enemy.EnemyStats.ItemDrops[x] = new ItemDrop() { ItemID = br.ReadUInt16(), Probability = br.ReadUInt16() };
+                        enemy.EnemyStats.EventItemDrop = new ItemDrop() { EventID = br.ReadUInt16(), ItemID = br.ReadUInt16(), Probability = br.ReadUInt16() };
                         // Attack Attributes
-                        unitTblData.EnemyUnits[0].EnemyStats.AttackAttributes.AttackType = br.ReadByte();
-                        unitTblData.EnemyUnits[0].EnemyStats.AttackAttributes.AttackAccuracy = br.ReadByte();
-                        unitTblData.EnemyUnits[0].EnemyStats.AttackAttributes.AttackDamage = br.ReadUInt16();
+                        enemy.EnemyStats.AttackAttributes.AttackType = br.ReadByte();
+                        enemy.EnemyStats.AttackAttributes.AttackAccuracy = br.ReadByte();
+                        enemy.EnemyStats.AttackAttributes.AttackDamage = br.ReadUInt16();
+
+                        tblData.EnemyUnits.Add(enemy);
                     }
+
+                    br.BaseStream.Position += Get16ByteAlignmentPadding(br);
 
                     // Segment 1: Elemental Affinities (Enemies)
                     uint segment1Size = br.ReadUInt32();
                     for (int i = 0; i < (segment1Size / 40); i++)
                     {
-                        UnitTblData.EnemyUnits[i].Affinities.Add(
+                        for (int x = 0; x < 20; x++)
+                        {
+                            tblData.EnemyUnits[i].Affinities.Add(
                             new Affinity()
                             {
                                 Attributes = ConvertByteToBools(br.ReadByte()),
                                 Multiplier = br.ReadByte()
                             });
+                        }
                     }
 
                     // Segment 2: Elemental Affinities (Personas)
+
+                    br.BaseStream.Position += Get16ByteAlignmentPadding(br);
+
                     uint segment2Size = br.ReadUInt32();
                     for (int i = 0; i < (segment2Size / 40); i++)
                     {
-                        UnitTblData.PersonaUnits[i].Affinities.Add( 
-                            new Affinity() { Attributes = ConvertByteToBools(br.ReadByte()), 
-                                Multiplier = br.ReadByte() });
+                        var personaUnit = new PersonaUnit();
+
+                        for (int x = 0; x < 20; x++)
+                        {
+                            personaUnit.Affinities.Add(
+                            new Affinity()
+                            {
+                                Attributes = ConvertByteToBools(br.ReadByte()),
+                                Multiplier = br.ReadByte()
+                            });
+                        }
+
+                        tblData.PersonaUnits.Add(personaUnit);
                     }
+
+                    br.BaseStream.Position += Get16ByteAlignmentPadding(br);
 
                     // Segment 3: Voice Data (Enemies)
                     uint segment3Size = br.ReadUInt32();
                     for (int i = 0; i < (segment3Size / 24); i++)
                     {
-                        UnitTblData.EnemyUnits[i].VoiceData.VoiceID = br.ReadByte();
-                        UnitTblData.EnemyUnits[i].VoiceData.TALK_PERSON = br.ReadByte();
-                        UnitTblData.EnemyUnits[i].VoiceData.VoiceAcbValue = br.ReadByte();
-                        UnitTblData.EnemyUnits[i].VoiceData.Padding = br.ReadByte();
-                        UnitTblData.EnemyUnits[i].VoiceData.TALK_MONEY_MIN = br.ReadUInt16();
-                        UnitTblData.EnemyUnits[i].VoiceData.TALK_MONEY_MAX = br.ReadUInt16();
+                        tblData.EnemyUnits[i].VoiceData.VoiceID = br.ReadByte();
+                        tblData.EnemyUnits[i].VoiceData.TALK_PERSON = br.ReadByte();
+                        tblData.EnemyUnits[i].VoiceData.VoiceAcbValue = br.ReadByte();
+                        tblData.EnemyUnits[i].VoiceData.Padding = br.ReadByte();
+                        tblData.EnemyUnits[i].VoiceData.TALK_MONEY_MIN = br.ReadUInt16();
+                        tblData.EnemyUnits[i].VoiceData.TALK_MONEY_MAX = br.ReadUInt16();
                         for (int x = 0; x < 4; x++)
-                            unitTblData.EnemyUnits[0].VoiceData.TALK_ITEM[x] = new ItemDrop() { ItemID = br.ReadUInt16() };
+                            tblData.EnemyUnits[i].VoiceData.TALK_ITEM[x] = new ItemDrop() { ItemID = br.ReadUInt16() };
                         for (int x = 0; x < 4; x++)
-                            unitTblData.EnemyUnits[0].VoiceData.TALK_ITEM_RARE[x] = new ItemDrop() { ItemID = br.ReadUInt16() };
+                            tblData.EnemyUnits[i].VoiceData.TALK_ITEM_RARE[x] = new ItemDrop() { ItemID = br.ReadUInt16() };
                     }
+
+                    br.BaseStream.Position += Get16ByteAlignmentPadding(br);
 
                     // Segment 4: Visual Data (Enemies)
                     uint segment4Size = br.ReadUInt32();
                     for (int i = 0; i < (segment4Size / 6); i++)
                     {
-                        unitTblData.EnemyUnits[i].VisualData.Add(new VisualData() { PersonaID = br.ReadUInt16(), ModelID = br.ReadUInt16(), UnknownR = br.ReadUInt16() });
+                        tblData.EnemyUnits[i].VisualData.Add(new VisualData() { PersonaID = br.ReadUInt16(), ModelID = br.ReadUInt16(), UnknownR = br.ReadUInt16() });
                     }
 
+                    br.BaseStream.Position += Get16ByteAlignmentPadding(br);
+
                     // Segment 5: Unknown
-                    unitTblData.Segment5 = br.ReadBytes(1800);
+                    uint segment5Size = br.ReadUInt32();
+                    tblData.Segment5 = br.ReadBytes(Convert.ToInt32(segment5Size));
                 }
             }
 
-            return unitTblData;
+            return tblData;
         }
 
         public static bool[] ConvertByteToBools(byte b)
@@ -131,7 +161,7 @@ namespace P5RBattleEditor
         {
             using (FileStream fs = new FileStream(path, FileMode.Create))
             {
-                using (BinaryWriter bw = new BinaryWriter(fs, Encoding.Unicode))
+                using (EndianBinaryWriter bw = new EndianBinaryWriter(fs, Endianness.BigEndian))
                 {
                     // Segment 0: Enemy Unit Stats
                     uint segment0Size = Convert.ToUInt32(68 * unitTblData.EnemyUnits.Count);
@@ -174,6 +204,8 @@ namespace P5RBattleEditor
                         bw.Write(unit.EnemyStats.AttackAttributes.AttackDamage);
                     }
 
+                    Add16ByteAlignmentPadding(bw);
+
                     // Segment 1: Elemental Affinities (Enemies)
                     uint segment1Size = Convert.ToUInt32(40 * unitTblData.EnemyUnits.Count);
                     bw.Write(segment1Size);
@@ -186,6 +218,8 @@ namespace P5RBattleEditor
                         }
                     }
 
+                    Add16ByteAlignmentPadding(bw);
+
                     // Segment 2: Elemental Affinities (Personas)
                     uint segment2Size = Convert.ToUInt32(40 * unitTblData.PersonaUnits.Count);
                     bw.Write(segment2Size);
@@ -197,6 +231,8 @@ namespace P5RBattleEditor
                             bw.Write(affinity.Multiplier);
                         }
                     }
+
+                    Add16ByteAlignmentPadding(bw);
 
                     // Segment 3: Voice Data (Enemies)
                     uint segment3Size = Convert.ToUInt32(24 * unitTblData.EnemyUnits.Count);
@@ -215,26 +251,28 @@ namespace P5RBattleEditor
                             bw.Write(itemDrop.ItemID);
                     }
 
+                    Add16ByteAlignmentPadding(bw);
+
                     // Segment 4: Visual Data (Enemies)
                     uint segment4Size = Convert.ToUInt32(6 * unitTblData.EnemyUnits.Count);
                     bw.Write(segment4Size);
                     foreach (var unit in unitTblData.EnemyUnits)
                     {
-                        bw.Write(unit.VoiceData.VoiceID);
-                        bw.Write(unit.VoiceData.TALK_PERSON);
-                        bw.Write(unit.VoiceData.VoiceAcbValue);
-                        bw.Write(unit.VoiceData.Padding);
-                        bw.Write(unit.VoiceData.TALK_MONEY_MIN);
-                        bw.Write(unit.VoiceData.TALK_MONEY_MAX);
-                        foreach (var itemDrop in unit.VoiceData.TALK_ITEM)
-                            bw.Write(itemDrop.ItemID);
-                        foreach (var itemDrop in unit.VoiceData.TALK_ITEM_RARE)
-                            bw.Write(itemDrop.ItemID);
+                        foreach (var data in unit.VisualData)
+                        {
+                            bw.Write(data.PersonaID);
+                            bw.Write(data.ModelID);
+                            bw.Write(data.UnknownR);
+                        }
                     }
+
+                    Add16ByteAlignmentPadding(bw);
 
                     // Segment 5: Unknown
                     bw.Write(Convert.ToUInt32(unitTblData.Segment5.Length));
                     bw.Write(unitTblData.Segment5);
+
+                    Add16ByteAlignmentPadding(bw);
                 }
             }
         }
@@ -251,6 +289,25 @@ namespace P5RBattleEditor
             result |= (byte)((bools[6] ? 1 : 0) << 6);
             result |= (byte)((bools[7] ? 1 : 0) << 7);
             return result;
+        }
+
+        public static int Get16ByteAlignmentPadding(EndianBinaryReader reader)
+        {
+            long currentPosition = reader.BaseStream.Position;
+            int paddingNeeded = (int)(16 - (currentPosition % 16)) % 16;
+
+            return paddingNeeded;
+        }
+
+        public static void Add16ByteAlignmentPadding(EndianBinaryWriter writer)
+        {
+            long currentPosition = writer.BaseStream.Position;
+            int paddingNeeded = (int)(16 - (currentPosition % 16)) % 16;
+
+            if (paddingNeeded > 0)
+            {
+                writer.Write(new byte[paddingNeeded]);
+            }
         }
 
         public class UnitTableData
