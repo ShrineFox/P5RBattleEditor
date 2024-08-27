@@ -50,13 +50,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Encounters.cs">
+    <Compile Include="Classes\Encounters\Encounters_Structure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Encounters\ChallengeBtlData_Structure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Encounters\Encount_Enums.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Encounters\Encounters_RW.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Classes\Skills.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Units.cs">
+    <Compile Include="Classes\Units\Units_Structure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Units\Units_RW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Units\Units_Enums.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Utilities.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="P5RBattleEditor.cs">
