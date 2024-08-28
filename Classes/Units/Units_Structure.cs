@@ -88,19 +88,6 @@ namespace P5RBattleEditor
             public ushort Probability = 0;
         }
 
-        public class BattleSkills
-        {
-            public ushort Skill1 { get; set; } = 0;
-            public ushort Skill2 { get; set; } = 0;
-            public ushort Skill3 { get; set; } = 0;
-            public ushort Skill4 { get; set; } = 0;
-            public ushort Skill5 { get; set; } = 0;
-            public ushort Skill6 { get; set; } = 0;
-            public ushort Skill7 { get; set; } = 0;
-            public ushort Skill8 { get; set; } = 0;
-
-        }
-
         public class BattleStats
         {
             public byte Strength { get; set; } = 0x00;

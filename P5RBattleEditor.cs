@@ -9,6 +9,7 @@ namespace P5RBattleEditor
         EncountTableData EncountTblData = new EncountTableData();
         UnitTableData UnitTblData = new UnitTableData();
         SkillTableData SkillTblData = new SkillTableData();
+        PersonaTableData PersonaTblData = new PersonaTableData();
 
 
         public P5RBattleEditor()
@@ -23,6 +24,8 @@ namespace P5RBattleEditor
             EncountTblData = ReadP5REncountTbl("./TBL/ENCOUNT.TBL");
             UnitTblData = ReadP5RUnitTbl("./TBL/UNIT.TBL");
             SkillTblData = ReadP5RSkillTbl("./TBL/SKILL.TBL");
+            PersonaTblData = ReadP5RPersonaTbl("./TBL/PERSONA.TBL");
+
         }
 
         private void WriteTables()
@@ -30,6 +33,8 @@ namespace P5RBattleEditor
             WriteP5REncountTbl("./TBL_NEW/ENCOUNT.TBL");
             WriteP5RUnitTbl("./TBL_NEW/UNIT.TBL");
             WriteP5RSkillTbl("./TBL_NEW/SKILL.TBL");
+            WriteP5RPersonaTbl("./TBL_NEW/PERSONA.TBL");
+
         }
     }
 }
