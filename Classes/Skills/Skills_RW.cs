@@ -10,6 +10,8 @@ namespace P5RBattleEditor
     {
         const int SKILL_SEGMENT0_ENTRY_SIZE = 8;
         const int SKILL_SEGMENT1_ENTRY_SIZE = 48;
+        const int SKILL_SEGMENT2_ENTRY_SIZE = 40;
+        const int SKILL_SEGMENT3_ENTRY_SIZE = 60;
 
         private SkillTableData ReadP5RSkillTbl(string path)
         {
@@ -27,7 +29,7 @@ namespace P5RBattleEditor
 
                         element.ElementType = br.ReadByte();
                         element.ActiveOrPassive = br.ReadByte();
-                        element.Inheritable = br.ReadBoolean();
+                        element.Inheritable = br.ReadByte();
                         element.UnknownR_1 = br.ReadByte();
                         element.UnknownR_2 = br.ReadByte();
                         element.UnknownR_3 = br.ReadByte();
@@ -92,6 +94,50 @@ namespace P5RBattleEditor
 
                         tblData.ActiveSkillData.Add(skill);
                     }
+
+                    br.BaseStream.Position += Get16ByteAlignmentPadding(br);
+
+                    // Segment 2: Technical Combo Map
+                    uint segment2Size = br.ReadUInt32();
+                    for (int i = 0; i < (segment2Size / SKILL_SEGMENT2_ENTRY_SIZE); i++)
+                    {
+                        TechnicalCombo combo = new TechnicalCombo();
+
+                        combo.ApplicableAilments = ReadAilmentStatus(br);
+                        combo.AllAffinitiesAreTechnical = Convert.ToBoolean(br.ReadInt32());
+                        combo.TechnicalAffinities = new int[] { br.ReadInt32(),
+                            br.ReadInt32(), br.ReadInt32(), br.ReadInt32(), br.ReadInt32() };
+                        combo.DamageMultiplier = br.ReadUInt32();
+                        combo.UnknownR = br.ReadInt32();
+                        int requiresKnowHeart = br.ReadInt32();
+                        if (requiresKnowHeart == 0x3000013d)
+                            combo.RequiresKnowTheHeart = true;
+                        
+
+                        tblData.TechnicalComboMap.Add(combo);
+                    }
+
+                    br.BaseStream.Position += Get16ByteAlignmentPadding(br);
+
+                    // Segment 3: Trait Data
+                    uint segment3Size = br.ReadUInt32();
+                    for (int i = 0; i < (segment3Size / SKILL_SEGMENT3_ENTRY_SIZE); i++)
+                    {
+                        TraitData trait = new TraitData();
+
+                        trait.Effect = br.ReadUInt16();
+                        trait.Field2 = br.ReadUInt16();
+                        trait.EffectRate = br.ReadInt32();
+                        trait.SubTrait = br.ReadInt32();
+                        trait.EffectSize = br.ReadSingle();
+                        trait.SubstituteTraits = new int[] { br.ReadInt32(),
+                            br.ReadInt32(),br.ReadInt32(),br.ReadInt32(),br.ReadInt32(),
+                        br.ReadInt32(),br.ReadInt32(),br.ReadInt32(),br.ReadInt32(),
+                        br.ReadInt32()};
+                        trait.Flags = ReadTraitFlags(br);
+
+                        tblData.Traits.Add(trait);
+                    }
                 }
             }
 
@@ -121,8 +167,8 @@ namespace P5RBattleEditor
 
                     Add16ByteAlignmentPadding(bw);
 
-                    // Segment 0: Skill Elements
-                    uint segment1Size = Convert.ToUInt32(SKILL_SEGMENT1_ENTRY_SIZE * SkillTblData.SkillElements.Count);
+                    // Segment 1: Active Skill Data
+                    uint segment1Size = Convert.ToUInt32(SKILL_SEGMENT1_ENTRY_SIZE * SkillTblData.ActiveSkillData.Count);
                     bw.Write(segment1Size);
                     foreach (var skill in SkillTblData.ActiveSkillData)
                     {
@@ -171,6 +217,44 @@ namespace P5RBattleEditor
                         bw.Write(skill.UnknownForItem);
                         bw.Write(skill.Unknown_8);
                     }
+
+                    Add16ByteAlignmentPadding(bw);
+
+                    // Segment 2: Technical Combo Map
+                    uint segment2Size = Convert.ToUInt32(SKILL_SEGMENT2_ENTRY_SIZE * SkillTblData.TechnicalComboMap.Count);
+                    bw.Write(segment2Size);
+                    foreach (var combo in SkillTblData.TechnicalComboMap)
+                    {
+                        WriteAilmentStatus(bw, combo.ApplicableAilments);
+
+                        bw.Write(Convert.ToInt32(combo.AllAffinitiesAreTechnical));
+                        bw.Write(combo.TechnicalAffinities);
+                        bw.Write(combo.DamageMultiplier);
+                        bw.Write(combo.UnknownR);
+                        if (combo.RequiresKnowTheHeart)
+                            bw.Write(0x3000013D);
+                        else
+                            bw.Write(new int());
+                    }
+
+                    Add16ByteAlignmentPadding(bw);
+
+                    // Segment 3: Trait Data
+                    uint segment3Size = Convert.ToUInt32(SKILL_SEGMENT3_ENTRY_SIZE * SkillTblData.Traits.Count);
+                    bw.Write(segment3Size);
+                    foreach (var trait in SkillTblData.Traits)
+                    {
+                        bw.Write(trait.Effect);
+                        bw.Write(trait.Field2);
+                        bw.Write(trait.EffectRate);
+                        bw.Write(trait.SubTrait);
+                        bw.Write(trait.EffectSize);
+                        bw.Write(trait.SubstituteTraits);
+
+                        WriteTraitFlags(bw, trait.Flags);
+                    }
+
+                    Add16ByteAlignmentPadding(bw);
                 }
             }
         }

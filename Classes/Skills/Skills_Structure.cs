@@ -11,15 +11,15 @@ namespace P5RBattleEditor
         {
             public List<ElementData> SkillElements { get; set; } = new List<ElementData>(); // 1056
             public List<ActiveSkill> ActiveSkillData { get; set; } = new List<ActiveSkill>(); // 800
-            // Segment2: Combo Map
-            // Segment3: Trait Data
+            public List<TechnicalCombo> TechnicalComboMap { get; set; } = new List<TechnicalCombo>(); // 17
+            public List<TraitData> Traits { get; set; } = new List<TraitData>(); // 299
         }
 
         public class ElementData
         {
             public byte ElementType { get; set; } = Convert.ToByte(ElementalType.Physical);
             public byte ActiveOrPassive { get; set; } = Convert.ToByte(PassiveActive.ActiveSkill);
-            public bool Inheritable { get; set; } = false;
+            public byte Inheritable { get; set; } = 0x00;
             public byte UnknownR_1 { get; set; } = 0x00;
             public byte UnknownR_2 { get; set; } = 0x00;
             public byte UnknownR_3 { get; set; } = 0x00;
