@@ -37,8 +37,8 @@ namespace P5RBattleEditor
         {
             public byte PendingLevels { get; set; } = 0x00;
             public byte Learnability { get; set; } = 0x00;
-            public ushort SkillID { get; set; } = 0;
-            public ushort TraitID { get; set; } = 0;
+            public short SkillID { get; set; } = 0;
+            public short TraitID { get; set; } = 0;
 
         }
 
@@ -52,7 +52,7 @@ namespace P5RBattleEditor
             public ushort Character { get; set; } = 0;
             public byte LevelsAvailable { get; set; } = 0x63;
             public byte UnknownU8 = 0x00;
-            public PendingSkillorTrait[] PendingSkillsorTraits = new PendingSkillorTrait[32];
+            public PendingSkillorTrait[] PendingSkillsorTraits { get; set; } = new PendingSkillorTrait[32];
             public BattleStats[] StatGainPerLevel { get; set; } = new BattleStats[98];
         }
     }

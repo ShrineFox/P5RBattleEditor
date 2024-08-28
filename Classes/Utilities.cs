@@ -125,7 +125,7 @@ namespace P5RBattleEditor
             return bitfield;
         }
 
-        public void WriteBitfield(EndianBinaryWriter writer, UnionBitfield bitfield)
+        public void WriteUnionBitfield(EndianBinaryWriter writer, UnionBitfield bitfield)
         {
             ushort packedValue = bitfield.Pack();
             writer.Write(packedValue);
