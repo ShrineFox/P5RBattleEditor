@@ -37,8 +37,21 @@
       <HintPath>packages\MetroSet_UI.2.0.0\lib\net45\MetroSet UI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,49 +63,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Encounters\Encounters_Structure.cs">
+    <Compile Include="Classes\AtlusEncoding.cs" />
+    <Compile Include="Classes\Tables\Encounters\Encounters_Structure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Encounters\ChallengeBtlData_Structure.cs">
+    <Compile Include="Classes\Tables\Encounters\ChallengeBtlData_Structure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Encounters\Encount_Enums.cs">
+    <Compile Include="Classes\Tables\Encounters\Encount_Enums.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Encounters\Encounters_RW.cs">
+    <Compile Include="Classes\Tables\Encounters\Encounters_RW.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Skills\TraitData_Structure.cs">
+    <Compile Include="Classes\Tables\Skills\TraitData_Structure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Skills\TechnicalCombos_Structure.cs">
+    <Compile Include="Classes\Tables\Skills\TechnicalCombos_Structure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Skills\Skills_Enums.cs">
+    <Compile Include="Classes\Tables\Skills\Skills_Enums.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Skills\Skills_RW.cs">
+    <Compile Include="Classes\Tables\Skills\Skills_RW.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Skills\Skills_Structure.cs">
+    <Compile Include="Classes\Tables\Skills\Skills_Structure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Personas\Personas_Enums.cs">
+    <Compile Include="Classes\Tables\Personas\Personas_Enums.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Personas\Personas_RW.cs">
+    <Compile Include="Classes\Tables\Personas\Personas_RW.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Personas\Personas_Structure.cs">
+    <Compile Include="Classes\Tables\Personas\Personas_Structure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Units\Units_Structure.cs">
+    <Compile Include="Classes\Tables\Units\Units_Structure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Units\Units_RW.cs">
+    <Compile Include="Classes\Tables\Units\Units_RW.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\Units\Units_Enums.cs">
+    <Compile Include="Classes\Tables\Units\Units_Enums.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Tables\NameTBL_RW.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Classes\Utilities.cs">
@@ -118,6 +135,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Dependencies\Charsets\P5R_EFIGS.tsv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -133,6 +153,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Amicitia.IO\src\Amicitia.IO\Amicitia.IO.csproj">
+      <Project>{769ac802-e923-440c-bbbf-212747ab616e}</Project>
+      <Name>Amicitia.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShrineFox.IO\ShrineFox.IO.csproj">
       <Project>{7640412a-7372-4925-b20c-0178d8818a8f}</Project>
       <Name>ShrineFox.IO</Name>

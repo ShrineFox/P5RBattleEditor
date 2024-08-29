@@ -6,11 +6,11 @@ namespace P5RBattleEditor
 {
     public partial class P5RBattleEditor : MetroSetForm
     {
-        EncountTableData EncountTblData = new EncountTableData();
-        UnitTableData UnitTblData = new UnitTableData();
-        SkillTableData SkillTblData = new SkillTableData();
-        PersonaTableData PersonaTblData = new PersonaTableData();
-
+        public static EncountTableData EncountTblData = new EncountTableData();
+        public static UnitTableData UnitTblData = new UnitTableData();
+        public static SkillTableData SkillTblData = new SkillTableData();
+        public static PersonaTableData PersonaTblData = new PersonaTableData();
+        public static List<TblSection> NameTblData = new List<TblSection>();
 
         public P5RBattleEditor()
         {
@@ -25,7 +25,7 @@ namespace P5RBattleEditor
             UnitTblData = ReadP5RUnitTbl("./TBL/UNIT.TBL");
             SkillTblData = ReadP5RSkillTbl("./TBL/SKILL.TBL");
             PersonaTblData = ReadP5RPersonaTbl("./TBL/PERSONA.TBL");
-
+            NameTblData = ReadNameTBL("./TBL/NAME.TBL");
         }
 
         private void WriteTables()
@@ -34,7 +34,7 @@ namespace P5RBattleEditor
             WriteP5RUnitTbl("./TBL_NEW/UNIT.TBL");
             WriteP5RSkillTbl("./TBL_NEW/SKILL.TBL");
             WriteP5RPersonaTbl("./TBL_NEW/PERSONA.TBL");
-
+            WriteNameTbl("./TBL_NEW/NAME.TBL");
         }
     }
 }
