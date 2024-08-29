@@ -126,7 +126,7 @@ namespace P5RBattleEditor
                     foreach (var persona in PersonaTblData.Stats)
                     {
                         bw.Write(persona.DLCorTreasureDemon);
-                        bw.Write(persona.Bitflags);
+                        bw.Write(ConvertBoolsToByte(persona.Bitflags));
                         bw.Write(persona.Arcana);
                         bw.Write(persona.BaseLevel);
                         bw.Write(persona.Stats.Strength);
