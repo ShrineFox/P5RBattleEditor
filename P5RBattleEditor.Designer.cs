@@ -52,7 +52,7 @@ namespace P5RBattleEditor
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(2, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(796, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(796, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -109,11 +109,11 @@ namespace P5RBattleEditor
             this.metroSetTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroSetTabControl1.IsDerivedStyle = true;
             this.metroSetTabControl1.ItemSize = new System.Drawing.Size(100, 38);
-            this.metroSetTabControl1.Location = new System.Drawing.Point(2, 30);
+            this.metroSetTabControl1.Location = new System.Drawing.Point(2, 28);
             this.metroSetTabControl1.Name = "metroSetTabControl1";
             this.metroSetTabControl1.SelectedIndex = 0;
             this.metroSetTabControl1.SelectedTextColor = System.Drawing.Color.White;
-            this.metroSetTabControl1.Size = new System.Drawing.Size(796, 418);
+            this.metroSetTabControl1.Size = new System.Drawing.Size(796, 420);
             this.metroSetTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.metroSetTabControl1.Speed = 100;
             this.metroSetTabControl1.Style = MetroSet_UI.Enums.Style.Dark;
@@ -129,7 +129,7 @@ namespace P5RBattleEditor
             // 
             this.tabPage_Encounters.Location = new System.Drawing.Point(4, 42);
             this.tabPage_Encounters.Name = "tabPage_Encounters";
-            this.tabPage_Encounters.Size = new System.Drawing.Size(788, 372);
+            this.tabPage_Encounters.Size = new System.Drawing.Size(788, 374);
             this.tabPage_Encounters.TabIndex = 0;
             this.tabPage_Encounters.Text = "Encounters";
             // 
@@ -137,7 +137,7 @@ namespace P5RBattleEditor
             // 
             this.tabPage_Units.Location = new System.Drawing.Point(4, 42);
             this.tabPage_Units.Name = "tabPage_Units";
-            this.tabPage_Units.Size = new System.Drawing.Size(709, 315);
+            this.tabPage_Units.Size = new System.Drawing.Size(788, 372);
             this.tabPage_Units.TabIndex = 1;
             this.tabPage_Units.Text = "Units";
             // 
@@ -145,7 +145,7 @@ namespace P5RBattleEditor
             // 
             this.tabPage_Skills.Location = new System.Drawing.Point(4, 42);
             this.tabPage_Skills.Name = "tabPage_Skills";
-            this.tabPage_Skills.Size = new System.Drawing.Size(709, 315);
+            this.tabPage_Skills.Size = new System.Drawing.Size(788, 372);
             this.tabPage_Skills.TabIndex = 2;
             this.tabPage_Skills.Text = "Skills";
             // 
@@ -157,6 +157,7 @@ namespace P5RBattleEditor
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.metroSetTabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.DropShadowEffect = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.HeaderHeight = -40;
             this.MainMenuStrip = this.menuStrip1;

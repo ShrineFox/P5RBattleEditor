@@ -6,6 +6,8 @@ using System.Linq;
 using Amicitia.IO;
 using Amicitia.IO.Binary;
 
+// Original Code from DeathChaos25's P5NameTBLEditor
+
 namespace P5RBattleEditor
 {
     public partial class P5RBattleEditor : MetroSetForm

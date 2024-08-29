@@ -1,6 +1,9 @@
-﻿using MetroSet_UI.Forms;
+﻿using Amicitia.IO.Binary;
+using MetroSet_UI.Forms;
+using Newtonsoft.Json;
 using ShrineFox.IO;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -129,6 +132,21 @@ namespace P5RBattleEditor
         {
             ushort packedValue = bitfield.Pack();
             writer.Write(packedValue);
+        }
+
+        public void SaveJson(dynamic obj, string outJsonPath)
+        {
+            File.WriteAllText(outJsonPath, JsonConvert.SerializeObject(obj, Formatting.Indented));
+        }
+
+        public dynamic LoadJson(Type type, string jsonPath)
+        {
+            if (!File.Exists(jsonPath))
+                return null;
+
+            string jsonText = File.ReadAllText(Path.GetFullPath(jsonPath));
+            dynamic obj = JsonConvert.DeserializeObject(jsonText, type);
+            return obj;
         }
     }
 }

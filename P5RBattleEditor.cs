@@ -1,6 +1,7 @@
 ﻿using MetroSet_UI.Forms;
 using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace P5RBattleEditor
 {
@@ -15,7 +16,9 @@ namespace P5RBattleEditor
         public P5RBattleEditor()
         {
             InitializeComponent();
-            LoadTables();
+            //LoadTables();
+            ReadJsons();
+            //WriteJsons();
             WriteTables();
         }
 
@@ -26,6 +29,24 @@ namespace P5RBattleEditor
             SkillTblData = ReadP5RSkillTbl("./TBL/SKILL.TBL");
             PersonaTblData = ReadP5RPersonaTbl("./TBL/PERSONA.TBL");
             NameTblData = ReadNameTBL("./TBL/NAME.TBL");
+        }
+
+        private void ReadJsons()
+        {
+            EncountTblData = LoadJson(typeof(EncountTableData), "./JSON/ENCOUNT.JSON");
+            UnitTblData = LoadJson(typeof(UnitTableData), "./JSON/UNIT.JSON");
+            SkillTblData = LoadJson(typeof(SkillTableData), "./JSON/SKILL.JSON");
+            PersonaTblData = LoadJson(typeof(PersonaTableData), "./JSON/PERSONA.JSON");
+            NameTblData = LoadJson(typeof(List<TblSection>), "./JSON/NAME.JSON");
+        }
+
+        private void WriteJsons()
+        {
+            SaveJson(EncountTblData, "./JSON/ENCOUNT.JSON");
+            SaveJson(UnitTblData, "./JSON/UNIT.JSON");
+            SaveJson(SkillTblData, "./JSON/SKILL.JSON");
+            SaveJson(PersonaTblData, "./JSON/PERSONA.JSON");
+            SaveJson(NameTblData, "./JSON/NAME.JSON");
         }
 
         private void WriteTables()
