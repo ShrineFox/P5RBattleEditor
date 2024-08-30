@@ -16,6 +16,8 @@ namespace P5RBattleEditor
 
         public class EnemyUnit
         {
+            public int Id { get; set; } = 0; // added for convenience
+            public string Comment { get; set; } = ""; // added for convenience
             public EnemyStats EnemyStats { get; set; } = new EnemyStats(); // segment 0
             public List<Affinity> Affinities { get; set; } = new List<Affinity>(); // segment 1
             public VoiceData VoiceData { get; set; } = new VoiceData(); // segment 3

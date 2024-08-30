@@ -118,6 +118,9 @@
     <Compile Include="Classes\Utilities.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\MainForm\EncounterList\MainForm_EncounterList.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\MainForm\MainForm_Events.cs">
       <SubType>Form</SubType>
     </Compile>

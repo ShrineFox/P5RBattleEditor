@@ -17,6 +17,8 @@ namespace P5RBattleEditor
 
         public class ElementData
         {
+            public int Id { get; set; } = 0; // added for convenience
+            public string Comment { get; set; } = ""; // added for convenience
             public byte ElementType { get; set; } = Convert.ToByte(ElementalType.Physical);
             public byte ActiveOrPassive { get; set; } = Convert.ToByte(PassiveActive.ActiveSkill);
             public byte Inheritable { get; set; } = 0x00;
@@ -29,6 +31,8 @@ namespace P5RBattleEditor
 
         public class ActiveSkill
         {
+            public int Id { get; set; } = 0; // added for convenience
+            public string Comment { get; set; } = ""; // added for convenience
             public byte UnknownR_1 { get; set; } = 0;
             public byte ConditionUsage { get; set; } = Convert.ToByte(SkillCondition.UnknownForMaruki); // Must be accompanied with Value 8 in Caster Effect 2
             public byte CasterEffect_1 { get; set; } = Convert.ToByte(CasterEffect1.NoCasterEffect1);

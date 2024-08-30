@@ -25,7 +25,7 @@ namespace P5RBattleEditor
                     uint segment0Size = br.ReadUInt32();
                     for (int i = 0; i < (segment0Size / PERSONA_SEGMENT0_ENTRY_SIZE); i++)
                     {
-                        PersonaStats persona = new PersonaStats();
+                        PersonaStats persona = new PersonaStats() { Id = i };
 
                         persona.DLCorTreasureDemon = br.ReadByte();
                         persona.Bitflags = ConvertByteToBools(br.ReadByte());
@@ -73,7 +73,7 @@ namespace P5RBattleEditor
                     uint segment2Size = br.ReadUInt32();
                     for (int i = 0; i < (segment2Size / PERSONA_SEGMENT2_ENTRY_SIZE); i++)
                     {
-                        tblData.PartyLevelUpThresholds[i] = new PtyLvlUp();
+                        tblData.PartyLevelUpThresholds[i] = new PtyLvlUp() { Id = i };
                         for (int x = 0; x < tblData.PartyLevelUpThresholds[i].ExpRequired.Length; x++)
                             tblData.PartyLevelUpThresholds[i].ExpRequired[x] = br.ReadUInt32();
                     }
@@ -84,7 +84,7 @@ namespace P5RBattleEditor
                     uint segment3Size = br.ReadUInt32();
                     for (int i = 0; i < (segment3Size / PERSONA_SEGMENT3_ENTRY_SIZE); i++)
                     {
-                        var ptyMemberPersona = new PtyMemberPersona();
+                        var ptyMemberPersona = new PtyMemberPersona() { Id = i };
                         ptyMemberPersona.Character = br.ReadUInt16();
                         ptyMemberPersona.LevelsAvailable = br.ReadByte();
                         ptyMemberPersona.UnknownU8 = br.ReadByte();

@@ -25,7 +25,7 @@ namespace P5RBattleEditor
                     uint segment0Size = br.ReadUInt32();
                     for (int i = 0; i < (segment0Size / SKILL_SEGMENT0_ENTRY_SIZE); i++)
                     {
-                        var element = new ElementData();
+                        var element = new ElementData() { Id = i };
 
                         element.ElementType = br.ReadByte();
                         element.ActiveOrPassive = br.ReadByte();
@@ -45,7 +45,7 @@ namespace P5RBattleEditor
                     uint segment1Size = br.ReadUInt32();
                     for (int i = 0; i < (segment1Size / SKILL_SEGMENT1_ENTRY_SIZE); i++)
                     {
-                        ActiveSkill skill = new ActiveSkill();
+                        ActiveSkill skill = new ActiveSkill() { Id = i };
 
                         skill.UnknownR_1 = br.ReadByte();
                         skill.ConditionUsage = br.ReadByte();

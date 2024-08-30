@@ -18,7 +18,7 @@ namespace P5RBattleEditor
             InitializeComponent();
             LoadTables();
             //ReadJsons();
-            //WriteJsons();
+            WriteJsons();
             //WriteTables();
 
             SetupFormControls();
@@ -30,7 +30,7 @@ namespace P5RBattleEditor
             UnitTblData = ReadP5RUnitTbl("./TBL/UNIT.TBL");
             SkillTblData = ReadP5RSkillTbl("./TBL/SKILL.TBL");
             PersonaTblData = ReadP5RPersonaTbl("./TBL/PERSONA.TBL");
-            //NameTblData = ReadNameTBL("./TBL/NAME.TBL");
+            NameTblData = ReadNameTBL("./TBL/NAME.TBL");
         }
 
         private void ReadJsons()

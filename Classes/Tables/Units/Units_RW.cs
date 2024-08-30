@@ -26,7 +26,7 @@ namespace P5RBattleEditor
                     uint segment0Size = br.ReadUInt32();
                     for (int i = 0; i < (segment0Size / UNIT_SEGMENT0_ENTRY_SIZE); i++)
                     {
-                        EnemyUnit enemy = new EnemyUnit();
+                        EnemyUnit enemy = new EnemyUnit() { Id = i };
 
                         // Bit flags
                         enemy.EnemyStats.Flags = new List<bool[]>

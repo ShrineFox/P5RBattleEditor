@@ -18,6 +18,8 @@ namespace P5RBattleEditor
 
         public class Encounter
         {
+            public int Id { get; set; } = 0; // added for convenience
+            public string Comment { get; set; } = ""; // added for convenience
             public EncounterFlags Flags { get; set; } = new EncounterFlags();
             public ushort Field04 { get; set; } = 0;
             public ushort Field06 { get; set; } = 0;

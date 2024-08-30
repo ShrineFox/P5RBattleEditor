@@ -25,7 +25,7 @@ namespace P5RBattleEditor
                     uint segment0Size = br.ReadUInt32();
                     for (int i = 0; i < (segment0Size / ENCOUNT_SEGMENT0_ENTRY_SIZE); i++)
                     {
-                        Encounter encounter = new Encounter();
+                        Encounter encounter = new Encounter() { Id = i };
 
                         // Bit flags
                         encounter.Flags = ReadEncounterFlags(br);

@@ -146,8 +146,8 @@ namespace P5RBattleEditor
             // tlp_Encounters
             // 
             this.tlp_Encounters.ColumnCount = 2;
-            this.tlp_Encounters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tlp_Encounters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tlp_Encounters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tlp_Encounters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tlp_Encounters.Controls.Add(this.propertyGrid_Encounters, 1, 0);
             this.tlp_Encounters.Controls.Add(this.comboBox_Encounters, 0, 0);
             this.tlp_Encounters.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -163,6 +163,7 @@ namespace P5RBattleEditor
             // 
             this.tlp_Encounters.SetColumnSpan(this.propertyGrid_Encounters, 2);
             this.propertyGrid_Encounters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid_Encounters.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.propertyGrid_Encounters.Location = new System.Drawing.Point(3, 59);
             this.propertyGrid_Encounters.Name = "propertyGrid_Encounters";
             this.propertyGrid_Encounters.Size = new System.Drawing.Size(782, 316);
@@ -172,10 +173,11 @@ namespace P5RBattleEditor
             // 
             this.comboBox_Encounters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_Encounters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Encounters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_Encounters.FormattingEnabled = true;
-            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 11);
+            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 16);
             this.comboBox_Encounters.Name = "comboBox_Encounters";
-            this.comboBox_Encounters.Size = new System.Drawing.Size(269, 34);
+            this.comboBox_Encounters.Size = new System.Drawing.Size(545, 24);
             this.comboBox_Encounters.TabIndex = 1;
             this.comboBox_Encounters.SelectedIndexChanged += new System.EventHandler(this.EncounterList_SelectedIndexChanged);
             // 

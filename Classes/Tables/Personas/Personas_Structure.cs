@@ -17,6 +17,8 @@ namespace P5RBattleEditor
 
         public class PersonaStats
         {
+            public int Id { get; set; } = 0; // added for convenience
+            public string Comment { get; set; } = ""; // added for convenience
             // Segment 0: Stats
             public byte DLCorTreasureDemon { get; set; } = 0x00;
             public bool[] Bitflags { get; set; } = new bool[8];
@@ -44,11 +46,15 @@ namespace P5RBattleEditor
 
         public class PtyLvlUp
         {
+            public int Id { get; set; } = 0; // added for convenience
+            public string Comment { get; set; } = ""; // added for convenience
             public uint[] ExpRequired { get; set; } = new uint[98];
         }
 
         public class PtyMemberPersona
         {
+            public int Id { get; set; } = 0; // added for convenience
+            public string Comment { get; set; } = ""; // added for convenience
             public ushort Character { get; set; } = 0;
             public byte LevelsAvailable { get; set; } = 0x63;
             public byte UnknownU8 = 0x00;
