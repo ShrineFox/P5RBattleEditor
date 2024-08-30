@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Linq;
+using System.Reflection;
 
 namespace P5RBattleEditor
 {

@@ -338,15 +338,15 @@ namespace P5RBattleEditor
             // 
             // comboBox_EncounterMusic
             // 
+            this.comboBox_EncounterMusic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_EncounterMusic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.comboBox_EncounterMusic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox_EncounterMusic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_EncounterMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_EncounterMusic.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_EncounterMusic.FormattingEnabled = true;
             this.comboBox_EncounterMusic.Location = new System.Drawing.Point(3, 19);
             this.comboBox_EncounterMusic.Name = "comboBox_EncounterMusic";
-            this.comboBox_EncounterMusic.Size = new System.Drawing.Size(167, 24);
+            this.comboBox_EncounterMusic.Size = new System.Drawing.Size(165, 24);
             this.comboBox_EncounterMusic.TabIndex = 7;
             // 
             // groupBox_FieldIDMajor
@@ -364,10 +364,16 @@ namespace P5RBattleEditor
             // numUpDwn_FieldIDMinor
             // 
             this.numUpDwn_FieldIDMinor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numUpDwn_FieldIDMinor.AutoSize = true;
             this.numUpDwn_FieldIDMinor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.numUpDwn_FieldIDMinor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numUpDwn_FieldIDMinor.ForeColor = System.Drawing.Color.Silver;
             this.numUpDwn_FieldIDMinor.Location = new System.Drawing.Point(6, 22);
+            this.numUpDwn_FieldIDMinor.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.numUpDwn_FieldIDMinor.Name = "numUpDwn_FieldIDMinor";
             this.numUpDwn_FieldIDMinor.Size = new System.Drawing.Size(120, 23);
             this.numUpDwn_FieldIDMinor.TabIndex = 1;
@@ -387,10 +393,16 @@ namespace P5RBattleEditor
             // numUpDwn_FieldIDMajor
             // 
             this.numUpDwn_FieldIDMajor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numUpDwn_FieldIDMajor.AutoSize = true;
             this.numUpDwn_FieldIDMajor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.numUpDwn_FieldIDMajor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numUpDwn_FieldIDMajor.ForeColor = System.Drawing.Color.Silver;
             this.numUpDwn_FieldIDMajor.Location = new System.Drawing.Point(6, 22);
+            this.numUpDwn_FieldIDMajor.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.numUpDwn_FieldIDMajor.Name = "numUpDwn_FieldIDMajor";
             this.numUpDwn_FieldIDMajor.Size = new System.Drawing.Size(120, 23);
             this.numUpDwn_FieldIDMajor.TabIndex = 0;
@@ -551,8 +563,10 @@ namespace P5RBattleEditor
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox_EncounterMusic.ResumeLayout(false);
             this.groupBox_FieldIDMajor.ResumeLayout(false);
+            this.groupBox_FieldIDMajor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDwn_FieldIDMinor)).EndInit();
             this.groupBox_FieldIDMinor.ResumeLayout(false);
+            this.groupBox_FieldIDMinor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDwn_FieldIDMajor)).EndInit();
             this.groupBox_BattleUnits.ResumeLayout(false);
             this.tlp_EncounterBattleUnits.ResumeLayout(false);

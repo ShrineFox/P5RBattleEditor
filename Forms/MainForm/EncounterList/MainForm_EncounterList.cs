@@ -2,6 +2,8 @@
 using System;
 using System.Windows.Forms;
 using System.Linq;
+using System.Reflection;
+using System.Windows.Controls;
 
 namespace P5RBattleEditor
 {
@@ -47,7 +49,43 @@ namespace P5RBattleEditor
                 selectedEncounterID = comboBox_Encounters.SelectedIndex;
                 UpdateEncounterUnits();
                 UpdateEncounterMusic();
+                UpdateFieldIDs();
+                UpdateEncounterFlagsList();
+                UpdateEncounterNotes();
             }
+        }
+
+        private void UpdateEncounterFlagsList()
+        {
+            var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
+            chkListBox_EncounterFlags.Items.Clear();
+
+            foreach (PropertyInfo pi in selectedEncounter.Flags.GetType().GetProperties())
+            {
+                if (pi.PropertyType == typeof(bool))
+                {
+                    bool value = (bool)pi.GetValue(selectedEncounter.Flags);
+                    chkListBox_EncounterFlags.Items.Add(pi.Name);
+                    chkListBox_EncounterFlags.SetItemChecked(chkListBox_EncounterFlags.Items.Count - 1, value);
+                }
+            }
+        }
+
+        private void UpdateEncounterNotes()
+        {
+            var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
+
+            txt_EncounterNotes.Text = selectedEncounter.Comment;
+        }
+
+        // Show current encounter's field IDs in Encounter tab
+
+        private void UpdateFieldIDs()
+        {
+            var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
+
+            numUpDwn_FieldIDMajor.Value = selectedEncounter.FieldMajor;
+            numUpDwn_FieldIDMinor.Value = selectedEncounter.FieldMinor;
         }
 
         // Show current encounter's music in Encounter tab
