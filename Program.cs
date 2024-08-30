@@ -16,7 +16,7 @@ namespace P5RBattleEditor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new P5RBattleEditor());
+            Application.Run(new MainForm());
         }
     }
 }

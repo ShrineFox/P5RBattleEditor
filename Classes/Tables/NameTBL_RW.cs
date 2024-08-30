@@ -10,7 +10,7 @@ using Amicitia.IO.Binary;
 
 namespace P5RBattleEditor
 {
-    public partial class P5RBattleEditor : MetroSetForm
+    public partial class MainForm : MetroSetForm
     {
         public const int NAME_TBL_ENTRY_COUNT = 38; // number of Name TBL sections, 34 for P5, 38 for P5R
 

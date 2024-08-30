@@ -3,10 +3,11 @@ using ShrineFox.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using static P5RBattleEditor.MainForm;
 
 namespace P5RBattleEditor
 {
-    public partial class P5RBattleEditor : MetroSetForm
+    public partial class MainForm : MetroSetForm
     {
         const int ENCOUNT_SEGMENT0_ENTRY_SIZE = 44;
         const int ENCOUNT_SEGMENT1_ENTRY_SIZE = 8;
@@ -27,42 +28,39 @@ namespace P5RBattleEditor
                         Encounter encounter = new Encounter();
 
                         // Bit flags
-                        encounter.EncounterData.Flags = new List<bool[]>
-                        {
-                            ConvertByteToBools(br.ReadByte()), ConvertByteToBools(br.ReadByte()),
-                            ConvertByteToBools(br.ReadByte()), ConvertByteToBools(br.ReadByte())
-                        };
+                        encounter.Flags = ReadEncounterFlags(br);
+
                         // Unknown
-                        encounter.EncounterData.Field04 = br.ReadUInt16();
-                        encounter.EncounterData.Field06 = br.ReadUInt16();
+                        encounter.Field04 = br.ReadUInt16();
+                        encounter.Field06 = br.ReadUInt16();
                         // Units
                         const int BATTLEUNITS_ENTRY_COUNT = 5;
                         for (int x = 0; x < BATTLEUNITS_ENTRY_COUNT; x++)
-                            encounter.EncounterData.BattleUnits[x] = br.ReadUInt16();
+                            encounter.BattleUnits[x] = br.ReadUInt16();
                         // Field
-                        encounter.EncounterData.FieldMajor = br.ReadUInt16();
-                        encounter.EncounterData.FieldMinor = br.ReadUInt16();
-                        encounter.EncounterData.Music = br.ReadUInt16();
+                        encounter.FieldMajor = br.ReadUInt16();
+                        encounter.FieldMinor = br.ReadUInt16();
+                        encounter.Music = br.ReadUInt16();
                         // Extra Data
-                        encounter.EncounterData.Replacements = new EnemyReplacementData()
+                        encounter.Replacements = new EnemyReplacementData()
                         {
                             EnemyID = br.ReadUInt16(),
                             Chance = br.ReadByte(),
                             ChancePerSlot = new byte[] { br.ReadByte(), br.ReadByte(), 
                                 br.ReadByte(), br.ReadByte(), br.ReadByte() }
                         };
-                        encounter.EncounterData.Disastershadows = new DiasterShadowData()
+                        encounter.Disastershadows = new DiasterShadowData()
                         {
                             Chance = br.ReadByte(),
                             ChancePerSlot = new byte[] { br.ReadByte(), br.ReadByte(), 
                                 br.ReadByte(), br.ReadByte(), br.ReadByte() },
                             MaxDisasterShadows = br.ReadByte()
                         };
-                        encounter.EncounterData.Field0F = br.ReadByte();
-                        encounter.EncounterData.Field10 = br.ReadByte();
-                        encounter.EncounterData.Field11 = br.ReadByte();
-                        encounter.EncounterData.Field12 = br.ReadByte();
-                        encounter.EncounterData.Field13 = br.ReadByte();
+                        encounter.Field0F = br.ReadByte();
+                        encounter.Field10 = br.ReadByte();
+                        encounter.Field11 = br.ReadByte();
+                        encounter.Field12 = br.ReadByte();
+                        encounter.Field13 = br.ReadByte();
 
                         tblData.Encounters.Add(encounter);
                     }
@@ -142,30 +140,29 @@ namespace P5RBattleEditor
                     foreach (var encounter in EncountTblData.Encounters)
                     {
                         // Bit Flags
-                        foreach (var flagCollection in encounter.EncounterData.Flags)
-                            bw.Write(ConvertBoolsToByte(flagCollection));
+                        WriteEncounterFlags(bw, encounter.Flags);
                         // Unknown
-                        bw.Write(encounter.EncounterData.Field04);
-                        bw.Write(encounter.EncounterData.Field06);
+                        bw.Write(encounter.Field04);
+                        bw.Write(encounter.Field06);
                         //Units
-                        bw.Write(encounter.EncounterData.BattleUnits);
+                        bw.Write(encounter.BattleUnits);
                         // Field
-                        bw.Write(encounter.EncounterData.FieldMajor);
-                        bw.Write(encounter.EncounterData.FieldMinor);
-                        bw.Write(encounter.EncounterData.Music);
+                        bw.Write(encounter.FieldMajor);
+                        bw.Write(encounter.FieldMinor);
+                        bw.Write(encounter.Music);
                         // Extra Data
-                        bw.Write(encounter.EncounterData.Replacements.EnemyID);
-                        bw.Write(encounter.EncounterData.Replacements.Chance);
-                        bw.Write(encounter.EncounterData.Replacements.ChancePerSlot);
-                        bw.Write(encounter.EncounterData.Disastershadows.Chance);
-                        bw.Write(encounter.EncounterData.Disastershadows.ChancePerSlot);
-                        bw.Write(encounter.EncounterData.Disastershadows.MaxDisasterShadows);
+                        bw.Write(encounter.Replacements.EnemyID);
+                        bw.Write(encounter.Replacements.Chance);
+                        bw.Write(encounter.Replacements.ChancePerSlot);
+                        bw.Write(encounter.Disastershadows.Chance);
+                        bw.Write(encounter.Disastershadows.ChancePerSlot);
+                        bw.Write(encounter.Disastershadows.MaxDisasterShadows);
                         // Unknown
-                        bw.Write(encounter.EncounterData.Field0F);
-                        bw.Write(encounter.EncounterData.Field10);
-                        bw.Write(encounter.EncounterData.Field11);
-                        bw.Write(encounter.EncounterData.Field12);
-                        bw.Write(encounter.EncounterData.Field13);
+                        bw.Write(encounter.Field0F);
+                        bw.Write(encounter.Field10);
+                        bw.Write(encounter.Field11);
+                        bw.Write(encounter.Field12);
+                        bw.Write(encounter.Field13);
                     }
 
                     Add16ByteAlignmentPadding(bw);
@@ -211,6 +208,50 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
                 }
             }
+        }
+
+        private void WriteEncounterFlags(EndianBinaryWriter bw, EncounterFlags flags)
+        {
+            List<bool[]> boolSets = new List<bool[]>
+            {
+                new bool[] { flags.Bit0, flags.Bit1, flags.Bit2, flags.Bit3, flags.Bit4, flags.Bit5, flags.Bit6, flags.Bit7 },
+                new bool[] { flags.Bit8, flags.Bit9, flags.Bit10, flags.Bit11, flags.NoNegotiation, flags.Bit13, flags.Bit14, flags.Bit15 },
+                new bool[] { flags.NoKnockdown, flags.PositionHack, flags.NoHoldUp, flags.NoDisappear, flags.BulletHailOnStart, flags.NoNegotiation, flags.Bit22, flags.LoadBattleScript },
+                new bool[] { flags.Bit24, flags.Bit25, flags.LoadBFLBattleScript, flags.EnemyFirstAct, flags.NoCritical, flags.Bit29, flags.Bit30, flags.NoEscape }
+            };
+
+            foreach (var flagCollection in boolSets)
+                bw.Write(ConvertBoolsToByte(flagCollection));
+        }
+
+        private EncounterFlags ReadEncounterFlags(EndianBinaryReader br)
+        {
+            var encounterFlags = new EncounterFlags();
+
+            var EncounterFlags1 = ConvertByteToBools(br.ReadByte());
+            var EncounterFlags2 = ConvertByteToBools(br.ReadByte());
+            var EncounterFlags3 = ConvertByteToBools(br.ReadByte());
+            var EncounterFlags4 = ConvertByteToBools(br.ReadByte());
+
+            encounterFlags.Bit0 = EncounterFlags1[0]; encounterFlags.Bit8 = EncounterFlags2[0];
+            encounterFlags.Bit1 = EncounterFlags1[1]; encounterFlags.Bit9 = EncounterFlags2[1];
+            encounterFlags.Bit2 = EncounterFlags1[2]; encounterFlags.Bit10 = EncounterFlags2[2];
+            encounterFlags.Bit3 = EncounterFlags1[3]; encounterFlags.Bit11 = EncounterFlags2[3];
+            encounterFlags.Bit4 = EncounterFlags1[4]; encounterFlags.NoNegotiation = EncounterFlags2[4];
+            encounterFlags.Bit5 = EncounterFlags1[5]; encounterFlags.Bit13 = EncounterFlags2[5];
+            encounterFlags.Bit6 = EncounterFlags1[6]; encounterFlags.Bit14 = EncounterFlags2[6];
+            encounterFlags.Bit7 = EncounterFlags1[7]; encounterFlags.Bit15 = EncounterFlags2[7];
+
+            encounterFlags.NoKnockdown = EncounterFlags3[0]; encounterFlags.Bit24 = EncounterFlags4[0];
+            encounterFlags.PositionHack = EncounterFlags3[1]; encounterFlags.Bit25 = EncounterFlags4[1];
+            encounterFlags.NoHoldUp = EncounterFlags3[2]; encounterFlags.LoadBFLBattleScript = EncounterFlags4[2];
+            encounterFlags.NoDisappear = EncounterFlags3[3]; encounterFlags.EnemyFirstAct = EncounterFlags4[3];
+            encounterFlags.BulletHailOnStart = EncounterFlags3[4]; encounterFlags.NoCritical = EncounterFlags4[4];
+            encounterFlags.NoNavi = EncounterFlags3[5]; encounterFlags.Bit29 = EncounterFlags4[5];
+            encounterFlags.Bit22 = EncounterFlags3[6]; encounterFlags.Bit30 = EncounterFlags4[6];
+            encounterFlags.LoadBattleScript = EncounterFlags3[7]; encounterFlags.NoEscape = EncounterFlags4[7];
+
+            return encounterFlags;
         }
 
     }

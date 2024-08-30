@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace P5RBattleEditor
 {
-    public partial class P5RBattleEditor : MetroSetForm
+    public partial class MainForm : MetroSetForm
     {
         public class UnitTableData
         {

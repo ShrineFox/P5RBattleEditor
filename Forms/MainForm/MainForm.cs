@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace P5RBattleEditor
 {
-    public partial class P5RBattleEditor : MetroSetForm
+    public partial class MainForm : MetroSetForm
     {
         public static EncountTableData EncountTblData = new EncountTableData();
         public static UnitTableData UnitTblData = new UnitTableData();
@@ -13,13 +13,15 @@ namespace P5RBattleEditor
         public static PersonaTableData PersonaTblData = new PersonaTableData();
         public static List<TblSection> NameTblData = new List<TblSection>();
 
-        public P5RBattleEditor()
+        public MainForm()
         {
             InitializeComponent();
-            //LoadTables();
-            ReadJsons();
+            LoadTables();
+            //ReadJsons();
             //WriteJsons();
-            WriteTables();
+            //WriteTables();
+
+            SetupFormControls();
         }
 
         private void LoadTables()
@@ -28,7 +30,7 @@ namespace P5RBattleEditor
             UnitTblData = ReadP5RUnitTbl("./TBL/UNIT.TBL");
             SkillTblData = ReadP5RSkillTbl("./TBL/SKILL.TBL");
             PersonaTblData = ReadP5RPersonaTbl("./TBL/PERSONA.TBL");
-            NameTblData = ReadNameTBL("./TBL/NAME.TBL");
+            //NameTblData = ReadNameTBL("./TBL/NAME.TBL");
         }
 
         private void ReadJsons()

@@ -6,7 +6,7 @@ using System.IO;
 
 namespace P5RBattleEditor
 {
-    public partial class P5RBattleEditor : MetroSetForm
+    public partial class MainForm : MetroSetForm
     {
         const int SKILL_SEGMENT0_ENTRY_SIZE = 8;
         const int SKILL_SEGMENT1_ENTRY_SIZE = 48;

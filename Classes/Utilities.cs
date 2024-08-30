@@ -11,12 +11,12 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
-using static P5RBattleEditor.P5RBattleEditor;
+using static P5RBattleEditor.MainForm;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace P5RBattleEditor
 {
-    public partial class P5RBattleEditor : MetroSetForm
+    public partial class MainForm : MetroSetForm
     {
         public static bool[] ConvertByteToBools(byte b)
         {
