@@ -1,7 +1,11 @@
 ﻿using MetroSet_UI.Forms;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using System.Windows.Forms.Design;
 using System.Xml;
+using static P5RBattleEditor.MainForm;
 
 namespace P5RBattleEditor
 {
@@ -16,9 +20,9 @@ namespace P5RBattleEditor
         public MainForm()
         {
             InitializeComponent();
-            LoadTables();
-            //ReadJsons();
-            WriteJsons();
+            //LoadTables();
+            ReadJsons();
+            //WriteJsons();
             //WriteTables();
 
             SetupFormControls();
@@ -58,6 +62,41 @@ namespace P5RBattleEditor
             WriteP5RSkillTbl("./TBL_NEW/SKILL.TBL");
             WriteP5RPersonaTbl("./TBL_NEW/PERSONA.TBL");
             WriteNameTbl("./TBL_NEW/NAME.TBL");
+        }
+
+        private void EncounterSearch_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            
+            string searchTxt = txt_EncounterSearch.Text.ToLower();
+            if (string.IsNullOrEmpty(searchTxt))
+                return;
+            if (e.KeyData == Keys.Enter)
+            {
+                // stop windows ding noise
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            
+                int i = selectedEncounterID + 1;
+                while (i < comboBox_Encounters.Items.Count)
+                {
+                    if (i == selectedEncounterID)
+                        return;
+
+                    var encounter = (Encounter)comboBox_Encounters.Items[i];
+
+                    if (encounter.Comment.ToLower().Contains(searchTxt)
+                        || encounter.BattleUnits.Any(x => EnemyUnitNames[x].ToLower().Contains(searchTxt)))
+                    {
+                        comboBox_Encounters.SelectedIndex = i;
+                        return;
+                    }
+
+                    if (i == comboBox_Encounters.Items.Count - 1)
+                        i = 0;
+                    else
+                        i++;
+                }
+            }
         }
     }
 }

@@ -44,6 +44,7 @@ namespace P5RBattleEditor
             this.comboBox_Encounters = new System.Windows.Forms.ComboBox();
             this.tabPage_Units = new System.Windows.Forms.TabPage();
             this.tabPage_Skills = new System.Windows.Forms.TabPage();
+            this.txt_EncounterSearch = new System.Windows.Forms.TextBox();
             this.menuStrip_Main.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
             this.tabPage_Encounters.SuspendLayout();
@@ -150,6 +151,7 @@ namespace P5RBattleEditor
             this.tlp_Encounters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tlp_Encounters.Controls.Add(this.propertyGrid_Encounters, 1, 0);
             this.tlp_Encounters.Controls.Add(this.comboBox_Encounters, 0, 0);
+            this.tlp_Encounters.Controls.Add(this.txt_EncounterSearch, 1, 0);
             this.tlp_Encounters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlp_Encounters.Location = new System.Drawing.Point(0, 0);
             this.tlp_Encounters.Name = "tlp_Encounters";
@@ -175,7 +177,7 @@ namespace P5RBattleEditor
             this.comboBox_Encounters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Encounters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_Encounters.FormattingEnabled = true;
-            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 16);
+            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 15);
             this.comboBox_Encounters.Name = "comboBox_Encounters";
             this.comboBox_Encounters.Size = new System.Drawing.Size(545, 24);
             this.comboBox_Encounters.TabIndex = 1;
@@ -200,6 +202,16 @@ namespace P5RBattleEditor
             this.tabPage_Skills.Size = new System.Drawing.Size(788, 378);
             this.tabPage_Skills.TabIndex = 2;
             this.tabPage_Skills.Text = "Skills";
+            // 
+            // txt_EncounterSearch
+            // 
+            this.txt_EncounterSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_EncounterSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.txt_EncounterSearch.Location = new System.Drawing.Point(554, 16);
+            this.txt_EncounterSearch.Name = "txt_EncounterSearch";
+            this.txt_EncounterSearch.Size = new System.Drawing.Size(231, 23);
+            this.txt_EncounterSearch.TabIndex = 2;
+            this.txt_EncounterSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EncounterSearch_KeyDown);
             // 
             // MainForm
             // 
@@ -229,6 +241,7 @@ namespace P5RBattleEditor
             this.tabControl_Main.ResumeLayout(false);
             this.tabPage_Encounters.ResumeLayout(false);
             this.tlp_Encounters.ResumeLayout(false);
+            this.tlp_Encounters.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,6 +263,7 @@ namespace P5RBattleEditor
         private System.Windows.Forms.TableLayoutPanel tlp_Encounters;
         private System.Windows.Forms.PropertyGrid propertyGrid_Encounters;
         private System.Windows.Forms.ComboBox comboBox_Encounters;
+        private System.Windows.Forms.TextBox txt_EncounterSearch;
     }
 }
 

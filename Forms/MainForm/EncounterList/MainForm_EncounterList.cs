@@ -37,10 +37,16 @@ namespace P5RBattleEditor
         {
             var encounter = (Encounter)e.ListItem;
 
-            e.Value = $"[{encounter.Id}] ";
+            string newValue = $"[{encounter.Id}]";
+
             foreach(var unit in encounter.BattleUnits)
-                e.Value += $"{EnemyUnitNames[unit]} - ";
-            e.Value += encounter.Comment;
+                newValue += $" {EnemyUnitNames[unit]} |";
+
+            newValue.Trim().TrimEnd('|');
+            if (!string.IsNullOrEmpty(encounter.Comment))
+                newValue += $" ({encounter.Comment})";
+
+            e.Value = newValue;
         }
     }
 }
