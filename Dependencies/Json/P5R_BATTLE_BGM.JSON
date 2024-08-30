@@ -1,0 +1,114 @@
+{
+  "P5RBattleBGMs": [
+    {
+      "Id": 0,
+      "SongName": "Last Surprise",
+      "Comment": ""
+    },
+	{
+      "Id": 1,
+      "SongName": "[1] Unknown",
+      "Comment": ""
+    },
+	{
+      "Id": 2,
+      "SongName": "[2] Unknown",
+      "Comment": ""
+    },
+	{
+      "Id": 3,
+      "SongName": "[3] Unknown",
+      "Comment": ""
+    },
+    {
+      "Id": 4,
+      "SongName": "Keeper of Lust",
+      "Comment": ""
+    },
+    {
+      "Id": 5,
+      "SongName": "Blooming Villain",
+      "Comment": ""
+    },
+    {
+      "Id": 6,
+      "SongName": "(Inst) Rivers in the Desert",
+      "Comment": ""
+    },
+    {
+      "Id": 7,
+      "SongName": "Will Power",
+      "Comment": ""
+    },
+    {
+      "Id": 8,
+      "SongName": "Rivers in the Desert",
+      "Comment": ""
+    },
+	{
+      "Id": 9,
+      "SongName": "[9] Unknown",
+      "Comment": ""
+    },
+	{
+      "Id": 10,
+      "SongName": "[10] Unknown",
+      "Comment": ""
+    },
+	{
+      "Id": 11,
+      "SongName": "[11] Unknown",
+      "Comment": ""
+    },
+    {
+      "Id": 12,
+      "SongName": "Yaldabaoth",
+      "Comment": ""
+    },
+	{
+      "Id": 13,
+      "SongName": "[13] Unknown",
+      "Comment": ""
+    },
+    {
+      "Id": 14,
+      "SongName": "Our Beginning",
+      "Comment": ""
+    },
+	{
+      "Id": 15,
+      "SongName": "[16] Unknown",
+      "Comment": ""
+    },
+	{
+      "Id": 16,
+      "SongName": "[16] Unknown",
+      "Comment": ""
+    },
+	{
+      "Id": 17,
+      "SongName": "[17] Unknown",
+      "Comment": ""
+    },
+	{
+      "Id": 18,
+      "SongName": "[18] Unknown",
+      "Comment": ""
+    },
+	{
+      "Id": 19,
+      "SongName": "[19] Unknown",
+      "Comment": ""
+    },
+	{
+      "Id": 20,
+      "SongName": "[20] Unknown",
+      "Comment": ""
+    },
+	{
+      "Id": 99,
+      "SongName": "[99] Unknown",
+      "Comment": ""
+    }
+  ]
+}

@@ -52,7 +52,9 @@ namespace P5RBattleEditor
             this.groupBox_EncounterMusic = new System.Windows.Forms.GroupBox();
             this.comboBox_EncounterMusic = new System.Windows.Forms.ComboBox();
             this.groupBox_FieldIDMajor = new System.Windows.Forms.GroupBox();
+            this.numUpDwn_FieldIDMinor = new System.Windows.Forms.NumericUpDown();
             this.groupBox_FieldIDMinor = new System.Windows.Forms.GroupBox();
+            this.numUpDwn_FieldIDMajor = new System.Windows.Forms.NumericUpDown();
             this.groupBox_BattleUnits = new System.Windows.Forms.GroupBox();
             this.tlp_EncounterBattleUnits = new System.Windows.Forms.TableLayoutPanel();
             this.comboBox_BattleUnit4 = new System.Windows.Forms.ComboBox();
@@ -71,6 +73,10 @@ namespace P5RBattleEditor
             this.groupBox_FieldData.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox_EncounterMusic.SuspendLayout();
+            this.groupBox_FieldIDMajor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDwn_FieldIDMinor)).BeginInit();
+            this.groupBox_FieldIDMinor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDwn_FieldIDMajor)).BeginInit();
             this.groupBox_BattleUnits.SuspendLayout();
             this.tlp_EncounterBattleUnits.SuspendLayout();
             this.SuspendLayout();
@@ -194,7 +200,7 @@ namespace P5RBattleEditor
             this.comboBox_Encounters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_Encounters.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_Encounters.FormattingEnabled = true;
-            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 16);
+            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 15);
             this.comboBox_Encounters.Name = "comboBox_Encounters";
             this.comboBox_Encounters.Size = new System.Drawing.Size(545, 24);
             this.comboBox_Encounters.TabIndex = 1;
@@ -321,10 +327,11 @@ namespace P5RBattleEditor
             // groupBox_EncounterMusic
             // 
             this.groupBox_EncounterMusic.Controls.Add(this.comboBox_EncounterMusic);
+            this.groupBox_EncounterMusic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_EncounterMusic.ForeColor = System.Drawing.Color.Silver;
             this.groupBox_EncounterMusic.Location = new System.Drawing.Point(357, 3);
             this.groupBox_EncounterMusic.Name = "groupBox_EncounterMusic";
-            this.groupBox_EncounterMusic.Size = new System.Drawing.Size(171, 60);
+            this.groupBox_EncounterMusic.Size = new System.Drawing.Size(173, 60);
             this.groupBox_EncounterMusic.TabIndex = 7;
             this.groupBox_EncounterMusic.TabStop = false;
             this.groupBox_EncounterMusic.Text = "Music";
@@ -339,11 +346,13 @@ namespace P5RBattleEditor
             this.comboBox_EncounterMusic.FormattingEnabled = true;
             this.comboBox_EncounterMusic.Location = new System.Drawing.Point(3, 19);
             this.comboBox_EncounterMusic.Name = "comboBox_EncounterMusic";
-            this.comboBox_EncounterMusic.Size = new System.Drawing.Size(165, 24);
+            this.comboBox_EncounterMusic.Size = new System.Drawing.Size(167, 24);
             this.comboBox_EncounterMusic.TabIndex = 7;
             // 
             // groupBox_FieldIDMajor
             // 
+            this.groupBox_FieldIDMajor.Controls.Add(this.numUpDwn_FieldIDMinor);
+            this.groupBox_FieldIDMajor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_FieldIDMajor.ForeColor = System.Drawing.Color.Silver;
             this.groupBox_FieldIDMajor.Location = new System.Drawing.Point(180, 3);
             this.groupBox_FieldIDMajor.Name = "groupBox_FieldIDMajor";
@@ -352,8 +361,21 @@ namespace P5RBattleEditor
             this.groupBox_FieldIDMajor.TabStop = false;
             this.groupBox_FieldIDMajor.Text = "Field ID Minor";
             // 
+            // numUpDwn_FieldIDMinor
+            // 
+            this.numUpDwn_FieldIDMinor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numUpDwn_FieldIDMinor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.numUpDwn_FieldIDMinor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numUpDwn_FieldIDMinor.ForeColor = System.Drawing.Color.Silver;
+            this.numUpDwn_FieldIDMinor.Location = new System.Drawing.Point(6, 22);
+            this.numUpDwn_FieldIDMinor.Name = "numUpDwn_FieldIDMinor";
+            this.numUpDwn_FieldIDMinor.Size = new System.Drawing.Size(120, 23);
+            this.numUpDwn_FieldIDMinor.TabIndex = 1;
+            // 
             // groupBox_FieldIDMinor
             // 
+            this.groupBox_FieldIDMinor.Controls.Add(this.numUpDwn_FieldIDMajor);
+            this.groupBox_FieldIDMinor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_FieldIDMinor.ForeColor = System.Drawing.Color.Silver;
             this.groupBox_FieldIDMinor.Location = new System.Drawing.Point(3, 3);
             this.groupBox_FieldIDMinor.Name = "groupBox_FieldIDMinor";
@@ -361,6 +383,17 @@ namespace P5RBattleEditor
             this.groupBox_FieldIDMinor.TabIndex = 5;
             this.groupBox_FieldIDMinor.TabStop = false;
             this.groupBox_FieldIDMinor.Text = "Field ID Major";
+            // 
+            // numUpDwn_FieldIDMajor
+            // 
+            this.numUpDwn_FieldIDMajor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numUpDwn_FieldIDMajor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.numUpDwn_FieldIDMajor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numUpDwn_FieldIDMajor.ForeColor = System.Drawing.Color.Silver;
+            this.numUpDwn_FieldIDMajor.Location = new System.Drawing.Point(6, 22);
+            this.numUpDwn_FieldIDMajor.Name = "numUpDwn_FieldIDMajor";
+            this.numUpDwn_FieldIDMajor.Size = new System.Drawing.Size(120, 23);
+            this.numUpDwn_FieldIDMajor.TabIndex = 0;
             // 
             // groupBox_BattleUnits
             // 
@@ -405,7 +438,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit4.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit4.FormattingEnabled = true;
-            this.comboBox_BattleUnit4.Location = new System.Drawing.Point(427, 37);
+            this.comboBox_BattleUnit4.Location = new System.Drawing.Point(427, 36);
             this.comboBox_BattleUnit4.Name = "comboBox_BattleUnit4";
             this.comboBox_BattleUnit4.Size = new System.Drawing.Size(103, 24);
             this.comboBox_BattleUnit4.TabIndex = 6;
@@ -418,7 +451,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit3.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit3.FormattingEnabled = true;
-            this.comboBox_BattleUnit3.Location = new System.Drawing.Point(321, 37);
+            this.comboBox_BattleUnit3.Location = new System.Drawing.Point(321, 36);
             this.comboBox_BattleUnit3.Name = "comboBox_BattleUnit3";
             this.comboBox_BattleUnit3.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit3.TabIndex = 5;
@@ -431,7 +464,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit2.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit2.FormattingEnabled = true;
-            this.comboBox_BattleUnit2.Location = new System.Drawing.Point(215, 37);
+            this.comboBox_BattleUnit2.Location = new System.Drawing.Point(215, 36);
             this.comboBox_BattleUnit2.Name = "comboBox_BattleUnit2";
             this.comboBox_BattleUnit2.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit2.TabIndex = 4;
@@ -444,7 +477,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit1.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit1.FormattingEnabled = true;
-            this.comboBox_BattleUnit1.Location = new System.Drawing.Point(109, 37);
+            this.comboBox_BattleUnit1.Location = new System.Drawing.Point(109, 36);
             this.comboBox_BattleUnit1.Name = "comboBox_BattleUnit1";
             this.comboBox_BattleUnit1.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit1.TabIndex = 3;
@@ -457,7 +490,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit0.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit0.FormattingEnabled = true;
-            this.comboBox_BattleUnit0.Location = new System.Drawing.Point(3, 36);
+            this.comboBox_BattleUnit0.Location = new System.Drawing.Point(3, 37);
             this.comboBox_BattleUnit0.Name = "comboBox_BattleUnit0";
             this.comboBox_BattleUnit0.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit0.TabIndex = 2;
@@ -517,6 +550,10 @@ namespace P5RBattleEditor
             this.groupBox_FieldData.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox_EncounterMusic.ResumeLayout(false);
+            this.groupBox_FieldIDMajor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDwn_FieldIDMinor)).EndInit();
+            this.groupBox_FieldIDMinor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDwn_FieldIDMajor)).EndInit();
             this.groupBox_BattleUnits.ResumeLayout(false);
             this.tlp_EncounterBattleUnits.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -558,6 +595,8 @@ namespace P5RBattleEditor
         private System.Windows.Forms.GroupBox groupBox_EncounterMusic;
         private System.Windows.Forms.GroupBox groupBox_FieldIDMajor;
         private System.Windows.Forms.ComboBox comboBox_EncounterMusic;
+        private System.Windows.Forms.NumericUpDown numUpDwn_FieldIDMinor;
+        private System.Windows.Forms.NumericUpDown numUpDwn_FieldIDMajor;
     }
 }
 

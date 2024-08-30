@@ -1,11 +1,7 @@
 ﻿using MetroSet_UI.Forms;
 using System;
-using static System.ComponentModel.TypeConverter;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
-using static System.Windows.Forms.Design.AxImporter;
-using static P5RBattleEditor.MainForm;
+using System.Linq;
 
 namespace P5RBattleEditor
 {
@@ -36,11 +32,11 @@ namespace P5RBattleEditor
             foreach(var unit in encounter.BattleUnits)
                 newValue += $" {EnemyUnitNames[unit]} |";
 
-            newValue.Trim().TrimEnd('|');
+            newValue.TrimEnd('|').Trim();
             if (!string.IsNullOrEmpty(encounter.Comment))
                 newValue += $" ({encounter.Comment})";
 
-            e.Value = newValue;
+            e.Value = newValue.Replace("Not Used","");
         }
 
         // Save selected encounter ID and update fields related to encounter selection
@@ -50,10 +46,18 @@ namespace P5RBattleEditor
             {
                 selectedEncounterID = comboBox_Encounters.SelectedIndex;
                 UpdateEncounterUnits();
+                UpdateEncounterMusic();
             }
         }
 
-        // Initial setup for Unit lists in Encounter tab
+        // Show current encounter's music in Encounter tab
+        private void UpdateEncounterMusic()
+        {
+            var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
+            comboBox_EncounterMusic.SelectedIndex = BattleBGMs.P5RBattleBGMs.IndexOf(BattleBGMs.P5RBattleBGMs.Single(x => x.Id == selectedEncounter.Music));
+        }
+
+        // Show current encounter's battle units in Encounter tab
         private void UpdateEncounterUnits()
         {
             comboBox_BattleUnit0.Enabled = false; comboBox_BattleUnit1.Enabled = false;

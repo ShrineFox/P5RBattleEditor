@@ -147,6 +147,9 @@
     <None Include="Dependencies\Charsets\P5R_EFIGS.tsv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Dependencies\Json\P5R_BATTLE_BGM.JSON">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

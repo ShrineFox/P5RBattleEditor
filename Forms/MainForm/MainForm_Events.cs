@@ -13,8 +13,40 @@ namespace P5RBattleEditor
         private void SetupFormControls()
         {
             GetEnemyUnitNames();
+            GetMusicNameList();
+
             SetEnemyUnitDropdowns();
+            SetMusicListDropdown();
             UpdateEncounterListComboBox();
+        }
+
+        P5RBattleBGMList BattleBGMs = new P5RBattleBGMList();
+
+        public class P5RBattleBGMList
+        {
+            public List<P5RBattleBGM> P5RBattleBGMs {get;set;} = new List<P5RBattleBGM>();
+        }
+
+        public class P5RBattleBGM
+        {
+            public ushort Id { get; set; } = 0;
+            public string SongName { get; set; } = "";
+            public string Comment { get; set; } = "";
+        }
+
+        private void GetMusicNameList()
+        {
+            BattleBGMs = LoadJson(typeof(P5RBattleBGMList), "./Dependencies/Json/P5R_BATTLE_BGM.JSON");
+        }
+
+        BindingSource bs_battleBgm = new BindingSource();
+        private void SetMusicListDropdown()
+        {
+            bs_battleBgm.DataSource = BattleBGMs.P5RBattleBGMs;
+            comboBox_EncounterMusic.FormattingEnabled = true;
+            comboBox_EncounterMusic.DisplayMember = "SongName";
+            comboBox_EncounterMusic.ValueMember = "Id";
+            comboBox_EncounterMusic.DataSource = bs_battleBgm;
         }
 
         public static List<string> EnemyUnitNames = new List<string>();
@@ -64,6 +96,9 @@ namespace P5RBattleEditor
                 return;
 
             string newValue = $"[{enemyID}] {EnemyUnitNames[enemyID]}";
+            
+            if (newValue == "[0] Not Used")
+                newValue = "";
 
             e.Value = newValue;
         }
