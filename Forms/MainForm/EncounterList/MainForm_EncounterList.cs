@@ -15,9 +15,9 @@ namespace P5RBattleEditor
         private static BindingSource bindingSource_EncounterList = new BindingSource();
         private void UpdateEncounterListComboBox()
         {
-            if (EncountTblData.Encounters != null && EncountTblData.Encounters.Count > 0)
+            if (project.EncountTblData.Encounters != null && project.EncountTblData.Encounters.Count > 0)
             {
-                bindingSource_EncounterList.DataSource = EncountTblData.Encounters;
+                bindingSource_EncounterList.DataSource = project.EncountTblData.Encounters;
                 comboBox_Encounters.DataSource = bindingSource_EncounterList;
                 comboBox_Encounters.FormattingEnabled = true;
                 comboBox_Encounters.Format += EncounterListFormat;

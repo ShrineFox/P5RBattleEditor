@@ -148,9 +148,9 @@ namespace P5RBattleEditor
                 using (EndianBinaryWriter bw = new EndianBinaryWriter(fs, Endianness.BigEndian))
                 {
                     // Segment 0: Enemy Unit Stats
-                    uint segment0Size = Convert.ToUInt32(UNIT_SEGMENT0_ENTRY_SIZE * UnitTblData.EnemyUnits.Count);
+                    uint segment0Size = Convert.ToUInt32(UNIT_SEGMENT0_ENTRY_SIZE * project.UnitTblData.EnemyUnits.Count);
                     bw.Write(segment0Size);
-                    foreach (var unit in UnitTblData.EnemyUnits)
+                    foreach (var unit in project.UnitTblData.EnemyUnits)
                     {
                         // Bit flags
                         foreach(var flagCollection in unit.EnemyStats.Flags)
@@ -191,9 +191,9 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 1: Elemental Affinities (Enemies)
-                    uint segment1Size = Convert.ToUInt32(UNIT_SEGMENT1_ENTRY_SIZE * UnitTblData.EnemyUnits.Count);
+                    uint segment1Size = Convert.ToUInt32(UNIT_SEGMENT1_ENTRY_SIZE * project.UnitTblData.EnemyUnits.Count);
                     bw.Write(segment1Size);
-                    foreach (var unit in UnitTblData.EnemyUnits)
+                    foreach (var unit in project.UnitTblData.EnemyUnits)
                     {
                         foreach (var affinity in unit.Affinities)
                         {
@@ -205,9 +205,9 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 2: Elemental Affinities (Personas)
-                    uint segment2Size = Convert.ToUInt32(UNIT_SEGMENT2_ENTRY_SIZE * UnitTblData.PersonaUnits.Count);
+                    uint segment2Size = Convert.ToUInt32(UNIT_SEGMENT2_ENTRY_SIZE * project.UnitTblData.PersonaUnits.Count);
                     bw.Write(segment2Size);
-                    foreach (var unit in UnitTblData.PersonaUnits)
+                    foreach (var unit in project.UnitTblData.PersonaUnits)
                     {
                         foreach (var affinity in unit.Affinities)
                         {
@@ -219,9 +219,9 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 3: Voice Data (Enemies)
-                    uint segment3Size = Convert.ToUInt32(UNIT_SEGMENT3_ENTRY_SIZE * UnitTblData.EnemyUnits.Count);
+                    uint segment3Size = Convert.ToUInt32(UNIT_SEGMENT3_ENTRY_SIZE * project.UnitTblData.EnemyUnits.Count);
                     bw.Write(segment3Size);
-                    foreach (var unit in UnitTblData.EnemyUnits)
+                    foreach (var unit in project.UnitTblData.EnemyUnits)
                     {
                         bw.Write(unit.VoiceData.VoiceID);
                         bw.Write(unit.VoiceData.TALK_PERSON);
@@ -238,9 +238,9 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 4: Visual Data (Enemies)
-                    uint segment4Size = Convert.ToUInt32(UNIT_SEGMENT4_ENTRY_SIZE * UnitTblData.EnemyUnits.Count);
+                    uint segment4Size = Convert.ToUInt32(UNIT_SEGMENT4_ENTRY_SIZE * project.UnitTblData.EnemyUnits.Count);
                     bw.Write(segment4Size);
-                    foreach (var unit in UnitTblData.EnemyUnits)
+                    foreach (var unit in project.UnitTblData.EnemyUnits)
                     {
                         foreach (var data in unit.VisualData)
                         {
@@ -253,8 +253,8 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 5: Unknown
-                    bw.Write(Convert.ToUInt32(UnitTblData.Segment5.Length));
-                    bw.Write(UnitTblData.Segment5);
+                    bw.Write(Convert.ToUInt32(project.UnitTblData.Segment5.Length));
+                    bw.Write(project.UnitTblData.Segment5);
 
                     Add16ByteAlignmentPadding(bw);
                 }

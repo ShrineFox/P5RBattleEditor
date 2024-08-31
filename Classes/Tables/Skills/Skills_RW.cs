@@ -151,9 +151,9 @@ namespace P5RBattleEditor
                 using (EndianBinaryWriter bw = new EndianBinaryWriter(fs, Endianness.BigEndian))
                 {
                     // Segment 0: Skill Elements
-                    uint segment0Size = Convert.ToUInt32(SKILL_SEGMENT0_ENTRY_SIZE * SkillTblData.SkillElements.Count);
+                    uint segment0Size = Convert.ToUInt32(SKILL_SEGMENT0_ENTRY_SIZE * project.SkillTblData.SkillElements.Count);
                     bw.Write(segment0Size);
-                    foreach (var element in SkillTblData.SkillElements)
+                    foreach (var element in project.SkillTblData.SkillElements)
                     {
                         bw.Write(element.ElementType);
                         bw.Write(element.ActiveOrPassive);
@@ -168,9 +168,9 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 1: Active Skill Data
-                    uint segment1Size = Convert.ToUInt32(SKILL_SEGMENT1_ENTRY_SIZE * SkillTblData.ActiveSkillData.Count);
+                    uint segment1Size = Convert.ToUInt32(SKILL_SEGMENT1_ENTRY_SIZE * project.SkillTblData.ActiveSkillData.Count);
                     bw.Write(segment1Size);
-                    foreach (var skill in SkillTblData.ActiveSkillData)
+                    foreach (var skill in project.SkillTblData.ActiveSkillData)
                     {
                         bw.Write(skill.UnknownR_1);
                         bw.Write(skill.ConditionUsage);
@@ -221,9 +221,9 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 2: Technical Combo Map
-                    uint segment2Size = Convert.ToUInt32(SKILL_SEGMENT2_ENTRY_SIZE * SkillTblData.TechnicalComboMap.Count);
+                    uint segment2Size = Convert.ToUInt32(SKILL_SEGMENT2_ENTRY_SIZE * project.SkillTblData.TechnicalComboMap.Count);
                     bw.Write(segment2Size);
-                    foreach (var combo in SkillTblData.TechnicalComboMap)
+                    foreach (var combo in project.SkillTblData.TechnicalComboMap)
                     {
                         WriteAilmentStatus(bw, combo.ApplicableAilments);
 
@@ -240,9 +240,9 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 3: Trait Data
-                    uint segment3Size = Convert.ToUInt32(SKILL_SEGMENT3_ENTRY_SIZE * SkillTblData.Traits.Count);
+                    uint segment3Size = Convert.ToUInt32(SKILL_SEGMENT3_ENTRY_SIZE * project.SkillTblData.Traits.Count);
                     bw.Write(segment3Size);
-                    foreach (var trait in SkillTblData.Traits)
+                    foreach (var trait in project.SkillTblData.Traits)
                     {
                         bw.Write(trait.Effect);
                         bw.Write(trait.Field2);

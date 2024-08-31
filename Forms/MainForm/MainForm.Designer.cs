@@ -32,11 +32,13 @@ namespace P5RBattleEditor
         {
             this.menuStrip_Main = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importStringEditorJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportStringEditorJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setPathsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importTBLDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportTBLsAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl_Main = new MetroSet_UI.Controls.MetroSetTabControl();
             this.tabPage_Encounters = new System.Windows.Forms.TabPage();
             this.tlp_Encounters = new System.Windows.Forms.TableLayoutPanel();
@@ -96,44 +98,65 @@ namespace P5RBattleEditor
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newProjectToolStripMenuItem,
             this.loadProjectToolStripMenuItem,
             this.saveProjectToolStripMenuItem,
-            this.importStringEditorJSONToolStripMenuItem,
-            this.exportStringEditorJSONToolStripMenuItem,
-            this.setPathsToolStripMenuItem});
+            this.importTBLDataToolStripMenuItem,
+            this.exportTBLsAsToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // newProjectToolStripMenuItem
+            // 
+            this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newProjectToolStripMenuItem.Text = "New Project";
+            this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.NewProject_Click);
+            // 
             // loadProjectToolStripMenuItem
             // 
             this.loadProjectToolStripMenuItem.Name = "loadProjectToolStripMenuItem";
-            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.loadProjectToolStripMenuItem.Text = "Load Project";
+            this.loadProjectToolStripMenuItem.Click += new System.EventHandler(this.LoadProject_Click);
             // 
             // saveProjectToolStripMenuItem
             // 
             this.saveProjectToolStripMenuItem.Name = "saveProjectToolStripMenuItem";
-            this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.saveProjectToolStripMenuItem.Text = "Save Project";
+            this.saveProjectToolStripMenuItem.Click += new System.EventHandler(this.SaveProject_Click);
             // 
-            // importStringEditorJSONToolStripMenuItem
+            // importTBLDataToolStripMenuItem
             // 
-            this.importStringEditorJSONToolStripMenuItem.Name = "importStringEditorJSONToolStripMenuItem";
-            this.importStringEditorJSONToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
-            this.importStringEditorJSONToolStripMenuItem.Text = "Import StringEditor JSON";
+            this.importTBLDataToolStripMenuItem.Name = "importTBLDataToolStripMenuItem";
+            this.importTBLDataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.importTBLDataToolStripMenuItem.Text = "Import TBL Data";
+            this.importTBLDataToolStripMenuItem.Click += new System.EventHandler(this.ImportTBLData_Click);
             // 
-            // exportStringEditorJSONToolStripMenuItem
+            // exportTBLsAsToolStripMenuItem
             // 
-            this.exportStringEditorJSONToolStripMenuItem.Name = "exportStringEditorJSONToolStripMenuItem";
-            this.exportStringEditorJSONToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
-            this.exportStringEditorJSONToolStripMenuItem.Text = "Export StringEditor JSON";
+            this.exportTBLsAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tBLToolStripMenuItem,
+            this.jSONToolStripMenuItem});
+            this.exportTBLsAsToolStripMenuItem.Name = "exportTBLsAsToolStripMenuItem";
+            this.exportTBLsAsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exportTBLsAsToolStripMenuItem.Text = "Export TBLs As...";
             // 
-            // setPathsToolStripMenuItem
+            // tBLToolStripMenuItem
             // 
-            this.setPathsToolStripMenuItem.Name = "setPathsToolStripMenuItem";
-            this.setPathsToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
-            this.setPathsToolStripMenuItem.Text = "Set Paths";
+            this.tBLToolStripMenuItem.Name = "tBLToolStripMenuItem";
+            this.tBLToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
+            this.tBLToolStripMenuItem.Text = "TBL";
+            this.tBLToolStripMenuItem.Click += new System.EventHandler(this.ExportTBLs_Click);
+            // 
+            // jSONToolStripMenuItem
+            // 
+            this.jSONToolStripMenuItem.Name = "jSONToolStripMenuItem";
+            this.jSONToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
+            this.jSONToolStripMenuItem.Text = "JSON";
+            this.jSONToolStripMenuItem.Click += new System.EventHandler(this.ExportJSONs_Click);
             // 
             // tabControl_Main
             // 
@@ -143,7 +166,7 @@ namespace P5RBattleEditor
             this.tabControl_Main.Controls.Add(this.tabPage_Encounters);
             this.tabControl_Main.Controls.Add(this.tabPage_Units);
             this.tabControl_Main.Controls.Add(this.tabPage_Skills);
-            this.tabControl_Main.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tabControl_Main.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabControl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_Main.IsDerivedStyle = true;
             this.tabControl_Main.ItemSize = new System.Drawing.Size(100, 38);
@@ -200,7 +223,7 @@ namespace P5RBattleEditor
             this.comboBox_Encounters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_Encounters.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_Encounters.FormattingEnabled = true;
-            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 15);
+            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 16);
             this.comboBox_Encounters.Name = "comboBox_Encounters";
             this.comboBox_Encounters.Size = new System.Drawing.Size(545, 24);
             this.comboBox_Encounters.TabIndex = 1;
@@ -450,7 +473,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit4.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit4.FormattingEnabled = true;
-            this.comboBox_BattleUnit4.Location = new System.Drawing.Point(427, 36);
+            this.comboBox_BattleUnit4.Location = new System.Drawing.Point(427, 37);
             this.comboBox_BattleUnit4.Name = "comboBox_BattleUnit4";
             this.comboBox_BattleUnit4.Size = new System.Drawing.Size(103, 24);
             this.comboBox_BattleUnit4.TabIndex = 6;
@@ -463,7 +486,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit3.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit3.FormattingEnabled = true;
-            this.comboBox_BattleUnit3.Location = new System.Drawing.Point(321, 36);
+            this.comboBox_BattleUnit3.Location = new System.Drawing.Point(321, 37);
             this.comboBox_BattleUnit3.Name = "comboBox_BattleUnit3";
             this.comboBox_BattleUnit3.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit3.TabIndex = 5;
@@ -476,7 +499,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit2.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit2.FormattingEnabled = true;
-            this.comboBox_BattleUnit2.Location = new System.Drawing.Point(215, 36);
+            this.comboBox_BattleUnit2.Location = new System.Drawing.Point(215, 37);
             this.comboBox_BattleUnit2.Name = "comboBox_BattleUnit2";
             this.comboBox_BattleUnit2.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit2.TabIndex = 4;
@@ -489,7 +512,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit1.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit1.FormattingEnabled = true;
-            this.comboBox_BattleUnit1.Location = new System.Drawing.Point(109, 36);
+            this.comboBox_BattleUnit1.Location = new System.Drawing.Point(109, 37);
             this.comboBox_BattleUnit1.Name = "comboBox_BattleUnit1";
             this.comboBox_BattleUnit1.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit1.TabIndex = 3;
@@ -502,7 +525,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit0.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit0.FormattingEnabled = true;
-            this.comboBox_BattleUnit0.Location = new System.Drawing.Point(3, 37);
+            this.comboBox_BattleUnit0.Location = new System.Drawing.Point(3, 36);
             this.comboBox_BattleUnit0.Name = "comboBox_BattleUnit0";
             this.comboBox_BattleUnit0.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit0.TabIndex = 2;
@@ -581,9 +604,6 @@ namespace P5RBattleEditor
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveProjectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importStringEditorJSONToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportStringEditorJSONToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setPathsToolStripMenuItem;
         private MetroSet_UI.Controls.MetroSetTabControl tabControl_Main;
         private System.Windows.Forms.TabPage tabPage_Encounters;
         private System.Windows.Forms.TabPage tabPage_Units;
@@ -611,6 +631,11 @@ namespace P5RBattleEditor
         private System.Windows.Forms.ComboBox comboBox_EncounterMusic;
         private System.Windows.Forms.NumericUpDown numUpDwn_FieldIDMinor;
         private System.Windows.Forms.NumericUpDown numUpDwn_FieldIDMajor;
+        private System.Windows.Forms.ToolStripMenuItem newProjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importTBLDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportTBLsAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tBLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jSONToolStripMenuItem;
     }
 }
 

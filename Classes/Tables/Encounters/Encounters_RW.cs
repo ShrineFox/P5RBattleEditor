@@ -135,9 +135,9 @@ namespace P5RBattleEditor
                 using (EndianBinaryWriter bw = new EndianBinaryWriter(fs, Endianness.BigEndian))
                 {
                     // Segment 0: Encounter Data
-                    uint segment0Size = Convert.ToUInt32(ENCOUNT_SEGMENT0_ENTRY_SIZE * EncountTblData.Encounters.Count);
+                    uint segment0Size = Convert.ToUInt32(ENCOUNT_SEGMENT0_ENTRY_SIZE * project.EncountTblData.Encounters.Count);
                     bw.Write(segment0Size);
-                    foreach (var encounter in EncountTblData.Encounters)
+                    foreach (var encounter in project.EncountTblData.Encounters)
                     {
                         // Bit Flags
                         WriteEncounterFlags(bw, encounter.Flags);
@@ -168,17 +168,17 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 1: Forced Party Data
-                    uint segment1Size = Convert.ToUInt32(ENCOUNT_SEGMENT1_ENTRY_SIZE * EncountTblData.Encounters.Count);
+                    uint segment1Size = Convert.ToUInt32(ENCOUNT_SEGMENT1_ENTRY_SIZE * project.EncountTblData.Encounters.Count);
                     bw.Write(segment1Size);
-                    foreach (var encounter in EncountTblData.Encounters)
+                    foreach (var encounter in project.EncountTblData.Encounters)
                         bw.Write(encounter.ForcedPartyData);
 
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 2: Challenge Battle Data
-                    uint segment2Size = Convert.ToUInt32(ENCOUNT_SEGMENT2_ENTRY_SIZE * EncountTblData.ChallengeBtlData.Count);
+                    uint segment2Size = Convert.ToUInt32(ENCOUNT_SEGMENT2_ENTRY_SIZE * project.EncountTblData.ChallengeBtlData.Count);
                     bw.Write(segment2Size);
-                    foreach (var challengeBtlData in EncountTblData.ChallengeBtlData)
+                    foreach (var challengeBtlData in project.EncountTblData.ChallengeBtlData)
                     {
                         bw.Write(challengeBtlData.Category);
                         bw.Write(challengeBtlData.CategoryIndex);

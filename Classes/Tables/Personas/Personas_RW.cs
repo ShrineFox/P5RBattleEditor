@@ -121,9 +121,9 @@ namespace P5RBattleEditor
                 using (EndianBinaryWriter bw = new EndianBinaryWriter(fs, Endianness.BigEndian))
                 {
                     // Segment 0: Persona Stats
-                    uint segment0Size = Convert.ToUInt32(PERSONA_SEGMENT0_ENTRY_SIZE * PersonaTblData.Stats.Count);
+                    uint segment0Size = Convert.ToUInt32(PERSONA_SEGMENT0_ENTRY_SIZE * project.PersonaTblData.Stats.Count);
                     bw.Write(segment0Size);
-                    foreach (var persona in PersonaTblData.Stats)
+                    foreach (var persona in project.PersonaTblData.Stats)
                     {
                         bw.Write(persona.DLCorTreasureDemon);
                         bw.Write(ConvertBoolsToByte(persona.Bitflags));
@@ -142,9 +142,9 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 1: Persona Stat Growth & Skill Inheritance
-                    uint segment1Size = Convert.ToUInt32(PERSONA_SEGMENT1_ENTRY_SIZE * PersonaTblData.Stats.Count);
+                    uint segment1Size = Convert.ToUInt32(PERSONA_SEGMENT1_ENTRY_SIZE * project.PersonaTblData.Stats.Count);
                     bw.Write(segment1Size);
-                    foreach (var persona in PersonaTblData.Stats)
+                    foreach (var persona in project.PersonaTblData.Stats)
                     {
                         bw.Write(persona.WeightedStatGrowthDistribution.Strength);
                         bw.Write(persona.WeightedStatGrowthDistribution.Magic);
@@ -163,9 +163,9 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 2: Party Member Levelup Thresholds
-                    uint segment2Size = Convert.ToUInt32(PERSONA_SEGMENT2_ENTRY_SIZE * PersonaTblData.PartyLevelUpThresholds.Length);
+                    uint segment2Size = Convert.ToUInt32(PERSONA_SEGMENT2_ENTRY_SIZE * project.PersonaTblData.PartyLevelUpThresholds.Length);
                     bw.Write(segment2Size);
-                    foreach (var partyMember in PersonaTblData.PartyLevelUpThresholds)
+                    foreach (var partyMember in project.PersonaTblData.PartyLevelUpThresholds)
                     {
                         foreach(var level in partyMember.ExpRequired)
                             bw.Write(level);
@@ -174,9 +174,9 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
 
                     // Segment 3: Party Member Personas
-                    uint segment3Size = Convert.ToUInt32(PERSONA_SEGMENT3_ENTRY_SIZE * PersonaTblData.PartyMemberPersonas.Count);
+                    uint segment3Size = Convert.ToUInt32(PERSONA_SEGMENT3_ENTRY_SIZE * project.PersonaTblData.PartyMemberPersonas.Count);
                     bw.Write(segment3Size);
-                    foreach (var persona in PersonaTblData.PartyMemberPersonas)
+                    foreach (var persona in project.PersonaTblData.PartyMemberPersonas)
                     {
                         bw.Write(persona.Character);
                         bw.Write(persona.LevelsAvailable);

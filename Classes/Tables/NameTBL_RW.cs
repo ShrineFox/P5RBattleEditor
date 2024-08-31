@@ -77,14 +77,14 @@ namespace P5RBattleEditor
         {
             using (BinaryObjectWriter NAMETBLFile = new BinaryObjectWriter(outPath, Endianness.Big, AtlusEncoding.Persona5RoyalEFIGS))
             {
-                for (int i = 0; i < NameTblData.Count(); i++)
+                for (int i = 0; i < project.NameTblData.Count(); i++)
                 {
                     List<long> StringPointers = new List<long>();
 
                     long fileSizePosition = NAMETBLFile.Position;
                     NAMETBLFile.WriteUInt32(0); // filesize
 
-                    int numOfPointers = NameTblData[i].TblEntries.Count;
+                    int numOfPointers = project.NameTblData[i].TblEntries.Count;
 
                     long StringPointersLocation = NAMETBLFile.Position;
                     for (int j = 0; j < numOfPointers; j++)
@@ -118,7 +118,7 @@ namespace P5RBattleEditor
                     for (int j = 0; j < numOfPointers; j++)
                     {
                         StringPointers.Add(NAMETBLFile.Position - (fileSizePosition + 4));
-                        NAMETBLFile.WriteString(StringBinaryFormat.NullTerminated, NameTblData[i].TblEntries[j].Name);
+                        NAMETBLFile.WriteString(StringBinaryFormat.NullTerminated, project.NameTblData[i].TblEntries[j].Name);
                     }
                     filesize = (uint)(NAMETBLFile.Position - fileSizePosition) - 4;
 

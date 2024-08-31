@@ -55,7 +55,7 @@ namespace P5RBattleEditor
         {
             EnemyUnitNames.Clear();
             var enemiesSectionID = Array.IndexOf(TblNamesR, "Enemies");
-            foreach (var entry in NameTblData[enemiesSectionID].TblEntries)
+            foreach (var entry in project.NameTblData[enemiesSectionID].TblEntries)
                 EnemyUnitNames.Add(entry.Name);
         }
 
