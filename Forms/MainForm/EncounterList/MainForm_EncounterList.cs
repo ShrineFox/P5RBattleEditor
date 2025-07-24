@@ -139,5 +139,38 @@ namespace P5RBattleEditor
                 }
             }
         }
+
+        private void FieldID_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown numUpDwn = sender as NumericUpDown;
+            var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
+
+            string idType = numUpDwn.Name.Replace("numUpDwn_FieldID", "");
+            if (idType == "Major")
+            {
+                selectedEncounter.FieldMajor = Convert.ToUInt16(numUpDwn.Value);
+            }
+            else
+            {
+                selectedEncounter.FieldMinor = Convert.ToUInt16(numUpDwn.Value);
+            }
+        }
+
+        private void EncounterMusic_Changed(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
+
+            selectedEncounter.Music = BattleBGMs.P5RBattleBGMs
+                .FirstOrDefault(x => x.SongName == comboBox.SelectedItem.ToString()).Id;
+        }
+
+        private void EncounterNotes_Changed(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
+
+            selectedEncounter.Comment = txt.Text.Trim();
+        }
     }
 }
