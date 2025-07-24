@@ -159,10 +159,12 @@ namespace P5RBattleEditor
         private void EncounterMusic_Changed(object sender, EventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
-            var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
 
-            selectedEncounter.Music = BattleBGMs.P5RBattleBGMs
-                .FirstOrDefault(x => x.SongName == comboBox.SelectedItem.ToString()).Id;
+            if (comboBox_Encounters.SelectedItem != null)
+            {
+                var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
+                selectedEncounter.Music = BattleBGMs.P5RBattleBGMs[comboBox.SelectedIndex].Id;
+            }
         }
 
         private void EncounterNotes_Changed(object sender, EventArgs e)

@@ -403,6 +403,7 @@ namespace P5RBattleEditor
             this.numUpDwn_FieldIDMinor.Name = "numUpDwn_FieldIDMinor";
             this.numUpDwn_FieldIDMinor.Size = new System.Drawing.Size(120, 23);
             this.numUpDwn_FieldIDMinor.TabIndex = 1;
+            this.numUpDwn_FieldIDMinor.ValueChanged += new System.EventHandler(this.FieldID_Changed);
             // 
             // groupBox_FieldIDMinor
             // 
