@@ -166,7 +166,7 @@ namespace P5RBattleEditor
             this.tabControl_Main.Controls.Add(this.tabPage_Encounters);
             this.tabControl_Main.Controls.Add(this.tabPage_Units);
             this.tabControl_Main.Controls.Add(this.tabPage_Skills);
-            this.tabControl_Main.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tabControl_Main.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabControl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_Main.IsDerivedStyle = true;
             this.tabControl_Main.ItemSize = new System.Drawing.Size(100, 38);
@@ -223,7 +223,7 @@ namespace P5RBattleEditor
             this.comboBox_Encounters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_Encounters.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_Encounters.FormattingEnabled = true;
-            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 15);
+            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 16);
             this.comboBox_Encounters.Name = "comboBox_Encounters";
             this.comboBox_Encounters.Size = new System.Drawing.Size(545, 24);
             this.comboBox_Encounters.TabIndex = 1;
@@ -255,6 +255,7 @@ namespace P5RBattleEditor
             this.chkListBox_EncounterFlags.Name = "chkListBox_EncounterFlags";
             this.chkListBox_EncounterFlags.Size = new System.Drawing.Size(231, 316);
             this.chkListBox_EncounterFlags.TabIndex = 3;
+            this.chkListBox_EncounterFlags.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.EncounterFlags_ItemCheck);
             // 
             // tlp_EncounterProperties
             // 
@@ -473,7 +474,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit4.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit4.FormattingEnabled = true;
-            this.comboBox_BattleUnit4.Location = new System.Drawing.Point(427, 36);
+            this.comboBox_BattleUnit4.Location = new System.Drawing.Point(427, 37);
             this.comboBox_BattleUnit4.Name = "comboBox_BattleUnit4";
             this.comboBox_BattleUnit4.Size = new System.Drawing.Size(103, 24);
             this.comboBox_BattleUnit4.TabIndex = 6;
@@ -487,7 +488,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit3.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit3.FormattingEnabled = true;
-            this.comboBox_BattleUnit3.Location = new System.Drawing.Point(321, 36);
+            this.comboBox_BattleUnit3.Location = new System.Drawing.Point(321, 37);
             this.comboBox_BattleUnit3.Name = "comboBox_BattleUnit3";
             this.comboBox_BattleUnit3.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit3.TabIndex = 5;
@@ -501,7 +502,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit2.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit2.FormattingEnabled = true;
-            this.comboBox_BattleUnit2.Location = new System.Drawing.Point(215, 36);
+            this.comboBox_BattleUnit2.Location = new System.Drawing.Point(215, 37);
             this.comboBox_BattleUnit2.Name = "comboBox_BattleUnit2";
             this.comboBox_BattleUnit2.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit2.TabIndex = 4;
@@ -515,7 +516,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit1.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit1.FormattingEnabled = true;
-            this.comboBox_BattleUnit1.Location = new System.Drawing.Point(109, 36);
+            this.comboBox_BattleUnit1.Location = new System.Drawing.Point(109, 37);
             this.comboBox_BattleUnit1.Name = "comboBox_BattleUnit1";
             this.comboBox_BattleUnit1.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit1.TabIndex = 3;
@@ -529,7 +530,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit0.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit0.FormattingEnabled = true;
-            this.comboBox_BattleUnit0.Location = new System.Drawing.Point(3, 37);
+            this.comboBox_BattleUnit0.Location = new System.Drawing.Point(3, 36);
             this.comboBox_BattleUnit0.Name = "comboBox_BattleUnit0";
             this.comboBox_BattleUnit0.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit0.TabIndex = 2;

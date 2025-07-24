@@ -124,5 +124,20 @@ namespace P5RBattleEditor
             project.EncountTblData.Encounters[selectedEncounterID]
                 .BattleUnits[unitIndex] = Convert.ToUInt16(comboBox.SelectedIndex);
         }
+
+        private void EncounterFlags_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            string itemText = chkListBox_EncounterFlags.GetItemText(chkListBox_EncounterFlags.Items[e.Index]);
+            bool checkedBox = (e.NewValue == CheckState.Checked);
+            var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
+
+            foreach (PropertyInfo pi in selectedEncounter.Flags.GetType().GetProperties())
+            {
+                if (pi.PropertyType == typeof(bool) && pi.Name == itemText)
+                {
+                    pi.SetValue(selectedEncounter.Flags, checkedBox);
+                }
+            }
+        }
     }
 }
