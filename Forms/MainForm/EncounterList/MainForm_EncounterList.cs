@@ -3,7 +3,6 @@ using System;
 using System.Windows.Forms;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Controls;
 
 namespace P5RBattleEditor
 {
@@ -115,6 +114,15 @@ namespace P5RBattleEditor
             comboBox_BattleUnit0.Enabled = true; comboBox_BattleUnit1.Enabled = true;
             comboBox_BattleUnit2.Enabled = true; comboBox_BattleUnit3.Enabled = true;
             comboBox_BattleUnit4.Enabled = true;
+        }
+
+        private void BattleUnit_Changed(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            int unitIndex = Convert.ToInt32(comboBox.Name.Replace("comboBox_BattleUnit", ""));
+
+            project.EncountTblData.Encounters[selectedEncounterID]
+                .BattleUnits[unitIndex] = Convert.ToUInt16(comboBox.SelectedIndex);
         }
     }
 }

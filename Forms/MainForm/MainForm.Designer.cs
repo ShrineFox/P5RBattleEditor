@@ -110,28 +110,28 @@ namespace P5RBattleEditor
             // newProjectToolStripMenuItem
             // 
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.newProjectToolStripMenuItem.Text = "New Project";
             this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.NewProject_Click);
             // 
             // loadProjectToolStripMenuItem
             // 
             this.loadProjectToolStripMenuItem.Name = "loadProjectToolStripMenuItem";
-            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.loadProjectToolStripMenuItem.Text = "Load Project";
             this.loadProjectToolStripMenuItem.Click += new System.EventHandler(this.LoadProject_Click);
             // 
             // saveProjectToolStripMenuItem
             // 
             this.saveProjectToolStripMenuItem.Name = "saveProjectToolStripMenuItem";
-            this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.saveProjectToolStripMenuItem.Text = "Save Project";
             this.saveProjectToolStripMenuItem.Click += new System.EventHandler(this.SaveProject_Click);
             // 
             // importTBLDataToolStripMenuItem
             // 
             this.importTBLDataToolStripMenuItem.Name = "importTBLDataToolStripMenuItem";
-            this.importTBLDataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.importTBLDataToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.importTBLDataToolStripMenuItem.Text = "Import TBL Data";
             this.importTBLDataToolStripMenuItem.Click += new System.EventHandler(this.ImportTBLData_Click);
             // 
@@ -141,7 +141,7 @@ namespace P5RBattleEditor
             this.tBLToolStripMenuItem,
             this.jSONToolStripMenuItem});
             this.exportTBLsAsToolStripMenuItem.Name = "exportTBLsAsToolStripMenuItem";
-            this.exportTBLsAsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exportTBLsAsToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.exportTBLsAsToolStripMenuItem.Text = "Export TBLs As...";
             // 
             // tBLToolStripMenuItem
@@ -223,7 +223,7 @@ namespace P5RBattleEditor
             this.comboBox_Encounters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_Encounters.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_Encounters.FormattingEnabled = true;
-            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 16);
+            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 15);
             this.comboBox_Encounters.Name = "comboBox_Encounters";
             this.comboBox_Encounters.Size = new System.Drawing.Size(545, 24);
             this.comboBox_Encounters.TabIndex = 1;
@@ -473,10 +473,11 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit4.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit4.FormattingEnabled = true;
-            this.comboBox_BattleUnit4.Location = new System.Drawing.Point(427, 37);
+            this.comboBox_BattleUnit4.Location = new System.Drawing.Point(427, 36);
             this.comboBox_BattleUnit4.Name = "comboBox_BattleUnit4";
             this.comboBox_BattleUnit4.Size = new System.Drawing.Size(103, 24);
             this.comboBox_BattleUnit4.TabIndex = 6;
+            this.comboBox_BattleUnit4.SelectedIndexChanged += new System.EventHandler(this.BattleUnit_Changed);
             // 
             // comboBox_BattleUnit3
             // 
@@ -486,10 +487,11 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit3.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit3.FormattingEnabled = true;
-            this.comboBox_BattleUnit3.Location = new System.Drawing.Point(321, 37);
+            this.comboBox_BattleUnit3.Location = new System.Drawing.Point(321, 36);
             this.comboBox_BattleUnit3.Name = "comboBox_BattleUnit3";
             this.comboBox_BattleUnit3.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit3.TabIndex = 5;
+            this.comboBox_BattleUnit3.SelectedIndexChanged += new System.EventHandler(this.BattleUnit_Changed);
             // 
             // comboBox_BattleUnit2
             // 
@@ -499,10 +501,11 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit2.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit2.FormattingEnabled = true;
-            this.comboBox_BattleUnit2.Location = new System.Drawing.Point(215, 37);
+            this.comboBox_BattleUnit2.Location = new System.Drawing.Point(215, 36);
             this.comboBox_BattleUnit2.Name = "comboBox_BattleUnit2";
             this.comboBox_BattleUnit2.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit2.TabIndex = 4;
+            this.comboBox_BattleUnit2.SelectedIndexChanged += new System.EventHandler(this.BattleUnit_Changed);
             // 
             // comboBox_BattleUnit1
             // 
@@ -512,10 +515,11 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit1.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit1.FormattingEnabled = true;
-            this.comboBox_BattleUnit1.Location = new System.Drawing.Point(109, 37);
+            this.comboBox_BattleUnit1.Location = new System.Drawing.Point(109, 36);
             this.comboBox_BattleUnit1.Name = "comboBox_BattleUnit1";
             this.comboBox_BattleUnit1.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit1.TabIndex = 3;
+            this.comboBox_BattleUnit1.SelectedIndexChanged += new System.EventHandler(this.BattleUnit_Changed);
             // 
             // comboBox_BattleUnit0
             // 
@@ -525,10 +529,11 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit0.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit0.FormattingEnabled = true;
-            this.comboBox_BattleUnit0.Location = new System.Drawing.Point(3, 36);
+            this.comboBox_BattleUnit0.Location = new System.Drawing.Point(3, 37);
             this.comboBox_BattleUnit0.Name = "comboBox_BattleUnit0";
             this.comboBox_BattleUnit0.Size = new System.Drawing.Size(100, 24);
             this.comboBox_BattleUnit0.TabIndex = 2;
+            this.comboBox_BattleUnit0.SelectedIndexChanged += new System.EventHandler(this.BattleUnit_Changed);
             // 
             // tabPage_Units
             // 
