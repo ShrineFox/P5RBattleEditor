@@ -29,10 +29,5 @@ namespace P5RBattleEditor
         {
             InitializeComponent();
         }
-
-        private void lbl_UnitAttackType_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

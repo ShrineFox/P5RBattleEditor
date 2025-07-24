@@ -12,7 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-	<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -120,7 +120,10 @@
     <Compile Include="Classes\Utilities.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainForm\EncounterList\MainForm_EncounterList.cs">
+    <Compile Include="Forms\MainForm\Pages\MainForm_Unit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm\Pages\MainForm_Encount.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm\MainForm_Events.cs">

@@ -13,12 +13,17 @@ namespace P5RBattleEditor
     {
         private void SetupFormControls()
         {
+            // Fetch strings for dropdowns
             GetEnemyUnitNames();
             GetMusicNameList();
 
+            // Set up dropdowns
             SetEnemyUnitDropdowns();
             SetMusicListDropdown();
+
+            // Set up tab pages
             UpdateEncounterListComboBox();
+            UpdateUnitListComboBox();
         }
 
         P5RBattleBGMList BattleBGMs = new P5RBattleBGMList();
