@@ -158,8 +158,15 @@ namespace P5RBattleEditor
                 return;
 
             ComboBox comboBox = sender as ComboBox;
-            int itemSlot = Convert.ToInt32(comboBox.Name.Replace("comboBox_ItemDropType", ""));
             int categoryIndex = comboBox.SelectedIndex;
+
+            if (comboBox.Name.Contains("Event"))
+            {
+                bs_EventItemDrop0.DataSource = ItemNames[categoryIndex];
+                return;
+            }
+
+            int itemSlot = Convert.ToInt32(comboBox.Name.Replace("comboBox_ItemDropType", ""));
 
             switch(itemSlot)
             {
@@ -234,6 +241,67 @@ namespace P5RBattleEditor
             itemOffset = selectedUnit.EnemyStats.ItemDrops[3].ItemID - (categoryIndex * 0x1000);
             bs_ItemDrop3.DataSource = ItemNames[categoryIndex];
             comboBox_ItemDrop3.SelectedIndex = itemOffset;
+
+            categoryIndex = selectedUnit.EnemyStats.EventItemDrop.ItemID / 0x1000;
+            comboBox_EventItemDropType0.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.EnemyStats.EventItemDrop.ItemID - (categoryIndex * 0x1000);
+            bs_EventItemDrop0.DataSource = ItemNames[categoryIndex];
+            comboBox_EventItemDrop0.SelectedIndex = itemOffset;
+        }
+
+        private void SelectedItem_Changed(object sender, EventArgs e)
+        {
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            ComboBox comboBox = sender as ComboBox;
+
+            int categoryIndex = -1;
+
+            if (comboBox.Name.Contains("Event"))
+            {
+                categoryIndex = comboBox_EventItemDropType0.SelectedIndex;
+                selectedUnit.EnemyStats.EventItemDrop.ItemID = 
+                    Convert.ToUInt16((categoryIndex * 0x1000) + comboBox.SelectedIndex);
+                return;
+            }
+
+            int itemSlot = Convert.ToInt32(comboBox.Name.Replace("comboBox_ItemDrop", ""));
+            
+            switch (itemSlot)
+            {
+                case 0:
+                    categoryIndex = comboBox_ItemDropType0.SelectedIndex;
+                    break;
+                case 1:
+                    categoryIndex = comboBox_ItemDropType1.SelectedIndex;
+                    break;
+                case 2:
+                    categoryIndex = comboBox_ItemDropType2.SelectedIndex;
+                    break;
+                case 3:
+                    categoryIndex = comboBox_ItemDropType3.SelectedIndex;
+                    break;
+            }
+
+            selectedUnit.EnemyStats.ItemDrops[itemSlot].ItemID =
+                Convert.ToUInt16((categoryIndex * 0x1000) + comboBox.SelectedIndex);
+        }
+
+        private void SelectedSkill_Changed(object sender, EventArgs e)
+        {
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            ComboBox comboBox = sender as ComboBox;
+
+            int skillSlot = Convert.ToInt32(comboBox.Name.Replace("comboBox_UnitSkill", ""));
+
+            selectedUnit.EnemyStats.Skills[skillSlot] = Convert.ToUInt16(comboBox.SelectedIndex);
         }
 
         private void UnitFlags_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -271,8 +339,7 @@ namespace P5RBattleEditor
         {
             var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
 
-            // txt_EncounterNotes.Text = selectedEncounter.Comment;
-            // TODO: Add Unit notes section
+            txt_UnitNotes.Text = selectedUnit.Comment;
         }
 
         private void UnitSearch_KeyDown(object sender, KeyEventArgs e)
