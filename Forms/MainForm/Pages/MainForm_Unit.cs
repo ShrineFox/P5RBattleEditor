@@ -1,8 +1,9 @@
 ﻿using MetroSet_UI.Forms;
+using Newtonsoft.Json.Linq;
 using System;
-using System.Windows.Forms;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace P5RBattleEditor
 {
@@ -83,16 +84,71 @@ namespace P5RBattleEditor
             num_ItemDrop3.Value = selectedUnit.EnemyStats.ItemDrops[3].Probability;
         }
 
-        private void UpdateUnitComboBoxFields()
+        private static BindingSource bs_ItemDropType0 = new BindingSource();
+        private static BindingSource bs_ItemDropType1 = new BindingSource();
+        private static BindingSource bs_ItemDropType2 = new BindingSource();
+        private static BindingSource bs_ItemDropType3 = new BindingSource();
+        private static BindingSource bs_EventItemDropType0 = new BindingSource();
+
+        private static BindingSource bs_ItemDrop0 = new BindingSource();
+        private static BindingSource bs_ItemDrop1 = new BindingSource();
+        private static BindingSource bs_ItemDrop2 = new BindingSource();
+        private static BindingSource bs_ItemDrop3 = new BindingSource();
+        private static BindingSource bs_EventItemDrop0 = new BindingSource();
+
+        private void SetUnitComboBoxSources()
+        {
+            bs_ItemDropType0.DataSource = ItemCategories;
+            bs_ItemDropType1.DataSource = ItemCategories;
+            bs_ItemDropType2.DataSource = ItemCategories;
+            bs_ItemDropType3.DataSource = ItemCategories;
+            bs_EventItemDropType0.DataSource = ItemCategories;
+
+            comboBox_ItemDropType0.DataSource = bs_ItemDropType0;
+            comboBox_ItemDropType1.DataSource = bs_ItemDropType1;
+            comboBox_ItemDropType2.DataSource = bs_ItemDropType2;
+            comboBox_ItemDropType3.DataSource = bs_ItemDropType3;
+            comboBox_EventItemDropType0.DataSource = bs_EventItemDropType0;
+
+            bs_ItemDrop0.DataSource = ItemNames[0];
+            bs_ItemDrop1.DataSource = ItemNames[0];
+            bs_ItemDrop2.DataSource = ItemNames[0];
+            bs_ItemDrop3.DataSource = ItemNames[0];
+            bs_EventItemDrop0.DataSource = ItemNames[0];
+
+            comboBox_ItemDrop0.DataSource = bs_ItemDrop0;
+            comboBox_ItemDrop1.DataSource = bs_ItemDrop1;
+            comboBox_ItemDrop2.DataSource = bs_ItemDrop2;
+            comboBox_ItemDrop3.DataSource = bs_ItemDrop3;
+            comboBox_EventItemDrop0.DataSource = bs_EventItemDrop0;
+        }
+
+        private void ItemType_Changed(object sender, EventArgs e)
         {
             var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
 
-            comboBox_UnitArcana.Items.Clear();
-            for(int i = 0; i < ArcanaNamess.Count; i++)
+            if (selectedUnit == null)
+                return;
+
+            ComboBox comboBox = sender as ComboBox;
+            int itemSlot = Convert.ToInt32(comboBox.Name.Replace("comboBox_ItemDropType", ""));
+            int categoryIndex = comboBox.SelectedIndex;
+
+            switch(itemSlot)
             {
-                comboBox_UnitArcana.Items.Add(ArcanaNamess[i]);
+                case 0:
+                    bs_ItemDrop0.DataSource = ItemNames[categoryIndex];
+                    break;
+                case 1:
+                    bs_ItemDrop1.DataSource = ItemNames[categoryIndex];
+                    break;
+                case 2:
+                    bs_ItemDrop2.DataSource = ItemNames[categoryIndex];
+                    break;
+                case 3:
+                    bs_ItemDrop3.DataSource = ItemNames[categoryIndex];
+                    break;
             }
-            comboBox_UnitArcana.SelectedIndex = selectedUnit.EnemyStats.Arcana;
         }
 
         // Save selected unit ID and update fields related to unit selection
@@ -105,8 +161,37 @@ namespace P5RBattleEditor
                 UpdateUnitFlagsList();
                 UpdateUnitNameFields();
                 UpdateUnitStatFields();
-                UpdateUnitComboBoxFields();
+                UpdateUnitItemFields();
             }
+        }
+
+        private void UpdateUnitItemFields()
+        {
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            int categoryIndex = selectedUnit.EnemyStats.ItemDrops[0].ItemID / 0x1000;
+            comboBox_ItemDropType0.SelectedIndex = categoryIndex;
+            int itemOffset = selectedUnit.EnemyStats.ItemDrops[0].ItemID - (categoryIndex * 0x1000);
+            bs_ItemDrop0.DataSource = ItemNames[categoryIndex];
+            comboBox_ItemDrop0.SelectedIndex = itemOffset;
+
+            categoryIndex = selectedUnit.EnemyStats.ItemDrops[1].ItemID / 0x1000;
+            comboBox_ItemDropType1.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.EnemyStats.ItemDrops[1].ItemID - (categoryIndex * 0x1000);
+            bs_ItemDrop1.DataSource = ItemNames[categoryIndex];
+            comboBox_ItemDrop1.SelectedIndex = itemOffset;
+
+            categoryIndex = selectedUnit.EnemyStats.ItemDrops[2].ItemID / 0x1000;
+            comboBox_ItemDropType2.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.EnemyStats.ItemDrops[2].ItemID - (categoryIndex * 0x1000);
+            bs_ItemDrop2.DataSource = ItemNames[categoryIndex];
+            comboBox_ItemDrop2.SelectedIndex = itemOffset;
+
+            categoryIndex = selectedUnit.EnemyStats.ItemDrops[3].ItemID / 0x1000;
+            comboBox_ItemDropType3.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.EnemyStats.ItemDrops[3].ItemID - (categoryIndex * 0x1000);
+            bs_ItemDrop3.DataSource = ItemNames[categoryIndex];
+            comboBox_ItemDrop3.SelectedIndex = itemOffset;
         }
 
         private void UnitFlags_ItemCheck(object sender, ItemCheckEventArgs e)

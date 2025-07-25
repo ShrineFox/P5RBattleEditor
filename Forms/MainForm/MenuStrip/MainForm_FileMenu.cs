@@ -124,6 +124,8 @@ namespace P5RBattleEditor
             GetPersonaUnitNames();
             GetEnemyUnitNames();
             GetArcanaNames();
+            GetSkillNames();
+            GetItemNames();
 
             try
             {

@@ -20,6 +20,7 @@ namespace P5RBattleEditor
             // Set up dropdowns
             SetEnemyUnitDropdowns();
             SetMusicListDropdown();
+            SetUnitComboBoxSources();
 
             // Set up tab pages
             UpdateEncounterListComboBox();
@@ -80,6 +81,32 @@ namespace P5RBattleEditor
             var arcanaSectionID = Array.IndexOf(TblNamesR, "Arcanas");
             foreach (var entry in project.NameTblData[arcanaSectionID].TblEntries)
                 ArcanaNamess.Add(entry.Name);
+        }
+
+        public static List<string> SkillNames = new List<string>();
+        private void GetSkillNames()
+        {
+            SkillNames.Clear();
+            var skillSectionID = Array.IndexOf(TblNamesR, "Skills");
+            foreach (var entry in project.NameTblData[skillSectionID].TblEntries)
+                ArcanaNamess.Add(entry.Name);
+        }
+
+        public static List<string> ItemCategories = new List<string>() { "Melee Weapons", "Protectors", "Accessories",
+                "Consumables", "Key Items", "Materials", "Skill Cards", "Outfits", "Ranged Weapons" };
+
+        public static List<List<string>> ItemNames = new List<List<string>>();
+        private void GetItemNames()
+        {
+            ItemNames.Clear();
+            
+            foreach(var section in ItemCategories)
+            {
+                List<string> strings = new List<string>();
+                foreach (var entry in project.NameTblData[Array.IndexOf(TblNamesR, section)].TblEntries)
+                    strings.Add(entry.Name);
+                ItemNames.Add(strings);
+            }
         }
 
         private static BindingSource bs_Enemy0 = new BindingSource();
