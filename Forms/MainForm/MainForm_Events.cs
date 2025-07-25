@@ -89,7 +89,7 @@ namespace P5RBattleEditor
             SkillNames.Clear();
             var skillSectionID = Array.IndexOf(TblNamesR, "Skills");
             foreach (var entry in project.NameTblData[skillSectionID].TblEntries)
-                ArcanaNamess.Add(entry.Name);
+                SkillNames.Add(entry.Name);
         }
 
         public static List<string> ItemCategories = new List<string>() { "Melee Weapons", "Protectors", "Accessories",

@@ -83,6 +83,15 @@ namespace P5RBattleEditor
             num_ItemDrop3.Value = selectedUnit.EnemyStats.ItemDrops[3].Probability;
         }
 
+        private static BindingSource bs_EnemySkill0 = new BindingSource();
+        private static BindingSource bs_EnemySkill1 = new BindingSource();
+        private static BindingSource bs_EnemySkill2 = new BindingSource();
+        private static BindingSource bs_EnemySkill3 = new BindingSource();
+        private static BindingSource bs_EnemySkill4 = new BindingSource();
+        private static BindingSource bs_EnemySkill5 = new BindingSource();
+        private static BindingSource bs_EnemySkill6 = new BindingSource();
+        private static BindingSource bs_EnemySkill7 = new BindingSource();
+
         private static BindingSource bs_ItemDropType0 = new BindingSource();
         private static BindingSource bs_ItemDropType1 = new BindingSource();
         private static BindingSource bs_ItemDropType2 = new BindingSource();
@@ -97,6 +106,25 @@ namespace P5RBattleEditor
 
         private void SetUnitComboBoxSources()
         {
+            // Enemy Skills
+            bs_EnemySkill0.DataSource = SkillNames;
+            comboBox_UnitSkill0.DataSource = bs_EnemySkill0;
+            bs_EnemySkill1.DataSource = SkillNames;
+            comboBox_UnitSkill1.DataSource = bs_EnemySkill1;
+            bs_EnemySkill2.DataSource = SkillNames;
+            comboBox_UnitSkill2.DataSource = bs_EnemySkill2;
+            bs_EnemySkill3.DataSource = SkillNames;
+            comboBox_UnitSkill3.DataSource = bs_EnemySkill3;
+            bs_EnemySkill4.DataSource = SkillNames;
+            comboBox_UnitSkill4.DataSource = bs_EnemySkill4;
+            bs_EnemySkill5.DataSource = SkillNames;
+            comboBox_UnitSkill5.DataSource = bs_EnemySkill5;
+            bs_EnemySkill6.DataSource = SkillNames;
+            comboBox_UnitSkill6.DataSource = bs_EnemySkill6;
+            bs_EnemySkill7.DataSource = SkillNames;
+            comboBox_UnitSkill7.DataSource = bs_EnemySkill7;
+
+            // Item Drops
             bs_ItemDropType0.DataSource = ItemCategories;
             bs_ItemDropType1.DataSource = ItemCategories;
             bs_ItemDropType2.DataSource = ItemCategories;
@@ -161,7 +189,22 @@ namespace P5RBattleEditor
                 UpdateUnitNameFields();
                 UpdateUnitStatFields();
                 UpdateUnitItemFields();
+                UpdateUnitSkillFields();
             }
+        }
+
+        private void UpdateUnitSkillFields()
+        {
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            comboBox_UnitSkill0.SelectedIndex = selectedUnit.EnemyStats.Skills[0];
+            comboBox_UnitSkill1.SelectedIndex = selectedUnit.EnemyStats.Skills[1];
+            comboBox_UnitSkill2.SelectedIndex = selectedUnit.EnemyStats.Skills[2];
+            comboBox_UnitSkill3.SelectedIndex = selectedUnit.EnemyStats.Skills[3];
+            comboBox_UnitSkill4.SelectedIndex = selectedUnit.EnemyStats.Skills[4];
+            comboBox_UnitSkill5.SelectedIndex = selectedUnit.EnemyStats.Skills[5];
+            comboBox_UnitSkill6.SelectedIndex = selectedUnit.EnemyStats.Skills[6];
+            comboBox_UnitSkill7.SelectedIndex = selectedUnit.EnemyStats.Skills[7];
         }
 
         private void UpdateUnitItemFields()
