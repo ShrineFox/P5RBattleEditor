@@ -106,7 +106,10 @@ namespace P5RBattleEditor
                         break;
                     case "NAME.TBL":
                         if (Path.GetFileName(file) == TblList[i])
+                        {
                             project.NameTblData = ReadNameTBL(file);
+                            ApplyUnitNames();
+                        }
                         else if (Path.GetFileName(file) == TblList[i].Replace(".TBL", ".JSON"))
                             project.NameTblData = LoadJson(typeof(List<TblSection>), file);
                         break;
@@ -114,6 +117,23 @@ namespace P5RBattleEditor
                         break;
                 }
             }
+        }
+
+        private void ApplyUnitNames()
+        {
+            GetPersonaUnitNames();
+            GetEnemyUnitNames();
+            GetArcanaNames();
+
+            try
+            {
+                for (int i = 0; i < project.UnitTblData.EnemyUnits.Count; i++)
+                {
+                    project.UnitTblData.EnemyUnits[i].PersonaName = PersonaUnitNames[i];
+                    project.UnitTblData.EnemyUnits[i].ShadowName = EnemyUnitNames[i];
+                }
+            }
+            catch { }
         }
 
         private void ExportTBLs_Click(object sender, EventArgs e)

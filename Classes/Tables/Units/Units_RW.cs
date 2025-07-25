@@ -125,7 +125,7 @@ namespace P5RBattleEditor
                     uint segment4Size = br.ReadUInt32();
                     for (int i = 0; i < (segment4Size / UNIT_SEGMENT4_ENTRY_SIZE); i++)
                     {
-                        tblData.EnemyUnits[i].VisualData.Add(new VisualData() { PersonaID = br.ReadUInt16(), ModelID = br.ReadUInt16(), UnknownR = br.ReadUInt16() });
+                        tblData.EnemyUnits[i].VisualData = new VisualData() { PersonaID = br.ReadUInt16(), ModelID = br.ReadUInt16(), UnknownR = br.ReadUInt16() };
                     }
 
                     br.BaseStream.Position += Get16ByteAlignmentPadding(br);
@@ -239,12 +239,9 @@ namespace P5RBattleEditor
                     bw.Write(segment4Size);
                     foreach (var unit in project.UnitTblData.EnemyUnits)
                     {
-                        foreach (var data in unit.VisualData)
-                        {
-                            bw.Write(data.PersonaID);
-                            bw.Write(data.ModelID);
-                            bw.Write(data.UnknownR);
-                        }
+                        bw.Write(unit.VisualData.PersonaID);
+                        bw.Write(unit.VisualData.ModelID);
+                        bw.Write(unit.VisualData.UnknownR);
                     }
 
                     Add16ByteAlignmentPadding(bw);

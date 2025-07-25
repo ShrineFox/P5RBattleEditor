@@ -45,7 +45,6 @@ namespace P5RBattleEditor
             this.tlp_Units = new System.Windows.Forms.TableLayoutPanel();
             this.txt_UnitSearch = new System.Windows.Forms.TextBox();
             this.comboBox_Units = new System.Windows.Forms.ComboBox();
-            this.groupBox_Preview = new System.Windows.Forms.GroupBox();
             this.groupBox_UnitVisualData = new System.Windows.Forms.GroupBox();
             this.tlp_UnitVisualData = new System.Windows.Forms.TableLayoutPanel();
             this.num_UnitModelID = new System.Windows.Forms.NumericUpDown();
@@ -75,21 +74,12 @@ namespace P5RBattleEditor
             this.num_UnitVoiceID = new System.Windows.Forms.NumericUpDown();
             this.lbl_UnitVoiceID = new System.Windows.Forms.Label();
             this.tlp_TalkMoneyMax = new System.Windows.Forms.TableLayoutPanel();
-            this.num_TalkMoneyMax = new System.Windows.Forms.NumericUpDown();
+            this.num_UnitTalkMoneyMax = new System.Windows.Forms.NumericUpDown();
             this.lbl_TalkMoneyMax = new System.Windows.Forms.Label();
             this.groupBox_EventItemDrops = new System.Windows.Forms.GroupBox();
             this.tlp_EventItemDrops = new System.Windows.Forms.TableLayoutPanel();
-            this.num_EventItemFlag3 = new System.Windows.Forms.NumericUpDown();
-            this.num_EventItemFlag2 = new System.Windows.Forms.NumericUpDown();
-            this.num_EventItemFlag1 = new System.Windows.Forms.NumericUpDown();
             this.num_EventItemFlag0 = new System.Windows.Forms.NumericUpDown();
-            this.num_EventItemDrop3 = new System.Windows.Forms.NumericUpDown();
-            this.num_EventItemDrop2 = new System.Windows.Forms.NumericUpDown();
-            this.num_EventItemDrop1 = new System.Windows.Forms.NumericUpDown();
             this.num_EventItemDrop0 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox_EventItemDrop3 = new System.Windows.Forms.ComboBox();
-            this.comboBox_EventItemDrop2 = new System.Windows.Forms.ComboBox();
-            this.comboBox_EventItemDrop1 = new System.Windows.Forms.ComboBox();
             this.comboBox_EventItemDrop0 = new System.Windows.Forms.ComboBox();
             this.groupBox_UnitName = new System.Windows.Forms.GroupBox();
             this.tlp_UnitName = new System.Windows.Forms.TableLayoutPanel();
@@ -193,6 +183,9 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit1 = new System.Windows.Forms.ComboBox();
             this.comboBox_BattleUnit0 = new System.Windows.Forms.ComboBox();
             this.tabPage_Skills = new System.Windows.Forms.TabPage();
+            this.lbl_EventItem = new System.Windows.Forms.Label();
+            this.lbl_Chance = new System.Windows.Forms.Label();
+            this.lbl_EventID = new System.Windows.Forms.Label();
             this.menuStrip_Main.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
             this.tabPage_Units.SuspendLayout();
@@ -216,16 +209,10 @@ namespace P5RBattleEditor
             this.tlp_UnitVoiceID.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_UnitVoiceID)).BeginInit();
             this.tlp_TalkMoneyMax.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_TalkMoneyMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_UnitTalkMoneyMax)).BeginInit();
             this.groupBox_EventItemDrops.SuspendLayout();
             this.tlp_EventItemDrops.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemFlag3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemFlag2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemFlag1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_EventItemFlag0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemDrop3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemDrop2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemDrop1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_EventItemDrop0)).BeginInit();
             this.groupBox_UnitName.SuspendLayout();
             this.tlp_UnitName.SuspendLayout();
@@ -416,21 +403,20 @@ namespace P5RBattleEditor
             this.tlp_Units.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tlp_Units.Controls.Add(this.txt_UnitSearch, 2, 0);
             this.tlp_Units.Controls.Add(this.comboBox_Units, 0, 0);
-            this.tlp_Units.Controls.Add(this.groupBox_Preview, 0, 2);
-            this.tlp_Units.Controls.Add(this.groupBox_UnitVisualData, 2, 6);
-            this.tlp_Units.Controls.Add(this.groupBox_UnitVoiceData, 0, 6);
-            this.tlp_Units.Controls.Add(this.groupBox_EventItemDrops, 0, 5);
+            this.tlp_Units.Controls.Add(this.groupBox_UnitVisualData, 2, 5);
+            this.tlp_Units.Controls.Add(this.groupBox_UnitVoiceData, 0, 5);
             this.tlp_Units.Controls.Add(this.groupBox_UnitName, 0, 1);
             this.tlp_Units.Controls.Add(this.chkListBox_UnitFlags, 2, 2);
             this.tlp_Units.Controls.Add(this.groupBox_UnitBasicStats, 1, 1);
             this.tlp_Units.Controls.Add(this.groupBox_ItemDrops, 0, 4);
             this.tlp_Units.Controls.Add(this.groupBox_UnitSkills, 0, 3);
-            this.tlp_Units.Controls.Add(this.groupBox_UnitRewards, 2, 5);
-            this.tlp_Units.Controls.Add(this.groupBox_UnitAttackStats, 1, 2);
+            this.tlp_Units.Controls.Add(this.groupBox_UnitAttackStats, 0, 2);
+            this.tlp_Units.Controls.Add(this.groupBox_EventItemDrops, 2, 4);
+            this.tlp_Units.Controls.Add(this.groupBox_UnitRewards, 1, 2);
             this.tlp_Units.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlp_Units.Location = new System.Drawing.Point(0, 0);
             this.tlp_Units.Name = "tlp_Units";
-            this.tlp_Units.RowCount = 7;
+            this.tlp_Units.RowCount = 6;
             this.tlp_Units.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tlp_Units.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tlp_Units.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
@@ -438,7 +424,7 @@ namespace P5RBattleEditor
             this.tlp_Units.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tlp_Units.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tlp_Units.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tlp_Units.Size = new System.Drawing.Size(774, 1275);
+            this.tlp_Units.Size = new System.Drawing.Size(774, 1075);
             this.tlp_Units.TabIndex = 1;
             // 
             // txt_UnitSearch
@@ -453,6 +439,7 @@ namespace P5RBattleEditor
             this.txt_UnitSearch.Name = "txt_UnitSearch";
             this.txt_UnitSearch.Size = new System.Drawing.Size(258, 23);
             this.txt_UnitSearch.TabIndex = 13;
+            this.txt_UnitSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UnitSearch_KeyDown);
             // 
             // comboBox_Units
             // 
@@ -469,25 +456,13 @@ namespace P5RBattleEditor
             this.comboBox_Units.TabIndex = 12;
             this.comboBox_Units.SelectedIndexChanged += new System.EventHandler(this.UnitList_SelectedIndexChanged);
             // 
-            // groupBox_Preview
-            // 
-            this.groupBox_Preview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox_Preview.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.groupBox_Preview.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox_Preview.Location = new System.Drawing.Point(3, 278);
-            this.groupBox_Preview.Name = "groupBox_Preview";
-            this.groupBox_Preview.Size = new System.Drawing.Size(252, 194);
-            this.groupBox_Preview.TabIndex = 11;
-            this.groupBox_Preview.TabStop = false;
-            this.groupBox_Preview.Text = "PREVIEW";
-            // 
             // groupBox_UnitVisualData
             // 
             this.groupBox_UnitVisualData.Controls.Add(this.tlp_UnitVisualData);
             this.groupBox_UnitVisualData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_UnitVisualData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.groupBox_UnitVisualData.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox_UnitVisualData.Location = new System.Drawing.Point(519, 1078);
+            this.groupBox_UnitVisualData.Location = new System.Drawing.Point(519, 878);
             this.groupBox_UnitVisualData.Name = "groupBox_UnitVisualData";
             this.groupBox_UnitVisualData.Size = new System.Drawing.Size(252, 194);
             this.groupBox_UnitVisualData.TabIndex = 10;
@@ -606,7 +581,7 @@ namespace P5RBattleEditor
             this.groupBox_UnitVoiceData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_UnitVoiceData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.groupBox_UnitVoiceData.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox_UnitVoiceData.Location = new System.Drawing.Point(3, 1078);
+            this.groupBox_UnitVoiceData.Location = new System.Drawing.Point(3, 878);
             this.groupBox_UnitVoiceData.Name = "groupBox_UnitVoiceData";
             this.groupBox_UnitVoiceData.Size = new System.Drawing.Size(510, 194);
             this.groupBox_UnitVoiceData.TabIndex = 9;
@@ -660,7 +635,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitTalkItemRare.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitTalkItemRare.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitTalkItemRare.FormattingEnabled = true;
-            this.comboBox_UnitTalkItemRare.Location = new System.Drawing.Point(3, 48);
+            this.comboBox_UnitTalkItemRare.Location = new System.Drawing.Point(3, 47);
             this.comboBox_UnitTalkItemRare.Name = "comboBox_UnitTalkItemRare";
             this.comboBox_UnitTalkItemRare.Size = new System.Drawing.Size(114, 24);
             this.comboBox_UnitTalkItemRare.TabIndex = 5;
@@ -698,7 +673,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitTalkItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitTalkItem.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitTalkItem.FormattingEnabled = true;
-            this.comboBox_UnitTalkItem.Location = new System.Drawing.Point(3, 48);
+            this.comboBox_UnitTalkItem.Location = new System.Drawing.Point(3, 47);
             this.comboBox_UnitTalkItem.Name = "comboBox_UnitTalkItem";
             this.comboBox_UnitTalkItem.Size = new System.Drawing.Size(114, 24);
             this.comboBox_UnitTalkItem.TabIndex = 5;
@@ -887,7 +862,7 @@ namespace P5RBattleEditor
             // 
             this.tlp_TalkMoneyMax.ColumnCount = 1;
             this.tlp_TalkMoneyMax.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlp_TalkMoneyMax.Controls.Add(this.num_TalkMoneyMax, 0, 1);
+            this.tlp_TalkMoneyMax.Controls.Add(this.num_UnitTalkMoneyMax, 0, 1);
             this.tlp_TalkMoneyMax.Controls.Add(this.lbl_TalkMoneyMax, 0, 0);
             this.tlp_TalkMoneyMax.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlp_TalkMoneyMax.Location = new System.Drawing.Point(381, 89);
@@ -898,22 +873,22 @@ namespace P5RBattleEditor
             this.tlp_TalkMoneyMax.Size = new System.Drawing.Size(120, 80);
             this.tlp_TalkMoneyMax.TabIndex = 10;
             // 
-            // num_TalkMoneyMax
+            // num_UnitTalkMoneyMax
             // 
-            this.num_TalkMoneyMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.num_TalkMoneyMax.AutoSize = true;
-            this.num_TalkMoneyMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.num_TalkMoneyMax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.num_TalkMoneyMax.ForeColor = System.Drawing.Color.Silver;
-            this.num_TalkMoneyMax.Location = new System.Drawing.Point(3, 48);
-            this.num_TalkMoneyMax.Maximum = new decimal(new int[] {
+            this.num_UnitTalkMoneyMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.num_UnitTalkMoneyMax.AutoSize = true;
+            this.num_UnitTalkMoneyMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.num_UnitTalkMoneyMax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.num_UnitTalkMoneyMax.ForeColor = System.Drawing.Color.Silver;
+            this.num_UnitTalkMoneyMax.Location = new System.Drawing.Point(3, 48);
+            this.num_UnitTalkMoneyMax.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
-            this.num_TalkMoneyMax.Name = "num_TalkMoneyMax";
-            this.num_TalkMoneyMax.Size = new System.Drawing.Size(114, 23);
-            this.num_TalkMoneyMax.TabIndex = 5;
+            this.num_UnitTalkMoneyMax.Name = "num_UnitTalkMoneyMax";
+            this.num_UnitTalkMoneyMax.Size = new System.Drawing.Size(114, 23);
+            this.num_UnitTalkMoneyMax.TabIndex = 5;
             // 
             // lbl_TalkMoneyMax
             // 
@@ -928,37 +903,30 @@ namespace P5RBattleEditor
             // 
             // groupBox_EventItemDrops
             // 
-            this.tlp_Units.SetColumnSpan(this.groupBox_EventItemDrops, 2);
             this.groupBox_EventItemDrops.Controls.Add(this.tlp_EventItemDrops);
             this.groupBox_EventItemDrops.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_EventItemDrops.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.groupBox_EventItemDrops.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox_EventItemDrops.Location = new System.Drawing.Point(3, 878);
+            this.groupBox_EventItemDrops.Location = new System.Drawing.Point(519, 678);
             this.groupBox_EventItemDrops.Name = "groupBox_EventItemDrops";
-            this.groupBox_EventItemDrops.Size = new System.Drawing.Size(510, 194);
+            this.groupBox_EventItemDrops.Size = new System.Drawing.Size(252, 194);
             this.groupBox_EventItemDrops.TabIndex = 7;
             this.groupBox_EventItemDrops.TabStop = false;
-            this.groupBox_EventItemDrops.Text = "Event Item Drops";
+            this.groupBox_EventItemDrops.Text = "Event Item Drop";
             // 
             // tlp_EventItemDrops
             // 
-            this.tlp_EventItemDrops.ColumnCount = 4;
+            this.tlp_EventItemDrops.ColumnCount = 2;
             this.tlp_EventItemDrops.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlp_EventItemDrops.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlp_EventItemDrops.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlp_EventItemDrops.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlp_EventItemDrops.Controls.Add(this.num_EventItemFlag3, 3, 2);
-            this.tlp_EventItemDrops.Controls.Add(this.num_EventItemFlag2, 2, 2);
-            this.tlp_EventItemDrops.Controls.Add(this.num_EventItemFlag1, 1, 2);
-            this.tlp_EventItemDrops.Controls.Add(this.num_EventItemFlag0, 0, 2);
-            this.tlp_EventItemDrops.Controls.Add(this.num_EventItemDrop3, 3, 1);
-            this.tlp_EventItemDrops.Controls.Add(this.num_EventItemDrop2, 2, 1);
-            this.tlp_EventItemDrops.Controls.Add(this.num_EventItemDrop1, 1, 1);
-            this.tlp_EventItemDrops.Controls.Add(this.num_EventItemDrop0, 0, 1);
-            this.tlp_EventItemDrops.Controls.Add(this.comboBox_EventItemDrop3, 3, 0);
-            this.tlp_EventItemDrops.Controls.Add(this.comboBox_EventItemDrop2, 2, 0);
-            this.tlp_EventItemDrops.Controls.Add(this.comboBox_EventItemDrop1, 1, 0);
-            this.tlp_EventItemDrops.Controls.Add(this.comboBox_EventItemDrop0, 0, 0);
+            this.tlp_EventItemDrops.Controls.Add(this.lbl_EventID, 0, 2);
+            this.tlp_EventItemDrops.Controls.Add(this.lbl_Chance, 0, 1);
+            this.tlp_EventItemDrops.Controls.Add(this.lbl_EventItem, 0, 0);
+            this.tlp_EventItemDrops.Controls.Add(this.comboBox_EventItemDrop0, 1, 0);
+            this.tlp_EventItemDrops.Controls.Add(this.num_EventItemDrop0, 1, 1);
+            this.tlp_EventItemDrops.Controls.Add(this.num_EventItemFlag0, 1, 2);
             this.tlp_EventItemDrops.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlp_EventItemDrops.Location = new System.Drawing.Point(3, 19);
             this.tlp_EventItemDrops.Name = "tlp_EventItemDrops";
@@ -966,59 +934,8 @@ namespace P5RBattleEditor
             this.tlp_EventItemDrops.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tlp_EventItemDrops.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tlp_EventItemDrops.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tlp_EventItemDrops.Size = new System.Drawing.Size(504, 172);
+            this.tlp_EventItemDrops.Size = new System.Drawing.Size(246, 172);
             this.tlp_EventItemDrops.TabIndex = 1;
-            // 
-            // num_EventItemFlag3
-            // 
-            this.num_EventItemFlag3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.num_EventItemFlag3.AutoSize = true;
-            this.num_EventItemFlag3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.num_EventItemFlag3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.num_EventItemFlag3.ForeColor = System.Drawing.Color.Silver;
-            this.num_EventItemFlag3.Location = new System.Drawing.Point(381, 131);
-            this.num_EventItemFlag3.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.num_EventItemFlag3.Name = "num_EventItemFlag3";
-            this.num_EventItemFlag3.Size = new System.Drawing.Size(120, 23);
-            this.num_EventItemFlag3.TabIndex = 13;
-            // 
-            // num_EventItemFlag2
-            // 
-            this.num_EventItemFlag2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.num_EventItemFlag2.AutoSize = true;
-            this.num_EventItemFlag2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.num_EventItemFlag2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.num_EventItemFlag2.ForeColor = System.Drawing.Color.Silver;
-            this.num_EventItemFlag2.Location = new System.Drawing.Point(255, 131);
-            this.num_EventItemFlag2.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.num_EventItemFlag2.Name = "num_EventItemFlag2";
-            this.num_EventItemFlag2.Size = new System.Drawing.Size(120, 23);
-            this.num_EventItemFlag2.TabIndex = 12;
-            // 
-            // num_EventItemFlag1
-            // 
-            this.num_EventItemFlag1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.num_EventItemFlag1.AutoSize = true;
-            this.num_EventItemFlag1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.num_EventItemFlag1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.num_EventItemFlag1.ForeColor = System.Drawing.Color.Silver;
-            this.num_EventItemFlag1.Location = new System.Drawing.Point(129, 131);
-            this.num_EventItemFlag1.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.num_EventItemFlag1.Name = "num_EventItemFlag1";
-            this.num_EventItemFlag1.Size = new System.Drawing.Size(120, 23);
-            this.num_EventItemFlag1.TabIndex = 11;
             // 
             // num_EventItemFlag0
             // 
@@ -1027,51 +944,15 @@ namespace P5RBattleEditor
             this.num_EventItemFlag0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.num_EventItemFlag0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.num_EventItemFlag0.ForeColor = System.Drawing.Color.Silver;
-            this.num_EventItemFlag0.Location = new System.Drawing.Point(3, 131);
+            this.num_EventItemFlag0.Location = new System.Drawing.Point(126, 131);
             this.num_EventItemFlag0.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
             this.num_EventItemFlag0.Name = "num_EventItemFlag0";
-            this.num_EventItemFlag0.Size = new System.Drawing.Size(120, 23);
+            this.num_EventItemFlag0.Size = new System.Drawing.Size(117, 23);
             this.num_EventItemFlag0.TabIndex = 10;
-            // 
-            // num_EventItemDrop3
-            // 
-            this.num_EventItemDrop3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.num_EventItemDrop3.AutoSize = true;
-            this.num_EventItemDrop3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.num_EventItemDrop3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.num_EventItemDrop3.ForeColor = System.Drawing.Color.Silver;
-            this.num_EventItemDrop3.Location = new System.Drawing.Point(381, 74);
-            this.num_EventItemDrop3.Name = "num_EventItemDrop3";
-            this.num_EventItemDrop3.Size = new System.Drawing.Size(120, 23);
-            this.num_EventItemDrop3.TabIndex = 9;
-            // 
-            // num_EventItemDrop2
-            // 
-            this.num_EventItemDrop2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.num_EventItemDrop2.AutoSize = true;
-            this.num_EventItemDrop2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.num_EventItemDrop2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.num_EventItemDrop2.ForeColor = System.Drawing.Color.Silver;
-            this.num_EventItemDrop2.Location = new System.Drawing.Point(255, 74);
-            this.num_EventItemDrop2.Name = "num_EventItemDrop2";
-            this.num_EventItemDrop2.Size = new System.Drawing.Size(120, 23);
-            this.num_EventItemDrop2.TabIndex = 8;
-            // 
-            // num_EventItemDrop1
-            // 
-            this.num_EventItemDrop1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.num_EventItemDrop1.AutoSize = true;
-            this.num_EventItemDrop1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.num_EventItemDrop1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.num_EventItemDrop1.ForeColor = System.Drawing.Color.Silver;
-            this.num_EventItemDrop1.Location = new System.Drawing.Point(129, 74);
-            this.num_EventItemDrop1.Name = "num_EventItemDrop1";
-            this.num_EventItemDrop1.Size = new System.Drawing.Size(120, 23);
-            this.num_EventItemDrop1.TabIndex = 7;
             // 
             // num_EventItemDrop0
             // 
@@ -1080,50 +961,11 @@ namespace P5RBattleEditor
             this.num_EventItemDrop0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.num_EventItemDrop0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.num_EventItemDrop0.ForeColor = System.Drawing.Color.Silver;
-            this.num_EventItemDrop0.Location = new System.Drawing.Point(3, 74);
+            this.num_EventItemDrop0.Location = new System.Drawing.Point(126, 74);
             this.num_EventItemDrop0.Name = "num_EventItemDrop0";
-            this.num_EventItemDrop0.Size = new System.Drawing.Size(120, 23);
+            this.num_EventItemDrop0.Size = new System.Drawing.Size(117, 23);
             this.num_EventItemDrop0.TabIndex = 6;
             this.num_EventItemDrop0.Tag = "";
-            // 
-            // comboBox_EventItemDrop3
-            // 
-            this.comboBox_EventItemDrop3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_EventItemDrop3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.comboBox_EventItemDrop3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_EventItemDrop3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.comboBox_EventItemDrop3.ForeColor = System.Drawing.Color.Silver;
-            this.comboBox_EventItemDrop3.FormattingEnabled = true;
-            this.comboBox_EventItemDrop3.Location = new System.Drawing.Point(381, 16);
-            this.comboBox_EventItemDrop3.Name = "comboBox_EventItemDrop3";
-            this.comboBox_EventItemDrop3.Size = new System.Drawing.Size(120, 24);
-            this.comboBox_EventItemDrop3.TabIndex = 5;
-            // 
-            // comboBox_EventItemDrop2
-            // 
-            this.comboBox_EventItemDrop2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_EventItemDrop2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.comboBox_EventItemDrop2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_EventItemDrop2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.comboBox_EventItemDrop2.ForeColor = System.Drawing.Color.Silver;
-            this.comboBox_EventItemDrop2.FormattingEnabled = true;
-            this.comboBox_EventItemDrop2.Location = new System.Drawing.Point(255, 16);
-            this.comboBox_EventItemDrop2.Name = "comboBox_EventItemDrop2";
-            this.comboBox_EventItemDrop2.Size = new System.Drawing.Size(120, 24);
-            this.comboBox_EventItemDrop2.TabIndex = 4;
-            // 
-            // comboBox_EventItemDrop1
-            // 
-            this.comboBox_EventItemDrop1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_EventItemDrop1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.comboBox_EventItemDrop1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_EventItemDrop1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.comboBox_EventItemDrop1.ForeColor = System.Drawing.Color.Silver;
-            this.comboBox_EventItemDrop1.FormattingEnabled = true;
-            this.comboBox_EventItemDrop1.Location = new System.Drawing.Point(129, 16);
-            this.comboBox_EventItemDrop1.Name = "comboBox_EventItemDrop1";
-            this.comboBox_EventItemDrop1.Size = new System.Drawing.Size(120, 24);
-            this.comboBox_EventItemDrop1.TabIndex = 3;
             // 
             // comboBox_EventItemDrop0
             // 
@@ -1133,9 +975,9 @@ namespace P5RBattleEditor
             this.comboBox_EventItemDrop0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_EventItemDrop0.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_EventItemDrop0.FormattingEnabled = true;
-            this.comboBox_EventItemDrop0.Location = new System.Drawing.Point(3, 16);
+            this.comboBox_EventItemDrop0.Location = new System.Drawing.Point(126, 16);
             this.comboBox_EventItemDrop0.Name = "comboBox_EventItemDrop0";
-            this.comboBox_EventItemDrop0.Size = new System.Drawing.Size(120, 24);
+            this.comboBox_EventItemDrop0.Size = new System.Drawing.Size(117, 24);
             this.comboBox_EventItemDrop0.TabIndex = 2;
             // 
             // groupBox_UnitName
@@ -1184,14 +1026,13 @@ namespace P5RBattleEditor
             this.txt_PersonaName.AcceptsReturn = true;
             this.txt_PersonaName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_PersonaName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.txt_PersonaName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_PersonaName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_PersonaName.ForeColor = System.Drawing.Color.Silver;
-            this.txt_PersonaName.Location = new System.Drawing.Point(84, 35);
+            this.txt_PersonaName.Location = new System.Drawing.Point(84, 31);
             this.txt_PersonaName.Margin = new System.Windows.Forms.Padding(6);
             this.txt_PersonaName.MaxLength = 256;
             this.txt_PersonaName.Name = "txt_PersonaName";
-            this.txt_PersonaName.ReadOnly = true;
-            this.txt_PersonaName.Size = new System.Drawing.Size(156, 16);
+            this.txt_PersonaName.Size = new System.Drawing.Size(156, 23);
             this.txt_PersonaName.TabIndex = 5;
             // 
             // lbl_ShadowName
@@ -1209,14 +1050,13 @@ namespace P5RBattleEditor
             this.txt_ShadowName.AcceptsReturn = true;
             this.txt_ShadowName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_ShadowName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.txt_ShadowName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_ShadowName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_ShadowName.ForeColor = System.Drawing.Color.Silver;
-            this.txt_ShadowName.Location = new System.Drawing.Point(84, 121);
+            this.txt_ShadowName.Location = new System.Drawing.Point(84, 117);
             this.txt_ShadowName.Margin = new System.Windows.Forms.Padding(6);
             this.txt_ShadowName.MaxLength = 256;
             this.txt_ShadowName.Name = "txt_ShadowName";
-            this.txt_ShadowName.ReadOnly = true;
-            this.txt_ShadowName.Size = new System.Drawing.Size(156, 16);
+            this.txt_ShadowName.Size = new System.Drawing.Size(156, 23);
             this.txt_ShadowName.TabIndex = 7;
             // 
             // chkListBox_UnitFlags
@@ -1673,7 +1513,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitArcana.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitArcana.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitArcana.FormattingEnabled = true;
-            this.comboBox_UnitArcana.Location = new System.Drawing.Point(3, 48);
+            this.comboBox_UnitArcana.Location = new System.Drawing.Point(3, 47);
             this.comboBox_UnitArcana.Name = "comboBox_UnitArcana";
             this.comboBox_UnitArcana.Size = new System.Drawing.Size(88, 24);
             this.comboBox_UnitArcana.TabIndex = 3;
@@ -1782,7 +1622,7 @@ namespace P5RBattleEditor
             this.comboBox_ItemDrop3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_ItemDrop3.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_ItemDrop3.FormattingEnabled = true;
-            this.comboBox_ItemDrop3.Location = new System.Drawing.Point(381, 31);
+            this.comboBox_ItemDrop3.Location = new System.Drawing.Point(381, 30);
             this.comboBox_ItemDrop3.Name = "comboBox_ItemDrop3";
             this.comboBox_ItemDrop3.Size = new System.Drawing.Size(120, 24);
             this.comboBox_ItemDrop3.TabIndex = 5;
@@ -1795,7 +1635,7 @@ namespace P5RBattleEditor
             this.comboBox_ItemDrop2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_ItemDrop2.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_ItemDrop2.FormattingEnabled = true;
-            this.comboBox_ItemDrop2.Location = new System.Drawing.Point(255, 31);
+            this.comboBox_ItemDrop2.Location = new System.Drawing.Point(255, 30);
             this.comboBox_ItemDrop2.Name = "comboBox_ItemDrop2";
             this.comboBox_ItemDrop2.Size = new System.Drawing.Size(120, 24);
             this.comboBox_ItemDrop2.TabIndex = 4;
@@ -1808,7 +1648,7 @@ namespace P5RBattleEditor
             this.comboBox_ItemDrop1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_ItemDrop1.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_ItemDrop1.FormattingEnabled = true;
-            this.comboBox_ItemDrop1.Location = new System.Drawing.Point(129, 31);
+            this.comboBox_ItemDrop1.Location = new System.Drawing.Point(129, 30);
             this.comboBox_ItemDrop1.Name = "comboBox_ItemDrop1";
             this.comboBox_ItemDrop1.Size = new System.Drawing.Size(120, 24);
             this.comboBox_ItemDrop1.TabIndex = 3;
@@ -1821,7 +1661,7 @@ namespace P5RBattleEditor
             this.comboBox_ItemDrop0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_ItemDrop0.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_ItemDrop0.FormattingEnabled = true;
-            this.comboBox_ItemDrop0.Location = new System.Drawing.Point(3, 31);
+            this.comboBox_ItemDrop0.Location = new System.Drawing.Point(3, 30);
             this.comboBox_ItemDrop0.Name = "comboBox_ItemDrop0";
             this.comboBox_ItemDrop0.Size = new System.Drawing.Size(120, 24);
             this.comboBox_ItemDrop0.TabIndex = 2;
@@ -1872,7 +1712,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitSkill7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitSkill7.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitSkill7.FormattingEnabled = true;
-            this.comboBox_UnitSkill7.Location = new System.Drawing.Point(381, 117);
+            this.comboBox_UnitSkill7.Location = new System.Drawing.Point(381, 116);
             this.comboBox_UnitSkill7.Name = "comboBox_UnitSkill7";
             this.comboBox_UnitSkill7.Size = new System.Drawing.Size(120, 24);
             this.comboBox_UnitSkill7.TabIndex = 9;
@@ -1885,7 +1725,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitSkill6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitSkill6.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitSkill6.FormattingEnabled = true;
-            this.comboBox_UnitSkill6.Location = new System.Drawing.Point(255, 117);
+            this.comboBox_UnitSkill6.Location = new System.Drawing.Point(255, 116);
             this.comboBox_UnitSkill6.Name = "comboBox_UnitSkill6";
             this.comboBox_UnitSkill6.Size = new System.Drawing.Size(120, 24);
             this.comboBox_UnitSkill6.TabIndex = 8;
@@ -1898,7 +1738,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitSkill5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitSkill5.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitSkill5.FormattingEnabled = true;
-            this.comboBox_UnitSkill5.Location = new System.Drawing.Point(129, 117);
+            this.comboBox_UnitSkill5.Location = new System.Drawing.Point(129, 116);
             this.comboBox_UnitSkill5.Name = "comboBox_UnitSkill5";
             this.comboBox_UnitSkill5.Size = new System.Drawing.Size(120, 24);
             this.comboBox_UnitSkill5.TabIndex = 7;
@@ -1911,7 +1751,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitSkill4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitSkill4.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitSkill4.FormattingEnabled = true;
-            this.comboBox_UnitSkill4.Location = new System.Drawing.Point(3, 117);
+            this.comboBox_UnitSkill4.Location = new System.Drawing.Point(3, 116);
             this.comboBox_UnitSkill4.Name = "comboBox_UnitSkill4";
             this.comboBox_UnitSkill4.Size = new System.Drawing.Size(120, 24);
             this.comboBox_UnitSkill4.TabIndex = 6;
@@ -1924,7 +1764,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitSkill3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitSkill3.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitSkill3.FormattingEnabled = true;
-            this.comboBox_UnitSkill3.Location = new System.Drawing.Point(381, 31);
+            this.comboBox_UnitSkill3.Location = new System.Drawing.Point(381, 30);
             this.comboBox_UnitSkill3.Name = "comboBox_UnitSkill3";
             this.comboBox_UnitSkill3.Size = new System.Drawing.Size(120, 24);
             this.comboBox_UnitSkill3.TabIndex = 5;
@@ -1937,7 +1777,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitSkill2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitSkill2.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitSkill2.FormattingEnabled = true;
-            this.comboBox_UnitSkill2.Location = new System.Drawing.Point(255, 31);
+            this.comboBox_UnitSkill2.Location = new System.Drawing.Point(255, 30);
             this.comboBox_UnitSkill2.Name = "comboBox_UnitSkill2";
             this.comboBox_UnitSkill2.Size = new System.Drawing.Size(120, 24);
             this.comboBox_UnitSkill2.TabIndex = 4;
@@ -1950,7 +1790,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitSkill1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitSkill1.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitSkill1.FormattingEnabled = true;
-            this.comboBox_UnitSkill1.Location = new System.Drawing.Point(129, 31);
+            this.comboBox_UnitSkill1.Location = new System.Drawing.Point(129, 30);
             this.comboBox_UnitSkill1.Name = "comboBox_UnitSkill1";
             this.comboBox_UnitSkill1.Size = new System.Drawing.Size(120, 24);
             this.comboBox_UnitSkill1.TabIndex = 3;
@@ -1963,7 +1803,7 @@ namespace P5RBattleEditor
             this.comboBox_UnitSkill0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_UnitSkill0.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_UnitSkill0.FormattingEnabled = true;
-            this.comboBox_UnitSkill0.Location = new System.Drawing.Point(3, 31);
+            this.comboBox_UnitSkill0.Location = new System.Drawing.Point(3, 30);
             this.comboBox_UnitSkill0.Name = "comboBox_UnitSkill0";
             this.comboBox_UnitSkill0.Size = new System.Drawing.Size(120, 24);
             this.comboBox_UnitSkill0.TabIndex = 2;
@@ -1974,7 +1814,7 @@ namespace P5RBattleEditor
             this.groupBox_UnitRewards.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_UnitRewards.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.groupBox_UnitRewards.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox_UnitRewards.Location = new System.Drawing.Point(519, 878);
+            this.groupBox_UnitRewards.Location = new System.Drawing.Point(261, 278);
             this.groupBox_UnitRewards.Name = "groupBox_UnitRewards";
             this.groupBox_UnitRewards.Size = new System.Drawing.Size(252, 194);
             this.groupBox_UnitRewards.TabIndex = 2;
@@ -2065,7 +1905,7 @@ namespace P5RBattleEditor
             this.num_UnitEXP.ForeColor = System.Drawing.Color.Silver;
             this.num_UnitEXP.Location = new System.Drawing.Point(3, 113);
             this.num_UnitEXP.Maximum = new decimal(new int[] {
-            255,
+            999999,
             0,
             0,
             0});
@@ -2089,7 +1929,7 @@ namespace P5RBattleEditor
             this.groupBox_UnitAttackStats.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_UnitAttackStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.groupBox_UnitAttackStats.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox_UnitAttackStats.Location = new System.Drawing.Point(261, 278);
+            this.groupBox_UnitAttackStats.Location = new System.Drawing.Point(3, 278);
             this.groupBox_UnitAttackStats.Name = "groupBox_UnitAttackStats";
             this.groupBox_UnitAttackStats.Size = new System.Drawing.Size(252, 194);
             this.groupBox_UnitAttackStats.TabIndex = 8;
@@ -2259,7 +2099,7 @@ namespace P5RBattleEditor
             this.comboBox_Encounters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_Encounters.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_Encounters.FormattingEnabled = true;
-            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 24);
+            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 23);
             this.comboBox_Encounters.Name = "comboBox_Encounters";
             this.comboBox_Encounters.Size = new System.Drawing.Size(550, 24);
             this.comboBox_Encounters.TabIndex = 1;
@@ -2594,6 +2434,36 @@ namespace P5RBattleEditor
             this.tabPage_Skills.TabIndex = 2;
             this.tabPage_Skills.Text = "Skills";
             // 
+            // lbl_EventItem
+            // 
+            this.lbl_EventItem.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbl_EventItem.AutoSize = true;
+            this.lbl_EventItem.Location = new System.Drawing.Point(42, 20);
+            this.lbl_EventItem.Name = "lbl_EventItem";
+            this.lbl_EventItem.Size = new System.Drawing.Size(78, 17);
+            this.lbl_EventItem.TabIndex = 11;
+            this.lbl_EventItem.Text = "Event Item:";
+            // 
+            // lbl_Chance
+            // 
+            this.lbl_Chance.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbl_Chance.AutoSize = true;
+            this.lbl_Chance.Location = new System.Drawing.Point(60, 77);
+            this.lbl_Chance.Name = "lbl_Chance";
+            this.lbl_Chance.Size = new System.Drawing.Size(60, 17);
+            this.lbl_Chance.TabIndex = 12;
+            this.lbl_Chance.Text = "Chance:";
+            // 
+            // lbl_EventID
+            // 
+            this.lbl_EventID.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbl_EventID.AutoSize = true;
+            this.lbl_EventID.Location = new System.Drawing.Point(55, 134);
+            this.lbl_EventID.Name = "lbl_EventID";
+            this.lbl_EventID.Size = new System.Drawing.Size(65, 17);
+            this.lbl_EventID.TabIndex = 13;
+            this.lbl_EventID.Text = "Event ID:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 26F);
@@ -2651,17 +2521,11 @@ namespace P5RBattleEditor
             ((System.ComponentModel.ISupportInitialize)(this.num_UnitVoiceID)).EndInit();
             this.tlp_TalkMoneyMax.ResumeLayout(false);
             this.tlp_TalkMoneyMax.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_TalkMoneyMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_UnitTalkMoneyMax)).EndInit();
             this.groupBox_EventItemDrops.ResumeLayout(false);
             this.tlp_EventItemDrops.ResumeLayout(false);
             this.tlp_EventItemDrops.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemFlag3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemFlag2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemFlag1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_EventItemFlag0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemDrop3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemDrop2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_EventItemDrop1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_EventItemDrop0)).EndInit();
             this.groupBox_UnitName.ResumeLayout(false);
             this.tlp_UnitName.ResumeLayout(false);
@@ -2848,17 +2712,8 @@ namespace P5RBattleEditor
         private System.Windows.Forms.NumericUpDown num_ItemDrop0;
         private System.Windows.Forms.GroupBox groupBox_EventItemDrops;
         private System.Windows.Forms.TableLayoutPanel tlp_EventItemDrops;
-        private System.Windows.Forms.NumericUpDown num_EventItemDrop3;
-        private System.Windows.Forms.NumericUpDown num_EventItemDrop2;
-        private System.Windows.Forms.NumericUpDown num_EventItemDrop1;
         private System.Windows.Forms.NumericUpDown num_EventItemDrop0;
-        private System.Windows.Forms.ComboBox comboBox_EventItemDrop3;
-        private System.Windows.Forms.ComboBox comboBox_EventItemDrop2;
-        private System.Windows.Forms.ComboBox comboBox_EventItemDrop1;
         private System.Windows.Forms.ComboBox comboBox_EventItemDrop0;
-        private System.Windows.Forms.NumericUpDown num_EventItemFlag3;
-        private System.Windows.Forms.NumericUpDown num_EventItemFlag2;
-        private System.Windows.Forms.NumericUpDown num_EventItemFlag1;
         private System.Windows.Forms.NumericUpDown num_EventItemFlag0;
         private System.Windows.Forms.GroupBox groupBox_UnitAttackStats;
         private System.Windows.Forms.TableLayoutPanel tlp_UnitAttackStats;
@@ -2883,7 +2738,7 @@ namespace P5RBattleEditor
         private System.Windows.Forms.NumericUpDown num_UnitTalkMoneyMin;
         private System.Windows.Forms.Label lbl_UnitTalkMoneyMin;
         private System.Windows.Forms.TableLayoutPanel tlp_TalkMoneyMax;
-        private System.Windows.Forms.NumericUpDown num_TalkMoneyMax;
+        private System.Windows.Forms.NumericUpDown num_UnitTalkMoneyMax;
         private System.Windows.Forms.Label lbl_TalkMoneyMax;
         private System.Windows.Forms.TableLayoutPanel tlp_UnitTalkItem;
         private System.Windows.Forms.Label lbl_UnitTalkItem;
@@ -2902,9 +2757,11 @@ namespace P5RBattleEditor
         private System.Windows.Forms.NumericUpDown num_UnitPersonaID;
         private System.Windows.Forms.Panel panel_Units;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox_Preview;
         private System.Windows.Forms.ComboBox comboBox_Units;
         private System.Windows.Forms.TextBox txt_UnitSearch;
+        private System.Windows.Forms.Label lbl_EventItem;
+        private System.Windows.Forms.Label lbl_EventID;
+        private System.Windows.Forms.Label lbl_Chance;
     }
 }
 

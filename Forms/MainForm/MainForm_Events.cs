@@ -14,8 +14,8 @@ namespace P5RBattleEditor
         private void SetupFormControls()
         {
             // Fetch strings for dropdowns
-            GetEnemyUnitNames();
             GetMusicNameList();
+            ApplyUnitNames();
 
             // Set up dropdowns
             SetEnemyUnitDropdowns();
@@ -64,6 +64,24 @@ namespace P5RBattleEditor
                 EnemyUnitNames.Add(entry.Name);
         }
 
+        public static List<string> PersonaUnitNames = new List<string>();
+        private void GetPersonaUnitNames()
+        {
+            PersonaUnitNames.Clear();
+            var personaSectionID = Array.IndexOf(TblNamesR, "Personas");
+            foreach (var entry in project.NameTblData[personaSectionID].TblEntries)
+                PersonaUnitNames.Add(entry.Name);
+        }
+
+        public static List<string> ArcanaNamess = new List<string>();
+        private void GetArcanaNames()
+        {
+            ArcanaNamess.Clear();
+            var arcanaSectionID = Array.IndexOf(TblNamesR, "Arcanas");
+            foreach (var entry in project.NameTblData[arcanaSectionID].TblEntries)
+                ArcanaNamess.Add(entry.Name);
+        }
+
         private static BindingSource bs_Enemy0 = new BindingSource();
         private static BindingSource bs_Enemy1 = new BindingSource();
         private static BindingSource bs_Enemy2 = new BindingSource();
@@ -107,44 +125,6 @@ namespace P5RBattleEditor
                 newValue = "";
 
             e.Value = newValue;
-        }
-
-
-
-        // Search Box
-        private void EncounterSearch_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-
-            string searchTxt = txt_EncounterSearch.Text.ToLower();
-            if (string.IsNullOrEmpty(searchTxt))
-                return;
-            if (e.KeyData == Keys.Enter)
-            {
-                // stop windows ding noise
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-
-                int i = selectedEncounterID + 1;
-                while (i < comboBox_Encounters.Items.Count)
-                {
-                    if (i == selectedEncounterID)
-                        return;
-
-                    var encounter = (Encounter)comboBox_Encounters.Items[i];
-
-                    if (encounter.Comment.ToLower().Contains(searchTxt)
-                        || encounter.BattleUnits.Any(x => EnemyUnitNames[x].ToLower().Contains(searchTxt)))
-                    {
-                        comboBox_Encounters.SelectedIndex = i;
-                        return;
-                    }
-
-                    if (i == comboBox_Encounters.Items.Count - 1)
-                        i = 0;
-                    else
-                        i++;
-                }
-            }
         }
 
     }

@@ -17,12 +17,15 @@ namespace P5RBattleEditor
 
         public class EnemyUnit
         {
+            public string PersonaName { get; set; } = ""; // added for convenience
+            public string ShadowName { get; set; } = ""; // added for convenience
+
             public int Id { get; set; } = 0; // added for convenience
             public string Comment { get; set; } = ""; // added for convenience
             public EnemyStats EnemyStats { get; set; } = new EnemyStats(); // segment 0
             public List<Affinity> Affinities { get; set; } = new List<Affinity>(); // segment 1
             public VoiceData VoiceData { get; set; } = new VoiceData(); // segment 3
-            public List<VisualData> VisualData { get; set; } = new List<VisualData>(); // segment 4
+            public VisualData VisualData { get; set; } = new VisualData(); // segment 4
         }
 
         public class PersonaUnit
