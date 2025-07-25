@@ -41,7 +41,6 @@ namespace P5RBattleEditor
         {
             var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
 
-            txt_UnitID.Text = selectedUnit.Id.ToString();
             txt_PersonaName.Text = selectedUnit.PersonaName;
             txt_ShadowName.Text = selectedUnit.ShadowName;
         }
