@@ -33,6 +33,19 @@ namespace P5RBattleEditor
             };
         }
 
+        public static bool[] ConvertBytesToBools(params byte[] bytes)
+        {
+            bool[] result = new bool[bytes.Length * 8];
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                for (int bit = 0; bit < 8; bit++)
+                {
+                    result[i * 8 + bit] = (bytes[i] & (1 << bit)) != 0;
+                }
+            }
+            return result;
+        }
+
         byte ConvertBoolsToByte(bool[] bools)
         {
             byte result = 0x00;

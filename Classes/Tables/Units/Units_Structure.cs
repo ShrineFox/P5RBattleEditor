@@ -2,6 +2,7 @@
 using ShrineFox.IO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace P5RBattleEditor
 {
@@ -60,7 +61,7 @@ namespace P5RBattleEditor
 
         public class EnemyStats
         {
-            public List<bool[]> Flags { get; set; } = new List<bool[]>() { new bool[8], new bool[8], new bool[8], new bool[8] };
+            public UnitFlags Flags { get; set; } = new UnitFlags();
             public byte Arcana { get; set; } = Convert.ToByte(ArcanaName.Fool);
             public byte RESERVE = 0x00;
             public ushort Level { get; set; } = 0;
@@ -97,6 +98,49 @@ namespace P5RBattleEditor
             public byte Endurance { get; set; } = 0x00;
             public byte Agility { get; set; } = 0x00;
             public byte Luck { get; set; } = 0x00;
+        }
+
+        public class UnitFlags
+        {
+            public bool Bit0 { get; set; } = false;
+            public bool Bit1 { get; set; } = false;
+            public bool Bit2 { get; set; } = false;
+            public bool Bit3 { get; set; } = false;
+            public bool Bit4 { get; set; } = false;
+            public bool Bit5 { get; set; } = false;
+            public bool Bit6 { get; set; } = false;
+            public bool Bit7 { get; set; } = false;
+
+            public bool Bit8 { get; set; } = false;
+            public bool Bit9 { get; set; } = false;
+            public bool Bit10 { get; set; } = false;
+            public bool Bit11 { get; set; } = false;
+            public bool Bit12 { get; set; } = false;
+            public bool Bit13 { get; set; } = false;
+            public bool Bit14 { get; set; } = false;
+            public bool Bit15 { get; set; } = false;
+            [Description("Enemies never beg regardless of personality (as if always irritable)")]
+            public bool NoBeggingShadows { get; set; } = false;
+            [Description("Enemies status can be hidden similar to boss.")]
+            public bool HidingStatus { get; set; } = false;
+            public bool Bit18 { get; set; } = false;
+            public bool Bit19 { get; set; } = false;
+            [Description("Make enemy have drop coin effect and shadow visual appearance. No longer return to battle after obtaining Persona.")]
+            public bool GuaranteePersonaMask { get; set; } = false;
+            [Description("Enemies will never be able to negotiate.")]
+            public bool NotNegotiable { get; set; } = false;
+            public bool Bit22 { get; set; } = false;
+            public bool Bit23 { get; set; } = false;
+            public bool Bit24 { get; set; } = false;
+            public bool Bit25 { get; set; } = false;
+            public bool Bit26 { get; set; } = false;
+            public bool Bit27 { get; set; } = false;
+            public bool Bit28 { get; set; } = false;
+            [Description("Enemies status can be hidden similar to boss. This is used on Boss.")]
+            public bool HidingStatusBoss { get; set; } = false;
+            [Description("Enemies will be able to use any skill regardless of SP pool.")]
+            public bool InfiniteSP { get; set; } = false;
+            public bool Bit31 { get; set; } = false;
         }
     }
 }

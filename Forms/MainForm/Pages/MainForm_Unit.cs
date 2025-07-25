@@ -49,6 +49,21 @@ namespace P5RBattleEditor
             }
         }
 
+        private void UnitFlags_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            string itemText = chkListBox_UnitFlags.GetItemText(chkListBox_UnitFlags.Items[e.Index]);
+            bool checkedBox = (e.NewValue == CheckState.Checked);
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            foreach (PropertyInfo pi in selectedUnit.EnemyStats.Flags.GetType().GetProperties())
+            {
+                if (pi.PropertyType == typeof(bool) && pi.Name == itemText)
+                {
+                    pi.SetValue(selectedUnit.EnemyStats.Flags, checkedBox);
+                }
+            }
+        }
+
         private void UpdateUnitFlagsList()
         {
             var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
@@ -56,17 +71,11 @@ namespace P5RBattleEditor
 
             foreach (PropertyInfo pi in selectedUnit.EnemyStats.Flags.GetType().GetProperties())
             {
-                if (pi.PropertyType == typeof(bool[]))
+                if (pi.PropertyType == typeof(bool))
                 {
-                    // TODO: Figure out whatever is going on here???
-                    bool[] value = (bool[])pi.GetValue(selectedUnit.EnemyStats.Flags);
-
-                    int i = 0;
-                    foreach ( var boolValue in value )
-                    {
-                        chkListBox_UnitFlags.Items.Add("bit" + i);
-                        chkListBox_UnitFlags.SetItemChecked(chkListBox_UnitFlags.Items.Count - 1, boolValue);
-                    }
+                    bool value = (bool)pi.GetValue(selectedUnit.EnemyStats.Flags);
+                    chkListBox_UnitFlags.Items.Add(pi.Name);
+                    chkListBox_UnitFlags.SetItemChecked(chkListBox_UnitFlags.Items.Count - 1, value);
                 }
             }
         }

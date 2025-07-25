@@ -3,6 +3,8 @@ using ShrineFox.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.AccessControl;
+using static P5RBattleEditor.MainForm;
 
 namespace P5RBattleEditor
 {
@@ -29,11 +31,7 @@ namespace P5RBattleEditor
                         EnemyUnit enemy = new EnemyUnit() { Id = i };
 
                         // Bit flags
-                        enemy.EnemyStats.Flags = new List<bool[]>
-                        {
-                            ConvertByteToBools(br.ReadByte()), ConvertByteToBools(br.ReadByte()),
-                            ConvertByteToBools(br.ReadByte()), ConvertByteToBools(br.ReadByte())
-                        };
+                        enemy.EnemyStats.Flags = ReadUnitFlags(br);
                         // Misc
                         enemy.EnemyStats.Arcana = br.ReadByte();
                         enemy.EnemyStats.RESERVE = br.ReadByte();
@@ -153,8 +151,7 @@ namespace P5RBattleEditor
                     foreach (var unit in project.UnitTblData.EnemyUnits)
                     {
                         // Bit flags
-                        foreach(var flagCollection in unit.EnemyStats.Flags)
-                            bw.Write(ConvertBoolsToByte(flagCollection));
+                        WriteUnitFlags(bw, unit.EnemyStats.Flags);
                         // Misc
                         bw.Write(unit.EnemyStats.Arcana);
                         bw.Write(unit.EnemyStats.RESERVE);
@@ -259,6 +256,47 @@ namespace P5RBattleEditor
                     Add16ByteAlignmentPadding(bw);
                 }
             }
+        }
+
+        private void WriteUnitFlags(EndianBinaryWriter bw, UnitFlags flags)
+        {
+            List<bool[]> boolSets = new List<bool[]>
+            {
+                new bool[] { flags.Bit0, flags.Bit1, flags.Bit2, flags.Bit3, flags.Bit4, flags.Bit5, flags.Bit6, flags.Bit7 },
+                new bool[] { flags.Bit8, flags.Bit9, flags.Bit10, flags.Bit11, flags.Bit12, flags.Bit13, flags.Bit14, flags.Bit15 },
+                new bool[] { flags.NoBeggingShadows, flags.HidingStatus, flags.Bit18, flags.Bit19, flags.GuaranteePersonaMask, flags.NotNegotiable, flags.Bit22, flags.Bit23 },
+                new bool[] { flags.Bit24, flags.Bit25, flags.Bit26, flags.Bit27, flags.Bit28, flags.HidingStatusBoss, flags.InfiniteSP, flags.Bit31 }
+            };
+
+            foreach (var flagCollection in boolSets)
+                bw.Write(ConvertBoolsToByte(flagCollection));
+        }
+
+        private UnitFlags ReadUnitFlags(EndianBinaryReader br)
+        {
+            var unitFlags = new UnitFlags();
+
+            var flags = ConvertBytesToBools(br.ReadBytes(4));
+
+            unitFlags.Bit0 = flags[0]; unitFlags.Bit8 = flags[8];
+            unitFlags.Bit1 = flags[1]; unitFlags.Bit9 = flags[9];
+            unitFlags.Bit2 = flags[2]; unitFlags.Bit10 = flags[10];
+            unitFlags.Bit3 = flags[3]; unitFlags.Bit11 = flags[11];
+            unitFlags.Bit4 = flags[4]; unitFlags.Bit12 = flags[12];
+            unitFlags.Bit5 = flags[5]; unitFlags.Bit13 = flags[13];
+            unitFlags.Bit6 = flags[6]; unitFlags.Bit14 = flags[14];
+            unitFlags.Bit7 = flags[7]; unitFlags.Bit15 = flags[15];
+
+            unitFlags.NoBeggingShadows = flags[16]; unitFlags.Bit24 = flags[24];
+            unitFlags.HidingStatus = flags[17]; unitFlags.Bit25 = flags[25];
+            unitFlags.Bit18 = flags[18]; unitFlags.Bit26 = flags[26];
+            unitFlags.Bit19 = flags[19]; unitFlags.Bit27 = flags[27];
+            unitFlags.GuaranteePersonaMask = flags[20]; unitFlags.Bit28 = flags[28];
+            unitFlags.NotNegotiable = flags[21]; unitFlags.HidingStatusBoss = flags[29];
+            unitFlags.Bit22 = flags[22]; unitFlags.InfiniteSP = flags[30];
+            unitFlags.Bit23 = flags[23]; unitFlags.Bit31 = flags[31];
+
+            return unitFlags;
         }
 
     }

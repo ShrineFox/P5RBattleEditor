@@ -228,28 +228,25 @@ namespace P5RBattleEditor
         {
             var encounterFlags = new EncounterFlags();
 
-            var EncounterFlags1 = ConvertByteToBools(br.ReadByte());
-            var EncounterFlags2 = ConvertByteToBools(br.ReadByte());
-            var EncounterFlags3 = ConvertByteToBools(br.ReadByte());
-            var EncounterFlags4 = ConvertByteToBools(br.ReadByte());
+            var flags = ConvertBytesToBools(br.ReadBytes(4));
 
-            encounterFlags.Bit0 = EncounterFlags1[0]; encounterFlags.Bit8 = EncounterFlags2[0];
-            encounterFlags.Bit1 = EncounterFlags1[1]; encounterFlags.Bit9 = EncounterFlags2[1];
-            encounterFlags.Bit2 = EncounterFlags1[2]; encounterFlags.Bit10 = EncounterFlags2[2];
-            encounterFlags.Bit3 = EncounterFlags1[3]; encounterFlags.Bit11 = EncounterFlags2[3];
-            encounterFlags.Bit4 = EncounterFlags1[4]; encounterFlags.NoNegotiation = EncounterFlags2[4];
-            encounterFlags.Bit5 = EncounterFlags1[5]; encounterFlags.Bit13 = EncounterFlags2[5];
-            encounterFlags.Bit6 = EncounterFlags1[6]; encounterFlags.Bit14 = EncounterFlags2[6];
-            encounterFlags.Bit7 = EncounterFlags1[7]; encounterFlags.Bit15 = EncounterFlags2[7];
+            encounterFlags.Bit0 = flags[0]; encounterFlags.Bit8 = flags[8];
+            encounterFlags.Bit1 = flags[1]; encounterFlags.Bit9 = flags[9];
+            encounterFlags.Bit2 = flags[2]; encounterFlags.Bit10 = flags[10];
+            encounterFlags.Bit3 = flags[3]; encounterFlags.Bit11 = flags[11];
+            encounterFlags.Bit4 = flags[4]; encounterFlags.NoNegotiation = flags[12];
+            encounterFlags.Bit5 = flags[5]; encounterFlags.Bit13 = flags[13];
+            encounterFlags.Bit6 = flags[6]; encounterFlags.Bit14 = flags[14];
+            encounterFlags.Bit7 = flags[7]; encounterFlags.Bit15 = flags[15];
 
-            encounterFlags.NoKnockdown = EncounterFlags3[0]; encounterFlags.Bit24 = EncounterFlags4[0];
-            encounterFlags.PositionHack = EncounterFlags3[1]; encounterFlags.Bit25 = EncounterFlags4[1];
-            encounterFlags.NoHoldUp = EncounterFlags3[2]; encounterFlags.LoadBFLBattleScript = EncounterFlags4[2];
-            encounterFlags.NoDisappear = EncounterFlags3[3]; encounterFlags.EnemyFirstAct = EncounterFlags4[3];
-            encounterFlags.BulletHailOnStart = EncounterFlags3[4]; encounterFlags.NoCritical = EncounterFlags4[4];
-            encounterFlags.NoNavi = EncounterFlags3[5]; encounterFlags.Bit29 = EncounterFlags4[5];
-            encounterFlags.Bit22 = EncounterFlags3[6]; encounterFlags.Bit30 = EncounterFlags4[6];
-            encounterFlags.LoadBattleScript = EncounterFlags3[7]; encounterFlags.NoEscape = EncounterFlags4[7];
+            encounterFlags.NoKnockdown = flags[16]; encounterFlags.Bit24 = flags[24];
+            encounterFlags.PositionHack = flags[17]; encounterFlags.Bit25 = flags[25];
+            encounterFlags.NoHoldUp = flags[18]; encounterFlags.LoadBFLBattleScript = flags[26];
+            encounterFlags.NoDisappear = flags[19]; encounterFlags.EnemyFirstAct = flags[27];
+            encounterFlags.BulletHailOnStart = flags[20]; encounterFlags.NoCritical = flags[28];
+            encounterFlags.NoNavi = flags[21]; encounterFlags.Bit29 = flags[29];
+            encounterFlags.Bit22 = flags[22]; encounterFlags.Bit30 = flags[30];
+            encounterFlags.LoadBattleScript = flags[23]; encounterFlags.NoEscape = flags[31];
 
             return encounterFlags;
         }
