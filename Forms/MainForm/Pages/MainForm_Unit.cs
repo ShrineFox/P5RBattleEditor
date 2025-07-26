@@ -310,6 +310,37 @@ namespace P5RBattleEditor
                 UpdateUnitStatFields();
                 UpdateUnitItemFields();
                 UpdateUnitSkillFields();
+                UpdateUnitElementalAffinities();
+            }
+        }
+
+        private void UpdateUnitElementalAffinities()
+        {
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+            if (selectedUnit == null)
+                return; 
+
+            var affinities = Enum.GetValues(typeof(ElementalAffinityNames)).Cast<ElementalAffinityNames>()
+                .Select(e => e.ToString()).ToList();
+
+            var affinityAttributes = Enum.GetValues(typeof(AffinityAttributeNames)).Cast<AffinityAttributeNames>()
+                .Select(e => e.ToString()).ToList();
+
+            foreach (var chk in tlp_ElementalAffinities.Controls.OfType<CheckBox>())
+            {
+                string affinityName = chk.Name.Split('_')[2];
+                int affinityIndex = affinities.IndexOf(affinityName);
+                string attributeName = chk.Name.Split('_')[3];
+                int attributeIndex = affinityAttributes.IndexOf(attributeName);
+
+                chk.Checked = selectedUnit.Affinities[affinityIndex].Attributes[attributeIndex];
+            }
+
+            foreach (var num in tlp_ElementalAffinities.Controls.OfType<NumericUpDown>())
+            {
+                string affinityName = num.Name.Split('_')[2];
+                int affinityIndex = affinities.IndexOf(affinityName);
+                num.Value = selectedUnit.Affinities[affinityIndex].Multiplier;
             }
         }
 
