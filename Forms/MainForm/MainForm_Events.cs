@@ -16,6 +16,7 @@ namespace P5RBattleEditor
             // Fetch strings for dropdowns
             GetMusicNameList();
             ApplyUnitNames();
+            SetupUnitAffinityForm();
 
             // Set up dropdowns
             SetEnemyUnitDropdowns();
@@ -25,6 +26,34 @@ namespace P5RBattleEditor
             // Set up tab pages
             UpdateEncounterListComboBox();
             UpdateUnitListComboBox();
+        }
+
+        private void SetupUnitAffinityForm()
+        {
+            var affinities = Enum.GetValues(typeof(ElementalAffinityNames)).Cast<ElementalAffinityNames>()
+                .Select(e => e.ToString()).ToList();
+
+            var affinityAttributes = Enum.GetValues(typeof(AffinityAttributeNames)).Cast<AffinityAttributeNames>()
+                .Select(e => e.ToString()).ToList();
+
+            AnchorStyles anchorStyle = (AnchorStyles.Left | AnchorStyles.Right);
+
+            for (int i = 0; i < affinities.Count; i++)
+            {
+                tlp_ElementalAffinities.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 20f });
+
+                Label lbl = new Label { Name = $"lbl_AffinityName_{affinities[i]}", Text = affinities[i], Anchor = anchorStyle };
+                tlp_ElementalAffinities.Controls.Add(lbl, 0, i + 1);
+
+                for (int x = 0; x < affinityAttributes.Count; x++)
+                {
+                    CheckBox chkBox = new CheckBox { Name = $"chk_AffinityAttr_{affinities[i]}_{affinityAttributes[x]}", Anchor = anchorStyle };
+                    tlp_ElementalAffinities.Controls.Add(chkBox, x + 1, i + 1);
+                }
+
+                NumericUpDown num = new NumericUpDown { Name = $"num_AffinityMultiplier_{affinities[i]}", Minimum = 0, Maximum = 255, Anchor = anchorStyle };
+                tlp_ElementalAffinities.Controls.Add(num, 9, i + 1);
+            }
         }
 
         P5RBattleBGMList BattleBGMs = new P5RBattleBGMList();
