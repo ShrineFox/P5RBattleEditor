@@ -48,10 +48,12 @@ namespace P5RBattleEditor
                 for (int x = 0; x < affinityAttributes.Count; x++)
                 {
                     CheckBox chkBox = new CheckBox { Name = $"chk_AffinityAttr_{affinities[i]}_{affinityAttributes[x]}", Anchor = anchorStyle };
+                    chkBox.CheckedChanged += ChkBox_CheckedChanged;
                     tlp_ElementalAffinities.Controls.Add(chkBox, x + 1, i + 1);
                 }
 
                 NumericUpDown num = new NumericUpDown { Name = $"num_AffinityMultiplier_{affinities[i]}", Minimum = 0, Maximum = 255, Anchor = anchorStyle };
+                num.ValueChanged += Num_ValueChanged;
                 tlp_ElementalAffinities.Controls.Add(num, 9, i + 1);
             }
         }

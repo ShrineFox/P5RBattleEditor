@@ -884,6 +884,47 @@ namespace P5RBattleEditor
             selectedUnit.VoiceData.TALK_MONEY_MAX = Convert.ToUInt16(num.Value);
         }
 
+        private void Num_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            var affinities = Enum.GetValues(typeof(ElementalAffinityNames)).Cast<ElementalAffinityNames>()
+                .Select(x => x.ToString()).ToList();
+
+            var affinityAttributes = Enum.GetValues(typeof(AffinityAttributeNames)).Cast<AffinityAttributeNames>()
+                .Select(x => x.ToString()).ToList();
+
+            string affinityName = num.Name.Split('_')[2];
+            int affinityIndex = affinities.IndexOf(affinityName);
+            selectedUnit.Affinities[affinityIndex].Multiplier = Convert.ToByte(num.Value);
+        }
+
+        private void ChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chk = sender as CheckBox;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            var affinities = Enum.GetValues(typeof(ElementalAffinityNames)).Cast<ElementalAffinityNames>()
+                .Select(x => x.ToString()).ToList();
+
+            var affinityAttributes = Enum.GetValues(typeof(AffinityAttributeNames)).Cast<AffinityAttributeNames>()
+                .Select(x => x.ToString()).ToList();
+
+            string affinityName = chk.Name.Split('_')[2];
+            int affinityIndex = affinities.IndexOf(affinityName);
+            string attributeName = chk.Name.Split('_')[3];
+            int attributeIndex = affinityAttributes.IndexOf(attributeName);
+
+            selectedUnit.Affinities[affinityIndex].Attributes[attributeIndex] = chk.Checked;
+        }
+
         private void UnitSearch_KeyDown(object sender, KeyEventArgs e)
         {
             string searchTxt = txt_UnitSearch.Text.ToLower();
