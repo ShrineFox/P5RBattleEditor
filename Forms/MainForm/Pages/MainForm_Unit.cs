@@ -81,6 +81,11 @@ namespace P5RBattleEditor
             num_ItemDrop1.Value = selectedUnit.EnemyStats.ItemDrops[1].Probability;
             num_ItemDrop2.Value = selectedUnit.EnemyStats.ItemDrops[2].Probability;
             num_ItemDrop3.Value = selectedUnit.EnemyStats.ItemDrops[3].Probability;
+
+            comboBox_UnitAttackType.SelectedIndex = selectedUnit.EnemyStats.AttackAttributes.AttackType;
+            num_UnitAttackAccuracy.Value = selectedUnit.EnemyStats.AttackAttributes.AttackAccuracy;
+            num_UnitAttackDamage.Value = selectedUnit.EnemyStats.AttackAttributes.AttackDamage;
+            comboBox_UnitArcana.SelectedIndex = selectedUnit.EnemyStats.Arcana;
         }
 
         private static BindingSource bs_EnemySkill0 = new BindingSource();
@@ -103,6 +108,26 @@ namespace P5RBattleEditor
         private static BindingSource bs_ItemDrop2 = new BindingSource();
         private static BindingSource bs_ItemDrop3 = new BindingSource();
         private static BindingSource bs_EventItemDrop0 = new BindingSource();
+
+        private static BindingSource bs_TalkItem0 = new BindingSource();
+        private static BindingSource bs_TalkItemType0 = new BindingSource();
+        private static BindingSource bs_TalkItemRare0 = new BindingSource();
+        private static BindingSource bs_TalkItemRareType0 = new BindingSource();
+        private static BindingSource bs_TalkItem1 = new BindingSource();
+        private static BindingSource bs_TalkItemType1 = new BindingSource();
+        private static BindingSource bs_TalkItemRare1 = new BindingSource();
+        private static BindingSource bs_TalkItemRareType1 = new BindingSource();
+        private static BindingSource bs_TalkItem2 = new BindingSource();
+        private static BindingSource bs_TalkItemType2 = new BindingSource();
+        private static BindingSource bs_TalkItemRare2 = new BindingSource();
+        private static BindingSource bs_TalkItemRareType2 = new BindingSource();
+        private static BindingSource bs_TalkItem3 = new BindingSource();
+        private static BindingSource bs_TalkItemType3 = new BindingSource();
+        private static BindingSource bs_TalkItemRare3 = new BindingSource();
+        private static BindingSource bs_TalkItemRareType3 = new BindingSource();
+
+        private static BindingSource bs_AttackType = new BindingSource();
+        private static BindingSource bs_Arcana = new BindingSource();
 
         private void SetUnitComboBoxSources()
         {
@@ -148,6 +173,50 @@ namespace P5RBattleEditor
             comboBox_ItemDrop2.DataSource = bs_ItemDrop2;
             comboBox_ItemDrop3.DataSource = bs_ItemDrop3;
             comboBox_EventItemDrop0.DataSource = bs_EventItemDrop0;
+
+            bs_TalkItem0.DataSource = ItemNames[0];
+            bs_TalkItem1.DataSource = ItemNames[0];
+            bs_TalkItem2.DataSource = ItemNames[0];
+            bs_TalkItem3.DataSource = ItemNames[0];
+            bs_TalkItemRare0.DataSource = ItemNames[0];
+            bs_TalkItemRare1.DataSource = ItemNames[0];
+            bs_TalkItemRare2.DataSource = ItemNames[0];
+            bs_TalkItemRare3.DataSource = ItemNames[0];
+            bs_TalkItemType0.DataSource = ItemCategories;
+            bs_TalkItemType1.DataSource = ItemCategories;
+            bs_TalkItemType2.DataSource = ItemCategories;
+            bs_TalkItemType3.DataSource = ItemCategories;
+            bs_TalkItemRareType0.DataSource = ItemCategories;
+            bs_TalkItemRareType1.DataSource = ItemCategories;
+            bs_TalkItemRareType2.DataSource = ItemCategories;
+            bs_TalkItemRareType3.DataSource = ItemCategories;
+
+            comboBox_TalkItem0.DataSource = bs_TalkItem0;
+            comboBox_TalkItemRare0.DataSource = bs_TalkItemRare0;
+            comboBox_TalkItemType0.DataSource = bs_TalkItemType0;
+            comboBox_TalkItemRareType0.DataSource = bs_TalkItemRareType0;
+            comboBox_TalkItem1.DataSource = bs_TalkItem1;
+            comboBox_TalkItemRare1.DataSource = bs_TalkItemRare1;
+            comboBox_TalkItemType1.DataSource = bs_TalkItemType1;
+            comboBox_TalkItemRareType1.DataSource = bs_TalkItemRareType1;
+            comboBox_TalkItem2.DataSource = bs_TalkItem2;
+            comboBox_TalkItemRare2.DataSource = bs_TalkItemRare2;
+            comboBox_TalkItemType2.DataSource = bs_TalkItemType2;
+            comboBox_TalkItemRareType2.DataSource = bs_TalkItemRareType2;
+            comboBox_TalkItem3.DataSource = bs_TalkItem3;
+            comboBox_TalkItemRare3.DataSource = bs_TalkItemRare3;
+            comboBox_TalkItemType3.DataSource = bs_TalkItemType3;
+            comboBox_TalkItemRareType3.DataSource = bs_TalkItemRareType3;
+
+            // Attack Type
+            bs_AttackType.DataSource = Enum.GetValues(typeof(ElementalType)).Cast<ElementalType>()
+                .Select(e => e.ToString()).ToList();
+            comboBox_UnitAttackType.DataSource = bs_AttackType;
+
+            // Arcana
+            bs_Arcana.DataSource = Enum.GetValues(typeof(ArcanaNames)).Cast<ElementalType>()
+                .Select(e => e.ToString()).ToList();
+            comboBox_UnitArcana.DataSource = bs_Arcana;
         }
 
         private void ItemType_Changed(object sender, EventArgs e)
@@ -163,6 +232,50 @@ namespace P5RBattleEditor
             if (comboBox.Name.Contains("Event"))
             {
                 bs_EventItemDrop0.DataSource = ItemNames[categoryIndex];
+                return;
+            }
+            else if (comboBox.Name.Contains("Talk"))
+            {
+                if (comboBox.Name.Contains("Rare"))
+                {
+                    int itemSlot2 = Convert.ToInt32(comboBox.Name.Replace("comboBox_TalkItemRareType", ""));
+                    switch (itemSlot2)
+                    {
+                        case 0:
+                            bs_TalkItemRare0.DataSource = ItemNames[categoryIndex];
+                            break;
+                        case 1:
+                            bs_TalkItemRare1.DataSource = ItemNames[categoryIndex];
+                            break;
+                        case 2:
+                            bs_TalkItemRare2.DataSource = ItemNames[categoryIndex];
+                            break;
+                        case 3:
+                            bs_TalkItemRare3.DataSource = ItemNames[categoryIndex];
+                            break;
+                    }
+                }
+                else
+                {
+                    
+                    int itemSlot2 = Convert.ToInt32(comboBox.Name.Replace("comboBox_TalkItemType", ""));
+                    switch (itemSlot2)
+                    {
+                        case 0:
+                            bs_TalkItem0.DataSource = ItemNames[categoryIndex];
+                            break;
+                        case 1:
+                            bs_TalkItem1.DataSource = ItemNames[categoryIndex];
+                            break;
+                        case 2:
+                            bs_TalkItem2.DataSource = ItemNames[categoryIndex];
+                            break;
+                        case 3:
+                            bs_TalkItem3.DataSource = ItemNames[categoryIndex];
+                            break;
+                    }
+                }
+
                 return;
             }
 
@@ -218,6 +331,7 @@ namespace P5RBattleEditor
         {
             var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
 
+            // Item Drops
             int categoryIndex = selectedUnit.EnemyStats.ItemDrops[0].ItemID / 0x1000;
             comboBox_ItemDropType0.SelectedIndex = categoryIndex;
             int itemOffset = selectedUnit.EnemyStats.ItemDrops[0].ItemID - (categoryIndex * 0x1000);
@@ -242,11 +356,62 @@ namespace P5RBattleEditor
             bs_ItemDrop3.DataSource = ItemNames[categoryIndex];
             comboBox_ItemDrop3.SelectedIndex = itemOffset;
 
+            // Event Item Drop
             categoryIndex = selectedUnit.EnemyStats.EventItemDrop.ItemID / 0x1000;
             comboBox_EventItemDropType0.SelectedIndex = categoryIndex;
             itemOffset = selectedUnit.EnemyStats.EventItemDrop.ItemID - (categoryIndex * 0x1000);
             bs_EventItemDrop0.DataSource = ItemNames[categoryIndex];
             comboBox_EventItemDrop0.SelectedIndex = itemOffset;
+
+            // Talk Item Drop
+            categoryIndex = selectedUnit.VoiceData.TALK_ITEM[0].ItemID / 0x1000;
+            comboBox_TalkItemType0.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.VoiceData.TALK_ITEM[0].ItemID - (categoryIndex * 0x1000);
+            bs_TalkItem0.DataSource = ItemNames[categoryIndex];
+            comboBox_TalkItem0.SelectedIndex = itemOffset;
+
+            categoryIndex = selectedUnit.VoiceData.TALK_ITEM[1].ItemID / 0x1000;
+            comboBox_TalkItemType1.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.VoiceData.TALK_ITEM[1].ItemID - (categoryIndex * 0x1000);
+            bs_TalkItem1.DataSource = ItemNames[categoryIndex];
+            comboBox_TalkItem1.SelectedIndex = itemOffset;
+
+            categoryIndex = selectedUnit.VoiceData.TALK_ITEM[2].ItemID / 0x1000;
+            comboBox_TalkItemType2.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.VoiceData.TALK_ITEM[2].ItemID - (categoryIndex * 0x1000);
+            bs_TalkItem2.DataSource = ItemNames[categoryIndex];
+            comboBox_TalkItem2.SelectedIndex = itemOffset;
+
+            categoryIndex = selectedUnit.VoiceData.TALK_ITEM[3].ItemID / 0x1000;
+            comboBox_TalkItemType3.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.VoiceData.TALK_ITEM[3].ItemID - (categoryIndex * 0x1000);
+            bs_TalkItem3.DataSource = ItemNames[categoryIndex];
+            comboBox_TalkItem3.SelectedIndex = itemOffset;
+
+            // Talk Item Drop (Rare)
+            categoryIndex = selectedUnit.VoiceData.TALK_ITEM_RARE[0].ItemID / 0x1000;
+            comboBox_TalkItemRareType0.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.VoiceData.TALK_ITEM_RARE[0].ItemID - (categoryIndex * 0x1000);
+            bs_TalkItemRare0.DataSource = ItemNames[categoryIndex];
+            comboBox_TalkItemRare0.SelectedIndex = itemOffset;
+
+            categoryIndex = selectedUnit.VoiceData.TALK_ITEM_RARE[1].ItemID / 0x1000;
+            comboBox_TalkItemRareType1.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.VoiceData.TALK_ITEM_RARE[1].ItemID - (categoryIndex * 0x1000);
+            bs_TalkItemRare1.DataSource = ItemNames[categoryIndex];
+            comboBox_TalkItemRare1.SelectedIndex = itemOffset;
+
+            categoryIndex = selectedUnit.VoiceData.TALK_ITEM_RARE[2].ItemID / 0x1000;
+            comboBox_TalkItemRareType2.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.VoiceData.TALK_ITEM_RARE[2].ItemID - (categoryIndex * 0x1000);
+            bs_TalkItemRare2.DataSource = ItemNames[categoryIndex];
+            comboBox_TalkItemRare2.SelectedIndex = itemOffset;
+
+            categoryIndex = selectedUnit.VoiceData.TALK_ITEM_RARE[3].ItemID / 0x1000;
+            comboBox_TalkItemRareType3.SelectedIndex = categoryIndex;
+            itemOffset = selectedUnit.VoiceData.TALK_ITEM_RARE[3].ItemID - (categoryIndex * 0x1000);
+            bs_TalkItemRare3.DataSource = ItemNames[categoryIndex];
+            comboBox_TalkItemRare3.SelectedIndex = itemOffset;
         }
 
         private void SelectedItem_Changed(object sender, EventArgs e)
@@ -265,6 +430,57 @@ namespace P5RBattleEditor
                 categoryIndex = comboBox_EventItemDropType0.SelectedIndex;
                 selectedUnit.EnemyStats.EventItemDrop.ItemID = 
                     Convert.ToUInt16((categoryIndex * 0x1000) + comboBox.SelectedIndex);
+                return;
+            }
+            else if (comboBox.Name.Contains("Talk"))
+            {
+                if (comboBox.Name.Contains("Rare"))
+                {
+                    int itemSlot2 = Convert.ToInt32(comboBox.Name.Replace("comboBox_TalkItemRare", ""));
+
+                    switch (itemSlot2)
+                    {
+                        case 0:
+                            categoryIndex = comboBox_TalkItemRareType0.SelectedIndex;
+                            break;
+                        case 1:
+                            categoryIndex = comboBox_TalkItemRareType1.SelectedIndex;
+                            break;
+                        case 2:
+                            categoryIndex = comboBox_TalkItemRareType2.SelectedIndex;
+                            break;
+                        case 3:
+                            categoryIndex = comboBox_TalkItemRareType3.SelectedIndex;
+                            break;
+                    }
+
+                    selectedUnit.VoiceData.TALK_ITEM_RARE[itemSlot2].ItemID =
+                        Convert.ToUInt16((categoryIndex * 0x1000) + comboBox.SelectedIndex);
+                }
+                else
+                {
+                    int itemSlot2 = Convert.ToInt32(comboBox.Name.Replace("comboBox_TalkItem", ""));
+
+                    switch (itemSlot2)
+                    {
+                        case 0:
+                            categoryIndex = comboBox_TalkItemType0.SelectedIndex;
+                            break;
+                        case 1:
+                            categoryIndex = comboBox_TalkItemType1.SelectedIndex;
+                            break;
+                        case 2:
+                            categoryIndex = comboBox_TalkItemType2.SelectedIndex;
+                            break;
+                        case 3:
+                            categoryIndex = comboBox_TalkItemType3.SelectedIndex;
+                            break;
+                    }
+
+                    selectedUnit.VoiceData.TALK_ITEM[itemSlot2].ItemID =
+                        Convert.ToUInt16((categoryIndex * 0x1000) + comboBox.SelectedIndex);
+                }
+
                 return;
             }
 
@@ -340,6 +556,290 @@ namespace P5RBattleEditor
             var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
 
             txt_UnitNotes.Text = selectedUnit.Comment;
+        }
+
+        private void PersonaName_Changed(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.PersonaName = txt.Text;
+        }
+
+        private void ShadowName_Changed(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.ShadowName = txt.Text;
+        }
+
+        private void PersonaID_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.VisualData.PersonaID = Convert.ToUInt16(num.Value);
+        }
+
+        private void ModelID_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.VisualData.ModelID = Convert.ToUInt16(num.Value);
+        }
+
+        private void UnitAccuracy_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.AttackAttributes.AttackAccuracy = Convert.ToByte(num.Value);
+
+        }
+
+        private void UnitDamage_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.AttackAttributes.AttackDamage = Convert.ToUInt16(num.Value);
+        }
+
+        private void UnitAttackType_Changed(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.AttackAttributes.AttackType = Convert.ToByte(comboBox.SelectedIndex);
+        }
+
+        private void UnknownR_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.VisualData.UnknownR = Convert.ToUInt16(num.Value);
+        }
+
+        private void UnitEXP_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.EXPReward = Convert.ToUInt16(num.Value);
+        }
+
+        private void UnitMoney_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.MoneyReward = Convert.ToUInt16(num.Value);
+        }
+
+        private void UnitLevel_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.Level = Convert.ToUInt16(num.Value);
+        }
+
+        private void UnitSP_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.SP = Convert.ToUInt32(num.Value);
+        }
+
+        private void UnitStrength_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.Stats.Strength = Convert.ToByte(num.Value);
+        }
+
+        private void UnitMagic_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.Stats.Magic = Convert.ToByte(num.Value);
+        }
+
+        private void UnitEndurance_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.Stats.Endurance = Convert.ToByte(num.Value);
+        }
+
+        private void UnitAgility_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.Stats.Agility = Convert.ToByte(num.Value);
+        }
+
+        private void UnitLuck_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.Stats.Luck = Convert.ToByte(num.Value);
+        }
+
+        private void UnitArcana_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (num == null || selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.Arcana = Convert.ToByte(num.Value);
+        }
+
+        private void ItemDropChance_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            if (num.Name.Contains("Event"))
+            {
+                selectedUnit.EnemyStats.EventItemDrop.Probability = Convert.ToUInt16(num.Value);
+            }
+            else
+            {
+                int itemDropSlot = Convert.ToInt32(num.Name.Replace("num_ItemDrop",""));
+                selectedUnit.EnemyStats.ItemDrops[itemDropSlot].Probability = Convert.ToUInt16(num.Value);
+            }
+        }
+
+        private void EventItemID_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.EventItemDrop.EventID = Convert.ToUInt16(num.Value);
+        }
+
+        private void VoiceID_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.VoiceData.VoiceID = Convert.ToByte(num.Value);
+        }
+
+        private void TALKPERSON_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.VoiceData.TALK_PERSON = Convert.ToByte(num.Value);
+        }
+
+        private void ACBValue_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.VoiceData.VoiceAcbValue = Convert.ToByte(num.Value);
+        }
+
+        private void TalkMoneyMin_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.VoiceData.TALK_MONEY_MIN = Convert.ToUInt16(num.Value);
+        }
+
+        private void TalkMoneyMax_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.VoiceData.TALK_MONEY_MAX = Convert.ToUInt16(num.Value);
         }
 
         private void UnitSearch_KeyDown(object sender, KeyEventArgs e)
