@@ -121,6 +121,10 @@ namespace P5RBattleEditor
             ComboBox comboBox = sender as ComboBox;
             int unitIndex = Convert.ToInt32(comboBox.Name.Replace("comboBox_BattleUnit", ""));
 
+            var selectedEncounter = (Encounter)comboBox_Encounters.SelectedItem;
+            if (selectedEncounter == null)
+                return;
+
             project.EncountTblData.Encounters[selectedEncounterID]
                 .BattleUnits[unitIndex] = Convert.ToUInt16(comboBox.SelectedIndex);
         }

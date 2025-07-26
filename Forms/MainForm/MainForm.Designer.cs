@@ -1547,6 +1547,7 @@ namespace P5RBattleEditor
             this.numUpDwn_UnitHP.Name = "numUpDwn_UnitHP";
             this.numUpDwn_UnitHP.Size = new System.Drawing.Size(88, 23);
             this.numUpDwn_UnitHP.TabIndex = 5;
+            this.numUpDwn_UnitHP.ValueChanged += new System.EventHandler(this.UnitHP_Changed);
             // 
             // label1
             // 
@@ -2319,6 +2320,7 @@ namespace P5RBattleEditor
             // groupBox_UnitVisualData
             // 
             this.groupBox_UnitVisualData.Controls.Add(this.tlp_UnitVisualData);
+            this.groupBox_UnitVisualData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_UnitVisualData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.groupBox_UnitVisualData.ForeColor = System.Drawing.Color.Silver;
             this.groupBox_UnitVisualData.Location = new System.Drawing.Point(3, 278);

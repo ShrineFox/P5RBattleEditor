@@ -214,7 +214,7 @@ namespace P5RBattleEditor
             comboBox_UnitAttackType.DataSource = bs_AttackType;
 
             // Arcana
-            bs_Arcana.DataSource = Enum.GetValues(typeof(ArcanaNames)).Cast<ElementalType>()
+            bs_Arcana.DataSource = Enum.GetValues(typeof(ArcanaName)).Cast<ArcanaName>()
                 .Select(e => e.ToString()).ToList();
             comboBox_UnitArcana.DataSource = bs_Arcana;
         }
@@ -678,6 +678,17 @@ namespace P5RBattleEditor
                 return;
 
             selectedUnit.EnemyStats.Level = Convert.ToUInt16(num.Value);
+        }
+
+        private void UnitHP_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown num = sender as NumericUpDown;
+            var selectedUnit = (EnemyUnit)comboBox_Units.SelectedItem;
+
+            if (selectedUnit == null)
+                return;
+
+            selectedUnit.EnemyStats.HP = Convert.ToUInt32(num.Value);
         }
 
         private void UnitSP_Changed(object sender, EventArgs e)
