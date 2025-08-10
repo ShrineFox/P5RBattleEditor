@@ -134,20 +134,43 @@ namespace P5RBattleEditor
             // Enemy Skills
             bs_EnemySkill0.DataSource = SkillNames;
             comboBox_UnitSkill0.DataSource = bs_EnemySkill0;
+            comboBox_UnitSkill0.FormattingEnabled = true;
+            comboBox_UnitSkill0.Format += ItemListFormat;
+
             bs_EnemySkill1.DataSource = SkillNames;
             comboBox_UnitSkill1.DataSource = bs_EnemySkill1;
+            comboBox_UnitSkill1.FormattingEnabled = true;
+            comboBox_UnitSkill1.Format += ItemListFormat;
+
             bs_EnemySkill2.DataSource = SkillNames;
             comboBox_UnitSkill2.DataSource = bs_EnemySkill2;
+            comboBox_UnitSkill2.FormattingEnabled = true;
+            comboBox_UnitSkill2.Format += ItemListFormat;
+
             bs_EnemySkill3.DataSource = SkillNames;
             comboBox_UnitSkill3.DataSource = bs_EnemySkill3;
+            comboBox_UnitSkill3.FormattingEnabled = true;
+            comboBox_UnitSkill3.Format += ItemListFormat;
+
             bs_EnemySkill4.DataSource = SkillNames;
             comboBox_UnitSkill4.DataSource = bs_EnemySkill4;
+            comboBox_UnitSkill4.FormattingEnabled = true;
+            comboBox_UnitSkill4.Format += ItemListFormat;
+
             bs_EnemySkill5.DataSource = SkillNames;
             comboBox_UnitSkill5.DataSource = bs_EnemySkill5;
+            comboBox_UnitSkill5.FormattingEnabled = true;
+            comboBox_UnitSkill5.Format += ItemListFormat;
+
             bs_EnemySkill6.DataSource = SkillNames;
             comboBox_UnitSkill6.DataSource = bs_EnemySkill6;
+            comboBox_UnitSkill6.FormattingEnabled = true;
+            comboBox_UnitSkill6.Format += ItemListFormat;
+
             bs_EnemySkill7.DataSource = SkillNames;
             comboBox_UnitSkill7.DataSource = bs_EnemySkill7;
+            comboBox_UnitSkill7.FormattingEnabled = true;
+            comboBox_UnitSkill7.Format += ItemListFormat;
 
             // Item Drops
             bs_ItemDropType0.DataSource = ItemCategories;
@@ -169,10 +192,20 @@ namespace P5RBattleEditor
             bs_EventItemDrop0.DataSource = ItemNames[0];
 
             comboBox_ItemDrop0.DataSource = bs_ItemDrop0;
+            comboBox_ItemDrop0.FormattingEnabled = true;
+            comboBox_ItemDrop0.Format += ItemListFormat;
             comboBox_ItemDrop1.DataSource = bs_ItemDrop1;
+            comboBox_ItemDrop1.FormattingEnabled = true;
+            comboBox_ItemDrop1.Format += ItemListFormat;
             comboBox_ItemDrop2.DataSource = bs_ItemDrop2;
+            comboBox_ItemDrop2.FormattingEnabled = true;
+            comboBox_ItemDrop2.Format += ItemListFormat;
             comboBox_ItemDrop3.DataSource = bs_ItemDrop3;
+            comboBox_ItemDrop3.FormattingEnabled = true;
+            comboBox_ItemDrop3.Format += ItemListFormat;
             comboBox_EventItemDrop0.DataSource = bs_EventItemDrop0;
+            comboBox_EventItemDrop0.FormattingEnabled = true;
+            comboBox_EventItemDrop0.Format += ItemListFormat;
 
             bs_TalkItem0.DataSource = ItemNames[0];
             bs_TalkItem1.DataSource = ItemNames[0];
@@ -192,19 +225,38 @@ namespace P5RBattleEditor
             bs_TalkItemRareType3.DataSource = ItemCategories;
 
             comboBox_TalkItem0.DataSource = bs_TalkItem0;
+            comboBox_TalkItem0.FormattingEnabled = true;
+            comboBox_TalkItem0.Format += ItemListFormat;
             comboBox_TalkItemRare0.DataSource = bs_TalkItemRare0;
+            comboBox_TalkItemRare0.FormattingEnabled = true;
+            comboBox_TalkItemRare0.Format += ItemListFormat;
             comboBox_TalkItemType0.DataSource = bs_TalkItemType0;
             comboBox_TalkItemRareType0.DataSource = bs_TalkItemRareType0;
+
             comboBox_TalkItem1.DataSource = bs_TalkItem1;
+            comboBox_TalkItem1.FormattingEnabled = true;
+            comboBox_TalkItem1.Format += ItemListFormat;
             comboBox_TalkItemRare1.DataSource = bs_TalkItemRare1;
+            comboBox_TalkItemRare1.FormattingEnabled = true;
+            comboBox_TalkItemRare1.Format += ItemListFormat;
             comboBox_TalkItemType1.DataSource = bs_TalkItemType1;
             comboBox_TalkItemRareType1.DataSource = bs_TalkItemRareType1;
+
             comboBox_TalkItem2.DataSource = bs_TalkItem2;
+            comboBox_TalkItem2.FormattingEnabled = true;
+            comboBox_TalkItem2.Format += ItemListFormat;
             comboBox_TalkItemRare2.DataSource = bs_TalkItemRare2;
+            comboBox_TalkItemRare2.FormattingEnabled = true;
+            comboBox_TalkItemRare2.Format += ItemListFormat;
             comboBox_TalkItemType2.DataSource = bs_TalkItemType2;
             comboBox_TalkItemRareType2.DataSource = bs_TalkItemRareType2;
+
             comboBox_TalkItem3.DataSource = bs_TalkItem3;
+            comboBox_TalkItem3.FormattingEnabled = true;
+            comboBox_TalkItem3.Format += ItemListFormat;
             comboBox_TalkItemRare3.DataSource = bs_TalkItemRare3;
+            comboBox_TalkItemRare3.FormattingEnabled = true;
+            comboBox_TalkItemRare3.Format += ItemListFormat;
             comboBox_TalkItemType3.DataSource = bs_TalkItemType3;
             comboBox_TalkItemRareType3.DataSource = bs_TalkItemRareType3;
 

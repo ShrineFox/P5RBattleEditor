@@ -171,6 +171,63 @@ namespace P5RBattleEditor
             comboBox_BattleUnit4.DataSource = bs_Enemy4;
         }
 
+        private void ItemListFormat(object sender, ListControlConvertEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            int index = comboBox.Items.IndexOf(e.ListItem);
+            e.Value = $"[{index}] {e.ListItem}";
+        }
+
+        private object GetItemID(string comboBoxName, int selectedIndex)
+        {
+            dynamic typeComboBox = null;
+
+            switch (comboBoxName)
+            {
+                case "comboBox_EventItemDrop0":
+                    typeComboBox = comboBox_EventItemDropType0;
+                    break;
+                case "comboBox_ItemDrop0":
+                    typeComboBox = comboBox_ItemDropType0;
+                    break;
+                case "comboBox_ItemDrop1":
+                    typeComboBox = comboBox_ItemDropType1;
+                    break;
+                case "comboBox_ItemDrop2":
+                    typeComboBox = comboBox_ItemDropType2;
+                    break;
+                case "comboBox_ItemDrop3":
+                    typeComboBox = comboBox_ItemDropType3;
+                    break;
+                case "comboBox_TalkItem0":
+                    typeComboBox = comboBox_TalkItemType0;
+                    break;
+                case "comboBox_TalkItem1":
+                    typeComboBox = comboBox_TalkItemType1;
+                    break;
+                case "comboBox_TalkItem2":
+                    typeComboBox = comboBox_TalkItemType2;
+                    break;
+                case "comboBox_TalkItem3":
+                    typeComboBox = comboBox_TalkItemType3;
+                    break;
+                case "comboBox_TalkItemRare0":
+                    typeComboBox = comboBox_TalkItemRareType0;
+                    break;
+                case "comboBox_TalkItemRare1":
+                    typeComboBox = comboBox_TalkItemRareType1;
+                    break;
+                case "comboBox_TalkItemRare2":
+                    typeComboBox = comboBox_TalkItemRareType2;
+                    break;
+                case "comboBox_TalkItemRare3":
+                    typeComboBox = comboBox_TalkItemRareType3;
+                    break;
+            }
+
+            return ItemNames[typeComboBox.SelectedIndex].IndexOf(ItemNames[comboBox_EventItemDropType0.SelectedIndex][selectedIndex]);
+        }
+
         private void EnemyListFormat(object sender, ListControlConvertEventArgs e)
         {
             int enemyID = EnemyUnitNames.IndexOf(e.ListItem.ToString());

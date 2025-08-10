@@ -319,7 +319,7 @@ namespace P5RBattleEditor
             this.menuStrip_Main.Location = new System.Drawing.Point(2, 0);
             this.menuStrip_Main.Name = "menuStrip_Main";
             this.menuStrip_Main.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip_Main.Size = new System.Drawing.Size(803, 24);
+            this.menuStrip_Main.Size = new System.Drawing.Size(803, 30);
             this.menuStrip_Main.TabIndex = 0;
             this.menuStrip_Main.Text = "menuStrip1";
             // 
@@ -398,11 +398,11 @@ namespace P5RBattleEditor
             this.tabControl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_Main.IsDerivedStyle = true;
             this.tabControl_Main.ItemSize = new System.Drawing.Size(100, 38);
-            this.tabControl_Main.Location = new System.Drawing.Point(2, 24);
+            this.tabControl_Main.Location = new System.Drawing.Point(2, 30);
             this.tabControl_Main.Name = "tabControl_Main";
             this.tabControl_Main.SelectedIndex = 0;
             this.tabControl_Main.SelectedTextColor = System.Drawing.Color.White;
-            this.tabControl_Main.Size = new System.Drawing.Size(803, 527);
+            this.tabControl_Main.Size = new System.Drawing.Size(803, 521);
             this.tabControl_Main.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl_Main.Speed = 100;
             this.tabControl_Main.Style = MetroSet_UI.Enums.Style.Dark;
@@ -421,7 +421,7 @@ namespace P5RBattleEditor
             this.tabPage_Units.Location = new System.Drawing.Point(4, 42);
             this.tabPage_Units.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage_Units.Name = "tabPage_Units";
-            this.tabPage_Units.Size = new System.Drawing.Size(795, 481);
+            this.tabPage_Units.Size = new System.Drawing.Size(795, 475);
             this.tabPage_Units.TabIndex = 1;
             this.tabPage_Units.Text = "Units";
             // 
@@ -432,7 +432,7 @@ namespace P5RBattleEditor
             this.panel_Units.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_Units.Location = new System.Drawing.Point(0, 0);
             this.panel_Units.Name = "panel_Units";
-            this.panel_Units.Size = new System.Drawing.Size(795, 481);
+            this.panel_Units.Size = new System.Drawing.Size(795, 475);
             this.panel_Units.TabIndex = 2;
             // 
             // tlp_Units
