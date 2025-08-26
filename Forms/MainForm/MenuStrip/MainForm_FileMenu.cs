@@ -15,7 +15,13 @@ namespace P5RBattleEditor
     public partial class MainForm : MetroSetForm
     {
 
-        public static string[] TblList = new string[] { "ENCOUNT.TBL", "UNIT.TBL", "NAME.TBL" };
+        public static string[] TblList = new string[] { "ENCOUNT.TBL", "UNIT.TBL", "NAME.TBL", "PERSONA.TBL", "SKILL.TBL" };
+
+        private void NewProject_Click(object sender, EventArgs e)
+        {
+            project = JsonConvert.DeserializeObject<Project>(File.ReadAllText("./Dependencies/Json/DataTablesP5R.json"));
+            SetupFormControls();
+        }
 
         private void SaveProject_Click(object sender, EventArgs e)
         {
@@ -49,14 +55,9 @@ namespace P5RBattleEditor
             MessageBox.Show($"Loaded changes from:\n{filePaths.First()}", "Project Loaded");
         }
 
-        private void NewProject_Click(object sender, EventArgs e)
-        {
-            ImportTBLDataFromFolder();
-        }
-
         private void ImportTBLData_Click(object sender, EventArgs e)
         {
-            ImportTBLDataFromFile();
+            ImportTBLDataFromFolder();
         }
 
         private void ImportTBLDataFromFile()
@@ -74,14 +75,15 @@ namespace P5RBattleEditor
         private void ImportTBLDataFromFolder()
         {
             var folderPath = WinFormsDialogs.SelectFolder("Choose TBL Directory");
-            if (!string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath))
+            if (string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath))
                 return;
 
-            foreach (var file in Directory.GetFiles(folderPath)
-                .Where(x => Path.GetExtension(x).Equals(".TBL") || Path.GetExtension(x).Equals(".JSON")))
-            {
+            // Load NAME.TBL first
+            foreach (var file in Directory.GetFiles(folderPath).Where(x => x.Contains("NAME.TBL")))
                 ImportTBLData(file);
-            }
+
+            foreach (var file in Directory.GetFiles(folderPath).Where(x => !x.Contains("NAME.TBL")))
+                ImportTBLData(file);
 
             SetupFormControls();
         }
@@ -103,6 +105,18 @@ namespace P5RBattleEditor
                             project.UnitTblData = ReadP5RUnitTbl(file);
                         else if (Path.GetFileName(file) == TblList[i].Replace(".TBL", ".JSON"))
                             project.UnitTblData = LoadJson(typeof(UnitTableData), file);
+                        break;
+                    case "SKILL.TBL":
+                        if (Path.GetFileName(file) == TblList[i])
+                            project.SkillTblData = ReadP5RSkillTbl(file);
+                        else if (Path.GetFileName(file) == TblList[i].Replace(".TBL", ".JSON"))
+                            project.SkillTblData = LoadJson(typeof(UnitTableData), file);
+                        break;
+                    case "PERSONA.TBL":
+                        if (Path.GetFileName(file) == TblList[i])
+                            project.PersonaTblData = ReadP5RPersonaTbl(file);
+                        else if (Path.GetFileName(file) == TblList[i].Replace(".TBL", ".JSON"))
+                            project.PersonaTblData = LoadJson(typeof(UnitTableData), file);
                         break;
                     case "NAME.TBL":
                         if (Path.GetFileName(file) == TblList[i])

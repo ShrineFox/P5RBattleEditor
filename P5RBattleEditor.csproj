@@ -155,6 +155,9 @@
     <None Include="Dependencies\Charsets\P5R_EFIGS.tsv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Dependencies\Json\DataTablesP5R.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Dependencies\Json\P5R_BATTLE_BGM.JSON">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -173,8 +176,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Amicitia.IO\src\Amicitia.IO\Amicitia.IO.csproj">
-      <Project>{769ac802-e923-440c-bbbf-212747ab616e}</Project>
+    <ProjectReference Include="..\..\tge-was-taken\Amicitia.io\src\Amicitia.IO\Amicitia.IO.csproj">
+      <Project>{8696b628-9801-8c90-caa3-eaa8ade2cdf1}</Project>
       <Name>Amicitia.IO</Name>
     </ProjectReference>
     <ProjectReference Include="..\ShrineFox.IO\ShrineFox.IO.csproj">

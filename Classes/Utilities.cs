@@ -149,6 +149,7 @@ namespace P5RBattleEditor
 
         public void SaveJson(dynamic obj, string outJsonPath)
         {
+            Directory.CreateDirectory(Path.GetDirectoryName(outJsonPath));
             File.WriteAllText(outJsonPath, JsonConvert.SerializeObject(obj, Formatting.Indented));
         }
 
