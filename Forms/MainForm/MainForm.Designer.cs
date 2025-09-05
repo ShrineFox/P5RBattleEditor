@@ -319,7 +319,7 @@ namespace P5RBattleEditor
             this.menuStrip_Main.Location = new System.Drawing.Point(2, 0);
             this.menuStrip_Main.Name = "menuStrip_Main";
             this.menuStrip_Main.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip_Main.Size = new System.Drawing.Size(803, 24);
+            this.menuStrip_Main.Size = new System.Drawing.Size(803, 30);
             this.menuStrip_Main.TabIndex = 0;
             this.menuStrip_Main.Text = "menuStrip1";
             // 
@@ -338,28 +338,28 @@ namespace P5RBattleEditor
             // newProjectToolStripMenuItem
             // 
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.newProjectToolStripMenuItem.Text = "New Project";
             this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.NewProject_Click);
             // 
             // loadProjectToolStripMenuItem
             // 
             this.loadProjectToolStripMenuItem.Name = "loadProjectToolStripMenuItem";
-            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.loadProjectToolStripMenuItem.Text = "Load Project";
             this.loadProjectToolStripMenuItem.Click += new System.EventHandler(this.LoadProject_Click);
             // 
             // saveProjectToolStripMenuItem
             // 
             this.saveProjectToolStripMenuItem.Name = "saveProjectToolStripMenuItem";
-            this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.saveProjectToolStripMenuItem.Text = "Save Project";
             this.saveProjectToolStripMenuItem.Click += new System.EventHandler(this.SaveProject_Click);
             // 
             // importTBLDataToolStripMenuItem
             // 
             this.importTBLDataToolStripMenuItem.Name = "importTBLDataToolStripMenuItem";
-            this.importTBLDataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.importTBLDataToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.importTBLDataToolStripMenuItem.Text = "Import TBL Data";
             this.importTBLDataToolStripMenuItem.Click += new System.EventHandler(this.ImportTBLData_Click);
             // 
@@ -369,7 +369,7 @@ namespace P5RBattleEditor
             this.tBLToolStripMenuItem,
             this.jSONToolStripMenuItem});
             this.exportTBLsAsToolStripMenuItem.Name = "exportTBLsAsToolStripMenuItem";
-            this.exportTBLsAsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exportTBLsAsToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.exportTBLsAsToolStripMenuItem.Text = "Export TBLs As...";
             // 
             // tBLToolStripMenuItem
@@ -394,15 +394,15 @@ namespace P5RBattleEditor
             this.tabControl_Main.Controls.Add(this.tabPage_Units);
             this.tabControl_Main.Controls.Add(this.tabPage_Encounters);
             this.tabControl_Main.Controls.Add(this.tabPage_Skills);
-            this.tabControl_Main.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tabControl_Main.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabControl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_Main.IsDerivedStyle = true;
             this.tabControl_Main.ItemSize = new System.Drawing.Size(100, 38);
-            this.tabControl_Main.Location = new System.Drawing.Point(2, 24);
+            this.tabControl_Main.Location = new System.Drawing.Point(2, 30);
             this.tabControl_Main.Name = "tabControl_Main";
             this.tabControl_Main.SelectedIndex = 0;
             this.tabControl_Main.SelectedTextColor = System.Drawing.Color.White;
-            this.tabControl_Main.Size = new System.Drawing.Size(803, 527);
+            this.tabControl_Main.Size = new System.Drawing.Size(803, 521);
             this.tabControl_Main.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl_Main.Speed = 100;
             this.tabControl_Main.Style = MetroSet_UI.Enums.Style.Dark;
@@ -421,7 +421,7 @@ namespace P5RBattleEditor
             this.tabPage_Units.Location = new System.Drawing.Point(4, 42);
             this.tabPage_Units.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage_Units.Name = "tabPage_Units";
-            this.tabPage_Units.Size = new System.Drawing.Size(795, 481);
+            this.tabPage_Units.Size = new System.Drawing.Size(795, 475);
             this.tabPage_Units.TabIndex = 1;
             this.tabPage_Units.Text = "Units";
             // 
@@ -432,7 +432,7 @@ namespace P5RBattleEditor
             this.panel_Units.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_Units.Location = new System.Drawing.Point(0, 0);
             this.panel_Units.Name = "panel_Units";
-            this.panel_Units.Size = new System.Drawing.Size(795, 481);
+            this.panel_Units.Size = new System.Drawing.Size(795, 475);
             this.panel_Units.TabIndex = 2;
             // 
             // tlp_Units
@@ -2700,7 +2700,7 @@ namespace P5RBattleEditor
             this.tabPage_Encounters.Location = new System.Drawing.Point(4, 42);
             this.tabPage_Encounters.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage_Encounters.Name = "tabPage_Encounters";
-            this.tabPage_Encounters.Size = new System.Drawing.Size(795, 475);
+            this.tabPage_Encounters.Size = new System.Drawing.Size(795, 481);
             this.tabPage_Encounters.TabIndex = 0;
             this.tabPage_Encounters.Text = "Encounters";
             // 
@@ -2719,7 +2719,7 @@ namespace P5RBattleEditor
             this.tlp_Encounters.RowCount = 2;
             this.tlp_Encounters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tlp_Encounters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tlp_Encounters.Size = new System.Drawing.Size(795, 475);
+            this.tlp_Encounters.Size = new System.Drawing.Size(795, 481);
             this.tlp_Encounters.TabIndex = 0;
             // 
             // comboBox_Encounters
@@ -2730,7 +2730,7 @@ namespace P5RBattleEditor
             this.comboBox_Encounters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_Encounters.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_Encounters.FormattingEnabled = true;
-            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 23);
+            this.comboBox_Encounters.Location = new System.Drawing.Point(3, 24);
             this.comboBox_Encounters.Name = "comboBox_Encounters";
             this.comboBox_Encounters.Size = new System.Drawing.Size(550, 24);
             this.comboBox_Encounters.TabIndex = 1;
@@ -2758,9 +2758,9 @@ namespace P5RBattleEditor
             this.chkListBox_EncounterFlags.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.chkListBox_EncounterFlags.ForeColor = System.Drawing.Color.Silver;
             this.chkListBox_EncounterFlags.FormattingEnabled = true;
-            this.chkListBox_EncounterFlags.Location = new System.Drawing.Point(559, 74);
+            this.chkListBox_EncounterFlags.Location = new System.Drawing.Point(559, 75);
             this.chkListBox_EncounterFlags.Name = "chkListBox_EncounterFlags";
-            this.chkListBox_EncounterFlags.Size = new System.Drawing.Size(233, 398);
+            this.chkListBox_EncounterFlags.Size = new System.Drawing.Size(233, 403);
             this.chkListBox_EncounterFlags.TabIndex = 3;
             this.chkListBox_EncounterFlags.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.EncounterFlags_ItemCheck);
             // 
@@ -2774,13 +2774,13 @@ namespace P5RBattleEditor
             this.tlp_EncounterProperties.Controls.Add(this.groupBox_FieldData, 0, 1);
             this.tlp_EncounterProperties.Controls.Add(this.groupBox_BattleUnits, 0, 0);
             this.tlp_EncounterProperties.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlp_EncounterProperties.Location = new System.Drawing.Point(3, 74);
+            this.tlp_EncounterProperties.Location = new System.Drawing.Point(3, 75);
             this.tlp_EncounterProperties.Name = "tlp_EncounterProperties";
             this.tlp_EncounterProperties.RowCount = 3;
             this.tlp_EncounterProperties.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlp_EncounterProperties.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tlp_EncounterProperties.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tlp_EncounterProperties.Size = new System.Drawing.Size(550, 398);
+            this.tlp_EncounterProperties.Size = new System.Drawing.Size(550, 403);
             this.tlp_EncounterProperties.TabIndex = 4;
             // 
             // groupBox_EncounterEtc
@@ -2789,9 +2789,9 @@ namespace P5RBattleEditor
             this.groupBox_EncounterEtc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_EncounterEtc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.groupBox_EncounterEtc.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox_EncounterEtc.Location = new System.Drawing.Point(278, 281);
+            this.groupBox_EncounterEtc.Location = new System.Drawing.Point(278, 284);
             this.groupBox_EncounterEtc.Name = "groupBox_EncounterEtc";
-            this.groupBox_EncounterEtc.Size = new System.Drawing.Size(269, 114);
+            this.groupBox_EncounterEtc.Size = new System.Drawing.Size(269, 116);
             this.groupBox_EncounterEtc.TabIndex = 3;
             this.groupBox_EncounterEtc.TabStop = false;
             this.groupBox_EncounterEtc.Text = "Misc.";
@@ -2809,9 +2809,9 @@ namespace P5RBattleEditor
             this.groupBox_EncounterNotes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_EncounterNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.groupBox_EncounterNotes.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox_EncounterNotes.Location = new System.Drawing.Point(3, 281);
+            this.groupBox_EncounterNotes.Location = new System.Drawing.Point(3, 284);
             this.groupBox_EncounterNotes.Name = "groupBox_EncounterNotes";
-            this.groupBox_EncounterNotes.Size = new System.Drawing.Size(269, 114);
+            this.groupBox_EncounterNotes.Size = new System.Drawing.Size(269, 116);
             this.groupBox_EncounterNotes.TabIndex = 2;
             this.groupBox_EncounterNotes.TabStop = false;
             this.groupBox_EncounterNotes.Text = "Notes";
@@ -2827,7 +2827,7 @@ namespace P5RBattleEditor
             this.txt_EncounterNotes.Margin = new System.Windows.Forms.Padding(6);
             this.txt_EncounterNotes.Multiline = true;
             this.txt_EncounterNotes.Name = "txt_EncounterNotes";
-            this.txt_EncounterNotes.Size = new System.Drawing.Size(263, 92);
+            this.txt_EncounterNotes.Size = new System.Drawing.Size(263, 94);
             this.txt_EncounterNotes.TabIndex = 0;
             this.txt_EncounterNotes.TextChanged += new System.EventHandler(this.EncounterNotes_Changed);
             // 
@@ -2838,9 +2838,9 @@ namespace P5RBattleEditor
             this.groupBox_FieldData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_FieldData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.groupBox_FieldData.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox_FieldData.Location = new System.Drawing.Point(3, 162);
+            this.groupBox_FieldData.Location = new System.Drawing.Point(3, 164);
             this.groupBox_FieldData.Name = "groupBox_FieldData";
-            this.groupBox_FieldData.Size = new System.Drawing.Size(544, 113);
+            this.groupBox_FieldData.Size = new System.Drawing.Size(544, 114);
             this.groupBox_FieldData.TabIndex = 1;
             this.groupBox_FieldData.TabStop = false;
             this.groupBox_FieldData.Text = "Field Data";
@@ -2861,7 +2861,7 @@ namespace P5RBattleEditor
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(538, 91);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(538, 92);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // groupBox_EncounterMusic
@@ -2871,7 +2871,7 @@ namespace P5RBattleEditor
             this.groupBox_EncounterMusic.ForeColor = System.Drawing.Color.Silver;
             this.groupBox_EncounterMusic.Location = new System.Drawing.Point(361, 3);
             this.groupBox_EncounterMusic.Name = "groupBox_EncounterMusic";
-            this.groupBox_EncounterMusic.Size = new System.Drawing.Size(174, 85);
+            this.groupBox_EncounterMusic.Size = new System.Drawing.Size(174, 86);
             this.groupBox_EncounterMusic.TabIndex = 7;
             this.groupBox_EncounterMusic.TabStop = false;
             this.groupBox_EncounterMusic.Text = "Music";
@@ -2884,7 +2884,7 @@ namespace P5RBattleEditor
             this.comboBox_EncounterMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_EncounterMusic.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_EncounterMusic.FormattingEnabled = true;
-            this.comboBox_EncounterMusic.Location = new System.Drawing.Point(3, 31);
+            this.comboBox_EncounterMusic.Location = new System.Drawing.Point(3, 32);
             this.comboBox_EncounterMusic.Name = "comboBox_EncounterMusic";
             this.comboBox_EncounterMusic.Size = new System.Drawing.Size(166, 24);
             this.comboBox_EncounterMusic.TabIndex = 7;
@@ -2897,7 +2897,7 @@ namespace P5RBattleEditor
             this.groupBox_FieldIDMajor.ForeColor = System.Drawing.Color.Silver;
             this.groupBox_FieldIDMajor.Location = new System.Drawing.Point(182, 3);
             this.groupBox_FieldIDMajor.Name = "groupBox_FieldIDMajor";
-            this.groupBox_FieldIDMajor.Size = new System.Drawing.Size(173, 85);
+            this.groupBox_FieldIDMajor.Size = new System.Drawing.Size(173, 86);
             this.groupBox_FieldIDMajor.TabIndex = 6;
             this.groupBox_FieldIDMajor.TabStop = false;
             this.groupBox_FieldIDMajor.Text = "Field ID Minor";
@@ -2909,7 +2909,7 @@ namespace P5RBattleEditor
             this.numUpDwn_FieldIDMinor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.numUpDwn_FieldIDMinor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numUpDwn_FieldIDMinor.ForeColor = System.Drawing.Color.Silver;
-            this.numUpDwn_FieldIDMinor.Location = new System.Drawing.Point(6, 34);
+            this.numUpDwn_FieldIDMinor.Location = new System.Drawing.Point(6, 35);
             this.numUpDwn_FieldIDMinor.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2927,7 +2927,7 @@ namespace P5RBattleEditor
             this.groupBox_FieldIDMinor.ForeColor = System.Drawing.Color.Silver;
             this.groupBox_FieldIDMinor.Location = new System.Drawing.Point(3, 3);
             this.groupBox_FieldIDMinor.Name = "groupBox_FieldIDMinor";
-            this.groupBox_FieldIDMinor.Size = new System.Drawing.Size(173, 85);
+            this.groupBox_FieldIDMinor.Size = new System.Drawing.Size(173, 86);
             this.groupBox_FieldIDMinor.TabIndex = 5;
             this.groupBox_FieldIDMinor.TabStop = false;
             this.groupBox_FieldIDMinor.Text = "Field ID Major";
@@ -2939,7 +2939,7 @@ namespace P5RBattleEditor
             this.numUpDwn_FieldIDMajor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.numUpDwn_FieldIDMajor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numUpDwn_FieldIDMajor.ForeColor = System.Drawing.Color.Silver;
-            this.numUpDwn_FieldIDMajor.Location = new System.Drawing.Point(6, 34);
+            this.numUpDwn_FieldIDMajor.Location = new System.Drawing.Point(6, 35);
             this.numUpDwn_FieldIDMajor.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2959,7 +2959,7 @@ namespace P5RBattleEditor
             this.groupBox_BattleUnits.ForeColor = System.Drawing.Color.Silver;
             this.groupBox_BattleUnits.Location = new System.Drawing.Point(3, 3);
             this.groupBox_BattleUnits.Name = "groupBox_BattleUnits";
-            this.groupBox_BattleUnits.Size = new System.Drawing.Size(544, 153);
+            this.groupBox_BattleUnits.Size = new System.Drawing.Size(544, 155);
             this.groupBox_BattleUnits.TabIndex = 0;
             this.groupBox_BattleUnits.TabStop = false;
             this.groupBox_BattleUnits.Text = "Battle Units";
@@ -2982,7 +2982,7 @@ namespace P5RBattleEditor
             this.tlp_EncounterBattleUnits.Name = "tlp_EncounterBattleUnits";
             this.tlp_EncounterBattleUnits.RowCount = 1;
             this.tlp_EncounterBattleUnits.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlp_EncounterBattleUnits.Size = new System.Drawing.Size(538, 131);
+            this.tlp_EncounterBattleUnits.Size = new System.Drawing.Size(538, 133);
             this.tlp_EncounterBattleUnits.TabIndex = 0;
             // 
             // comboBox_BattleUnit4
@@ -2993,7 +2993,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit4.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit4.FormattingEnabled = true;
-            this.comboBox_BattleUnit4.Location = new System.Drawing.Point(431, 53);
+            this.comboBox_BattleUnit4.Location = new System.Drawing.Point(431, 54);
             this.comboBox_BattleUnit4.Name = "comboBox_BattleUnit4";
             this.comboBox_BattleUnit4.Size = new System.Drawing.Size(104, 24);
             this.comboBox_BattleUnit4.TabIndex = 6;
@@ -3007,7 +3007,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit3.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit3.FormattingEnabled = true;
-            this.comboBox_BattleUnit3.Location = new System.Drawing.Point(324, 53);
+            this.comboBox_BattleUnit3.Location = new System.Drawing.Point(324, 54);
             this.comboBox_BattleUnit3.Name = "comboBox_BattleUnit3";
             this.comboBox_BattleUnit3.Size = new System.Drawing.Size(101, 24);
             this.comboBox_BattleUnit3.TabIndex = 5;
@@ -3021,7 +3021,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit2.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit2.FormattingEnabled = true;
-            this.comboBox_BattleUnit2.Location = new System.Drawing.Point(217, 53);
+            this.comboBox_BattleUnit2.Location = new System.Drawing.Point(217, 54);
             this.comboBox_BattleUnit2.Name = "comboBox_BattleUnit2";
             this.comboBox_BattleUnit2.Size = new System.Drawing.Size(101, 24);
             this.comboBox_BattleUnit2.TabIndex = 4;
@@ -3035,7 +3035,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit1.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit1.FormattingEnabled = true;
-            this.comboBox_BattleUnit1.Location = new System.Drawing.Point(110, 53);
+            this.comboBox_BattleUnit1.Location = new System.Drawing.Point(110, 54);
             this.comboBox_BattleUnit1.Name = "comboBox_BattleUnit1";
             this.comboBox_BattleUnit1.Size = new System.Drawing.Size(101, 24);
             this.comboBox_BattleUnit1.TabIndex = 3;
@@ -3049,7 +3049,7 @@ namespace P5RBattleEditor
             this.comboBox_BattleUnit0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.comboBox_BattleUnit0.ForeColor = System.Drawing.Color.Silver;
             this.comboBox_BattleUnit0.FormattingEnabled = true;
-            this.comboBox_BattleUnit0.Location = new System.Drawing.Point(3, 53);
+            this.comboBox_BattleUnit0.Location = new System.Drawing.Point(3, 54);
             this.comboBox_BattleUnit0.Name = "comboBox_BattleUnit0";
             this.comboBox_BattleUnit0.Size = new System.Drawing.Size(101, 24);
             this.comboBox_BattleUnit0.TabIndex = 2;
@@ -3061,7 +3061,7 @@ namespace P5RBattleEditor
             this.tabPage_Skills.Location = new System.Drawing.Point(4, 42);
             this.tabPage_Skills.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage_Skills.Name = "tabPage_Skills";
-            this.tabPage_Skills.Size = new System.Drawing.Size(795, 475);
+            this.tabPage_Skills.Size = new System.Drawing.Size(795, 481);
             this.tabPage_Skills.TabIndex = 2;
             this.tabPage_Skills.Text = "Skills";
             // 
